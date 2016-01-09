@@ -1,9 +1,10 @@
 #pragma once
 
+#include <cstdint>
 
 namespace Enum {
 
-	enum class PlatformType : unsigned char {
+	enum class PlatformType : uint8_t {
 		Linux
 	};
 

@@ -1,8 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
 namespace Enum {
 
-	enum class LoggerType : unsigned char {
+	enum class LoggerType : uint8_t {
 		IniLogger
 	};
 

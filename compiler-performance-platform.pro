@@ -21,7 +21,8 @@ SOURCES += main.cpp \
 		core/tests/nwd-test-case.cpp \
     core/loggers/ini-logger.cpp \
     core/platforms/linux-platform.cpp \
-    core/functionals/elapsed-time.cpp
+    core/functionals/elapsed-time.cpp \
+    core/functionals/compiler-info.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -40,4 +41,5 @@ HEADERS += \
 		core/tests/nwd-test-case.h \
     core/loggers/ini-logger.h \
     core/platforms/linux-platform.h \
-    core/functionals/elapsed-time.h
+    core/functionals/elapsed-time.h \
+    core/functionals/compiler-info.h

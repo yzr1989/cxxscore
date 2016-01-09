@@ -12,6 +12,9 @@ namespace Interface {
 		: public Template::IAttachTemplate<Interface::ITestCase>
 		, public Template::IAttachTemplate<Interface::ILogger> {
 	public:
+		using Template::IAttachTemplate<Interface::ITestCase>::attach;
+		using Template::IAttachTemplate<Interface::ILogger>::attach;
+
 		explicit IPlatform() = default;
 		virtual ~IPlatform() = default;
 

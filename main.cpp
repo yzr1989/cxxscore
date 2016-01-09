@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
 	auto platform = PlatformFactory::create(PlatformType::Linux);
 	platform->attach(LoggerFactory::create(LoggerType::IniLogger));
 
-	for (size_t i = 0; i < static_cast<size_t>(Enum::TestType::Last); ++i)
+	for (std::underlying_type<Enum::TestType>::type i = 0;
+			 i < static_cast<std::underlying_type<Enum::TestType>::type>(Enum::TestType::Last); ++i)
 		platform->attach(TestFactory::create(static_cast<Enum::TestType>(i)));
 
 	platform->run();

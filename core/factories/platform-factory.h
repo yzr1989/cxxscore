@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/abstracts/abstract-platform.h>
+#include <core/interfaces/iplatform.h>
 #include <memory>
 
 namespace Factory {
@@ -10,7 +10,7 @@ namespace Factory {
 		explicit PlatformFactory() = delete;
 		virtual ~PlatformFactory() = delete;
 
-		static std::unique_ptr<Abstract::AbstractPlatform> create(const Enum::PlatformType &type);
+		static std::unique_ptr<Interface::IPlatform> create(const Enum::PlatformType &type);
 	};
 
 }

@@ -4,7 +4,7 @@
 using namespace Factory;
 using namespace Enum;
 
-std::unique_ptr<Abstract::AbstractPlatform> PlatformFactory::create(const PlatformType &type) {
+std::unique_ptr<Interface::IPlatform> PlatformFactory::create(const PlatformType &type) {
 	switch (type) {
 		case PlatformType::Linux:
 			return std::make_unique<Platform::LinuxPlatform>();
