@@ -1,27 +1,26 @@
 #include <core/tests/fibonacci-test-case.h>
 
-using namespace TestCase;
+using namespace Test;
 
-
-long FibonacciTestCase::fibonacci(unsigned n) {
+long FibonacciTest::fibonacci(unsigned n) {
 	if (n < 2) return n;
 
-	return FibonacciTestCase::fibonacci(n - 1) + FibonacciTestCase::fibonacci(n - 2);
+	return FibonacciTest::fibonacci(n - 1) + FibonacciTest::fibonacci(n - 2);
 }
 
-Enum::TestCaseId FibonacciTestCase::id() const {
-	return Enum::TestCaseId::Fibonacci;
+Enum::TestType FibonacciTest::id() const {
+	return Enum::TestType::Fibonacci;
 }
 
-std::string FibonacciTestCase::name() const {
+std::string FibonacciTest::name() const {
 	return "Fibonacci";
 }
 
-int FibonacciTestCase::execute() {
+int FibonacciTest::execute() {
 	return fibonacci(41);
 }
 
-int FibonacciTestCase::count() const {
+unsigned long long FibonacciTest::count() const {
 	return 5;
 }
 

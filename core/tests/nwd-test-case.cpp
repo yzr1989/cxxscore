@@ -1,16 +1,16 @@
 #include <core/tests/nwd-test-case.h>
 
-using namespace TestCase;
+using namespace Test;
 
-Enum::TestCaseId NWDTestCase::id() const {
-	return Enum::TestCaseId::NWD;
+Enum::TestType NWDTest::id() const {
+	return Enum::TestType::NWD;
 }
 
-std::string NWDTestCase::name() const {
+std::string NWDTest::name() const {
 	return "NWD";
 }
 
-int NWDTestCase::execute() {
+int NWDTest::execute() {
 	auto a = 5324;
 	auto b = 31;
 	auto c = 0;
@@ -24,6 +24,6 @@ int NWDTestCase::execute() {
 	return a;
 }
 
-int NWDTestCase::count() const {
+unsigned long long NWDTest::count() const {
 	return 500000000;
 }

@@ -1,34 +1,43 @@
+TARGET = compiler-performance-platform
+TEMPLATE = app
 QT += core
-CONFIG += c++14
 
 include(cflags.pri)
 
-TARGET = compiler-performance-platform
-
-TEMPLATE = app
-
 SOURCES += main.cpp \
-    core/interfaces/templates/itemplate-attach.cpp \
-    core/abstracts/abstract-platform.cpp \
-    core/interfaces/iplatform.cpp \
-    core/interfaces/itestcase.cpp \
-    core/interfaces/ilogger.cpp \
-    core/enums/test-case-id-enum.cpp \
-    core/concretes/linux-platform.cpp \
-    core/concretes/ini-logger.cpp \
-    core/tests/nwd-test-case.cpp \
-    core/factories/test-case-factory.cpp \
-    core/tests/fibonacci-test-case.cpp
+		core/abstracts/abstract-platform.cpp \
+		core/enums/logger-type-enum.cpp \
+		core/enums/platform-type-enum.cpp \
+		core/enums/test-type-enum.cpp \
+		core/factories/logger-factory.cpp \
+		core/factories/platform-factory.cpp \
+		core/factories/test-factory.cpp \
+		core/interfaces/ilogger.cpp \
+		core/interfaces/iplatform.cpp \
+		core/interfaces/itestcase.cpp \
+		core/interfaces/templates/itemplate-attach.cpp \
+		core/tests/empty-call-test.cpp \
+		core/tests/fibonacci-test-case.cpp \
+		core/tests/nwd-test-case.cpp \
+    core/loggers/ini-logger.cpp \
+    core/platforms/linux-platform.cpp \
+    core/functionals/elapsed-time.cpp
 
 HEADERS += \
-    core/interfaces/templates/itemplate-attach.h \
-    core/abstracts/abstract-platform.h \
-    core/interfaces/iplatform.h \
-    core/interfaces/itestcase.h \
-    core/interfaces/ilogger.h \
-    core/enums/test-case-id-enum.h \
-    core/concretes/linux-platform.h \
-    core/concretes/ini-logger.h \
-    core/tests/nwd-test-case.h \
-    core/factories/test-case-factory.h \
-    core/tests/fibonacci-test-case.h
+		core/abstracts/abstract-platform.h \
+		core/enums/logger-type-enum.h \
+		core/enums/platform-type-enum.h \
+		core/enums/test-type-enum.h \
+		core/factories/logger-factory.h \
+		core/factories/platform-factory.h \
+		core/factories/test-factory.h \
+		core/interfaces/ilogger.h \
+		core/interfaces/iplatform.h \
+		core/interfaces/itestcase.h \
+		core/interfaces/templates/itemplate-attach.h \
+		core/tests/empty-call-test.h \
+		core/tests/fibonacci-test-case.h \
+		core/tests/nwd-test-case.h \
+    core/loggers/ini-logger.h \
+    core/platforms/linux-platform.h \
+    core/functionals/elapsed-time.h

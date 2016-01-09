@@ -1,5 +1,6 @@
 #pragma once
 
+#include <core/enums/platform-type-enum.h>
 #include <core/interfaces/templates/itemplate-attach.h>
 
 namespace Interface {
@@ -14,6 +15,7 @@ namespace Interface {
 		explicit IPlatform() = default;
 		virtual ~IPlatform() = default;
 
+		virtual Enum::PlatformType type() const = 0;
 		virtual void run() = 0;
 
 	protected:

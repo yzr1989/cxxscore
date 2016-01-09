@@ -2,17 +2,17 @@
 
 #include <core/interfaces/itestcase.h>
 
-namespace TestCase {
+namespace Test {
 
-	class NWDTestCase final : public Interface::ITestCase {
+	class NWDTest final : public Interface::ITestCase {
 	public:
-		explicit NWDTestCase() = default;
-		virtual ~NWDTestCase() = default;
+		explicit NWDTest() = default;
+		virtual ~NWDTest() = default;
 
-		virtual Enum::TestCaseId id() const override;
+		virtual Enum::TestType id() const override;
 		virtual std::string name() const override;
 		virtual int execute() override;
-		virtual int count() const override;
+		virtual unsigned long long count() const override;
 	};
 
 }

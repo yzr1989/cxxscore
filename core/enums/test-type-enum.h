@@ -2,9 +2,10 @@
 
 namespace Enum {
 
-	enum class TestCaseId : unsigned int {
-		NWD,
+	enum class TestType : unsigned int {
+		EmptyCall,
 		Fibonacci,
+		NWD,
 		Last
 	};
 

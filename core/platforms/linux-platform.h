@@ -2,12 +2,14 @@
 
 #include <core/abstracts/abstract-platform.h>
 
-namespace Concrete {
+namespace Platform {
 
 	class LinuxPlatform final : public Abstract::AbstractPlatform {
 	public:
 		explicit LinuxPlatform() = default;
 		virtual ~LinuxPlatform() = default;
+
+		virtual Enum::PlatformType type() const override;
 	};
 
 }

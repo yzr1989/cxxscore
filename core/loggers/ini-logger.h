@@ -5,20 +5,20 @@
 #include <QSettings>
 #include <chrono>
 
-namespace Concrete {
+namespace Logger {
 
 	class IniLogger final : public Interface::ILogger {
 	public:
 		explicit IniLogger();
 		virtual ~IniLogger() = default;
 
+		virtual Enum::LoggerType type() const override;
+
 		virtual void init(Interface::ITestCase *) override;
-		virtual void done(Interface::ITestCase *) override;
+		virtual void done(Interface::ITestCase *, double duration) override;
 
 	private:
 		QSettings m_file;
-		std::chrono::time_point<std::chrono::system_clock> m_begin;
-		std::chrono::time_point<std::chrono::system_clock> m_end;
 
 	};
 

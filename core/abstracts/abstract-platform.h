@@ -1,6 +1,7 @@
 #pragma once
 
 #include <core/interfaces/iplatform.h>
+#include <core/functionals/elapsed-time.h>
 #include <list>
 
 namespace Abstract {
@@ -22,6 +23,7 @@ namespace Abstract {
 	private:
 		std::list <std::unique_ptr<Interface::ITestCase>> m_testCaseList;
 		std::unique_ptr<Interface::ILogger> m_logger;
+		Functional::ElapsedTime m_elapsed;
 	};
 
 }
