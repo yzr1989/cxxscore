@@ -8,7 +8,7 @@ namespace Logger {
 
 	class IniLogger final : public Interface::ILogger {
 	public:
-		explicit IniLogger(const QString &name = "benchmark.ini");
+		explicit IniLogger(const QString &name);
 		virtual ~IniLogger() = default;
 
 		virtual Enum::LoggerType type() const override;

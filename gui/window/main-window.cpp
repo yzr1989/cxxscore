@@ -16,14 +16,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
 {
 	ui->setupUi(this);
-	loadFromFile("/home/dev/gcc.raw");
-	loadFromFile("/home/dev/clang.raw");
+	setWindowTitle("Compiler performance platform: graph generator");
+	loadFromFile("/home/dev/linux-x86_64-gcc-cpp.raw");
+	loadFromFile("/home/dev/linux-x86_64-clang-cpp.raw");
 }
 
 MainWindow::~MainWindow() {
 	delete ui;
 }
 
+//boisko :)
 void MainWindow::loadFromFile(const QString &fileName) {
 	Functional::ContainerFile file(fileName);
 	Container::PlatformInfoContainer platformInfo;

@@ -7,7 +7,7 @@ namespace Logger {
 
 	class RawLogger final : public Interface::ILogger {
 	public:
-		explicit RawLogger(const QString &name = "benchmark.raw");
+		explicit RawLogger(const QString &name);
 		virtual ~RawLogger() = default;
 
 		virtual Enum::LoggerType type() const override;

@@ -15,7 +15,7 @@ Container::PlatformInfoContainer PlatformInfo::info() {
 	container.setArch("arm");
 #endif
 #ifdef __unix__
-	container.setName("Linux");
+	container.setName("linux");
 #endif
 	return container;
 }
