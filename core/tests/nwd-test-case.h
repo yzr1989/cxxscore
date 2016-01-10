@@ -10,7 +10,7 @@ namespace Test {
 		virtual ~NWDTest() = default;
 
 		virtual Enum::TestType id() const override;
-		virtual std::string name() const override;
+		virtual QString name() const override;
 		virtual int execute() override;
 		virtual unsigned long long count() const override;
 	};

@@ -6,7 +6,7 @@ Enum::TestType NWDTest::id() const {
 	return Enum::TestType::NWD;
 }
 
-std::string NWDTest::name() const {
+QString NWDTest::name() const {
 	return "NWD";
 }
 

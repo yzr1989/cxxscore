@@ -1,28 +1,27 @@
 #include <core/functionals/compiler-info.h>
+#include <iostream>
 
 using namespace Functional;
 
-std::string CompilerInfo::compiler() {
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+Container::CompilerInfoContainer CompilerInfo::info() {
+	Container::CompilerInfoContainer container;
 #ifdef __clang__
-	return "clang";
+	container.setName("clang");
 #else
-	return "gcc";
+	container.setName("gcc");
 #endif
+	container.setFlags(TOSTRING(CXXFLAGS));
+	return container;
 }
 
-std::string CompilerInfo::arch() {
-#ifdef __i386__
-	return "x86";
-#endif
-#ifdef __x86_64__
-	return "x86_64";
-#endif
-#ifdef __arm__
-	return "arm";
-#endif
+void CompilerInfo::printInfo() {
+	Container::CompilerInfoContainer info = CompilerInfo::info();
+	std::cout << "Compiler info:" << std::endl;
+	std::cout << "\tcompiler: " << info.name().toStdString() << std::endl;
+	std::cout << "\tflags: " << info.flags().toStdString() << std::endl;
+	std::cout << std::endl;
 }
 
-std::string CompilerInfo::ident()
-{
-	return CompilerInfo::arch() + "/" + CompilerInfo::compiler();
-}

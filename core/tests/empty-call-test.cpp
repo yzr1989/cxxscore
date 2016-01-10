@@ -6,7 +6,7 @@ Enum::TestType EmptyCallTest::id() const {
 	return Enum::TestType::EmptyCall;
 }
 
-std::string EmptyCallTest::name() const {
+QString EmptyCallTest::name() const {
 	return "EmptyCall";
 }
 

@@ -22,7 +22,17 @@ SOURCES += main/platform/main.cpp \
     core/loggers/ini-logger.cpp \
     core/platforms/linux-platform.cpp \
     core/functionals/elapsed-time.cpp \
-    core/functionals/compiler-info.cpp
+    core/functionals/compiler-info.cpp \
+    core/abstracts/abstract-container.cpp \
+    core/enums/container-type-enum.cpp \
+    core/containers/test-result-container.cpp \
+    core/core/data-stream.cpp \
+    core/containers/compiler-info-container.cpp \
+    core/containers/platform-info-container.cpp \
+    core/functionals/platform-info.cpp \
+    core/loggers/raw-logger.cpp \
+    core/functionals/container-file.cpp \
+    core/factories/container-factory.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -42,4 +52,14 @@ HEADERS += \
     core/loggers/ini-logger.h \
     core/platforms/linux-platform.h \
     core/functionals/elapsed-time.h \
-    core/functionals/compiler-info.h
+    core/functionals/compiler-info.h \
+    core/abstracts/abstract-container.h \
+    core/enums/container-type-enum.h \
+    core/containers/test-result-container.h \
+    core/core/data-stream.h \
+    core/containers/compiler-info-container.h \
+    core/containers/platform-info-container.h \
+    core/functionals/platform-info.h \
+    core/loggers/raw-logger.h \
+    core/functionals/container-file.h \
+    core/factories/container-factory.h

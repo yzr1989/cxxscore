@@ -1,15 +1,14 @@
 #pragma once
 
 #include <core/interfaces/ilogger.h>
-
-#include <QSettings>
+#include <core/functionals/container-file.h>
 
 namespace Logger {
 
-	class IniLogger final : public Interface::ILogger {
+	class RawLogger final : public Interface::ILogger {
 	public:
-		explicit IniLogger(const QString &name = "benchmark.ini");
-		virtual ~IniLogger() = default;
+		explicit RawLogger(const QString &name = "benchmark.raw");
+		virtual ~RawLogger() = default;
 
 		virtual Enum::LoggerType type() const override;
 
@@ -17,7 +16,7 @@ namespace Logger {
 		virtual void done(Interface::ITestCase *, double duration) override;
 
 	private:
-		QSettings m_file;
+		Functional::ContainerFile m_file;
 
 	};
 

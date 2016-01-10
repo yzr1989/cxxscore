@@ -1,17 +1,17 @@
 #pragma once
 
-#include <string>
+#include <core/containers/compiler-info-container.h>
 
 namespace Functional {
 
-	class CompilerInfo {
+	class CompilerInfo final {
 	public:
-		explicit CompilerInfo() = default;
-		virtual ~CompilerInfo() = default;
+		explicit CompilerInfo() = delete;
+		virtual ~CompilerInfo() = delete;
 
-		static std::string compiler();
-		static std::string arch();
-		static std::string ident();
+		static Container::CompilerInfoContainer info();
+
+		static void printInfo();
 	};
 
 }

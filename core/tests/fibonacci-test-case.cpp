@@ -12,7 +12,7 @@ Enum::TestType FibonacciTest::id() const {
 	return Enum::TestType::Fibonacci;
 }
 
-std::string FibonacciTest::name() const {
+QString FibonacciTest::name() const {
 	return "Fibonacci";
 }
 

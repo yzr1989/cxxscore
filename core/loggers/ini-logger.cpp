@@ -18,7 +18,7 @@ Enum::LoggerType IniLogger::type() const {
 }
 
 void IniLogger::init(Interface::ITestCase *test) {
-	m_file.beginGroup(QString::fromStdString(Functional::CompilerInfo::ident() + "/" + test->name()));
+	m_file.beginGroup(test->name());
 }
 
 void IniLogger::done(Interface::ITestCase *test, double duration) {
