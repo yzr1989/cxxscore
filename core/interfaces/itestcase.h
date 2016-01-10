@@ -13,8 +13,8 @@ namespace Interface {
 
 		virtual Enum::TestType id() const = 0;
 		virtual QString name() const = 0;
-		virtual int execute() = 0;
-		virtual unsigned long long count() const = 0;
+		virtual uint64_t execute() = 0;
+		virtual uint64_t count() const = 0;
 	};
 
 }

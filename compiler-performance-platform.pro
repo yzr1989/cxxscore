@@ -33,6 +33,7 @@ SOURCES += main/platform/main.cpp \
     core/loggers/raw-logger.cpp \
     core/functionals/container-file.cpp \
     core/factories/container-factory.cpp \
+    core/tests/factorial-test-case.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -63,3 +64,4 @@ HEADERS += \
     core/loggers/raw-logger.h \
     core/functionals/container-file.h \
     core/factories/container-factory.h \
+    core/tests/factorial-test-case.h

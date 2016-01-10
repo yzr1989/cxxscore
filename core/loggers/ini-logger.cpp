@@ -22,7 +22,7 @@ void IniLogger::init(Interface::ITestCase *test) {
 }
 
 void IniLogger::done(Interface::ITestCase *test, double duration) {
-	m_file.setValue("count", test->count());
+	m_file.setValue("count", static_cast<quint64>(test->count()));
 	m_file.setValue("duration", duration);
 	m_file.endGroup();
 	m_file.sync();

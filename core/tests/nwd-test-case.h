@@ -11,8 +11,8 @@ namespace Test {
 
 		virtual Enum::TestType id() const override;
 		virtual QString name() const override;
-		virtual int execute() override;
-		virtual unsigned long long count() const override;
+		virtual uint64_t execute() override;
+		virtual uint64_t count() const override;
 	};
 
 }

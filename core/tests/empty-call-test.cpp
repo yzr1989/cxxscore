@@ -10,10 +10,10 @@ QString EmptyCallTest::name() const {
 	return "EmptyCall";
 }
 
-int EmptyCallTest::execute() {
+uint64_t EmptyCallTest::execute() {
 	return 0;
 }
 
-unsigned long long EmptyCallTest::count() const {
+uint64_t EmptyCallTest::count() const {
 	return 1000000000;
 }

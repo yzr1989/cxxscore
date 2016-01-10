@@ -10,7 +10,7 @@ QString NWDTest::name() const {
 	return "NWD";
 }
 
-int NWDTest::execute() {
+uint64_t NWDTest::execute() {
 	auto a = 5324;
 	auto b = 31;
 	auto c = 0;
@@ -24,6 +24,6 @@ int NWDTest::execute() {
 	return a;
 }
 
-unsigned long long NWDTest::count() const {
+uint64_t NWDTest::count() const {
 	return 500000000;
 }

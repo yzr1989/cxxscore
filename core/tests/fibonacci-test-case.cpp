@@ -2,7 +2,7 @@
 
 using namespace Test;
 
-long FibonacciTest::fibonacci(unsigned n) {
+uint64_t FibonacciTest::fibonacci(uint64_t n) {
 	if (n < 2) return n;
 
 	return FibonacciTest::fibonacci(n - 1) + FibonacciTest::fibonacci(n - 2);
@@ -16,11 +16,11 @@ QString FibonacciTest::name() const {
 	return "Fibonacci";
 }
 
-int FibonacciTest::execute() {
+uint64_t FibonacciTest::execute() {
 	return fibonacci(41);
 }
 
-unsigned long long FibonacciTest::count() const {
+uint64_t FibonacciTest::count() const {
 	return 5;
 }
 
