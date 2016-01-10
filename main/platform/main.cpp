@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 	platform->attach(LoggerFactory::create(LoggerType::RawLogger));
 
 	for (std::underlying_type<Enum::TestType>::type i = 0;
-			 i < static_cast<std::underlying_type<Enum::TestType>::type>(Enum::TestType::Last); ++i)
+	     i < static_cast<std::underlying_type<Enum::TestType>::type>(Enum::TestType::Last); ++i)
 		platform->attach(TestFactory::create(static_cast<Enum::TestType>(i)));
 
 	platform->run();

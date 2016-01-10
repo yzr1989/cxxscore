@@ -5,8 +5,7 @@ using namespace Functional;
 using namespace Factory;
 
 ContainerFile::ContainerFile(const QString &filePath)
-	: m_file(filePath)
-{
+	: m_file(filePath) {
 	m_file.open(QIODevice::ReadWrite);
 	m_stream.setDevice(&m_file);
 }

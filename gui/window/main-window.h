@@ -15,6 +15,8 @@ namespace Window {
 		explicit MainWindow(QWidget *parent = 0);
 		~MainWindow();
 
+		void loadFromFile(const QString &fileName);
+
 	private:
 		Ui::MainWindow *ui;
 	};

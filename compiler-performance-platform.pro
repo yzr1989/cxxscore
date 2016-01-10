@@ -32,7 +32,7 @@ SOURCES += main/platform/main.cpp \
     core/functionals/platform-info.cpp \
     core/loggers/raw-logger.cpp \
     core/functionals/container-file.cpp \
-    core/factories/container-factory.cpp
+    core/factories/container-factory.cpp \
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -62,4 +62,4 @@ HEADERS += \
     core/functionals/platform-info.h \
     core/loggers/raw-logger.h \
     core/functionals/container-file.h \
-    core/factories/container-factory.h
+    core/factories/container-factory.h \
