@@ -4,7 +4,7 @@ QT += core
 
 include(cflags.pri)
 
-SOURCES += main.cpp \
+SOURCES += main/platform/main.cpp \
 		core/abstracts/abstract-platform.cpp \
 		core/enums/logger-type-enum.cpp \
 		core/enums/platform-type-enum.cpp \
