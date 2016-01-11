@@ -93,7 +93,7 @@ void MainWindow::loadFromFile(const QString &fileName) {
 			plot->xAxis->setRange(0, result->duration() + 1);
 
 		plot->xAxis->setPadding(5); // a bit more space to the left border
-		plot->xAxis->setLabel("[s]");
+		plot->xAxis->setLabel("Czas (s)");
 		plot->xAxis->grid()->setSubGridVisible(true);
 		//customPlot->xAxis->setLabel(compilerInfo.flags());
 		QPen gridPen;
