@@ -14,7 +14,7 @@ Plot::Plot(QWidget *parent)
 	plotLayout()->addElement(1, 0, m_subtitle);
 	reset();
 	legend->setVisible(true);
-	axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignRight);
+	axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom | Qt::AlignRight);
 	legend->setBrush(QColor(255, 255, 255, 200));
 	QPen legendPen;
 	legendPen.setColor(QColor(130, 130, 130, 200));

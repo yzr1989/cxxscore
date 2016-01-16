@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	setWindowTitle("Compiler performance platform: graph generator");
 	loadFromFile("/home/dev/linux-x86_64-gcc-cpp.raw");
 	loadFromFile("/home/dev/linux-x86_64-clang-cpp.raw");
+	loadFromFile("/home/dev/linux-arm-gcc-cpp.raw");
+	loadFromFile("/home/dev/linux-arm-clang-cpp.raw");
 }
 
 MainWindow::~MainWindow() {
@@ -49,12 +51,14 @@ void MainWindow::loadFromFile(const QString &fileName) {
 		QVector <QColor> fg = {
 			QColor(150, 222, 0),
 			QColor(1, 92, 191),
-			QColor(255, 131, 0)
+			QColor(255, 131, 0),
+			QColor(0, 222, 189)
 		};
 		QVector<QColor> bg = {
-			QColor(150, 222, 0, 170),
-			QColor(1, 92, 191, 150),
-			QColor(255, 131, 0, 150)
+			QColor(150, 222, 0, 200),
+			QColor(1, 92, 191, 200),
+			QColor(255, 131, 0, 200),
+			QColor(0, 222, 189, 200)
 		};
 		// stack bars ontop of each other:qChecksum(hash.data(), hash.size()
 		Container::TestResultContainer *result = static_cast<Container::TestResultContainer *>(container.get());
@@ -65,9 +69,8 @@ void MainWindow::loadFromFile(const QString &fileName) {
 		plot->subtitle()->setTextColor(Qt::darkGray);
 		QString barName = (platformInfo.arch() + "/" + compilerInfo.name().toUpper());
 		QPen pen;
-		pen.setWidthF(1.2);
+		pen.setWidthF(2);
 		QCPBars *bar = plot->bars(barName);
-		pen.setColor(QColor(255, 131, 0));
 		bar->setName(barName + " (" + QString::number(result->duration(), 'f', 4) + "s)");
 		QByteArray hash = barName.toUtf8();
 		qDebug() << qChecksum(hash.data(), hash.size());
@@ -78,8 +81,9 @@ void MainWindow::loadFromFile(const QString &fileName) {
 		if (!ticks.isEmpty())
 			id = ticks.last() + 1;
 
-		bar->setPen(fg.at(static_cast<int>(id) % fg.size()));
-		bar->setBrush(bg.at(static_cast<int>(id) % bg.size()));
+		pen.setBrush(fg.at(static_cast<int>(id) % fg.size()).darker(125));
+		bar->setPen(pen);
+		bar->setBrush(bg.at(static_cast<int>(id) % bg.size()).darker(125));
 		ticks << id;
 		labels << barName;
 		plot->yAxis->setTickVector(ticks);
