@@ -7,7 +7,8 @@ namespace Enum {
 	enum class ContainerType : quint8 {
 		CompilerInfo,
 		PlatformInfo,
-		TestResult
+		TestCaseInfo,
+		TestCase
 	};
 
 }

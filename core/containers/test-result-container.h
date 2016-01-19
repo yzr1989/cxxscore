@@ -5,10 +5,10 @@
 
 namespace Container {
 
-	class TestResultContainer final : public Abstract::AbstractContainer {
+	class TestCaseInfoContainer final : public Abstract::AbstractContainer {
 	public:
-		explicit TestResultContainer() = default;
-		virtual ~TestResultContainer() = default;
+		explicit TestCaseInfoContainer() = default;
+		virtual ~TestCaseInfoContainer() = default;
 
 		virtual Enum::ContainerType type() const override;
 		virtual Core::DataStream &operator << (Core::DataStream &in) override;

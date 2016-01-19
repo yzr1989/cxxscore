@@ -21,6 +21,7 @@ namespace Abstract {
 		virtual void doneTestCase(Interface::ITestCase *test) override;
 
 	private:
+		std::list <std::unique_ptr<Interface::ILogger>> m_loggerList;
 		std::list <std::unique_ptr<Interface::ITestCase>> m_testCaseList;
 		std::unique_ptr<Interface::ILogger> m_logger;
 		Functional::ElapsedTime m_elapsed;

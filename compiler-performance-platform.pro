@@ -19,7 +19,6 @@ SOURCES += main/platform/main.cpp \
 		core/tests/empty-call-test.cpp \
 		core/tests/fibonacci-test-case.cpp \
 		core/tests/nwd-test-case.cpp \
-    core/loggers/ini-logger.cpp \
     core/platforms/linux-platform.cpp \
     core/functionals/elapsed-time.cpp \
     core/functionals/compiler-info.cpp \
@@ -34,7 +33,8 @@ SOURCES += main/platform/main.cpp \
     core/functionals/container-file.cpp \
     core/factories/container-factory.cpp \
     core/tests/factorial-test-case.cpp \
-    core/tests/base64-test.cpp
+    core/tests/base64-test.cpp \
+    core/containers/test-case-info-container.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -51,7 +51,6 @@ HEADERS += \
 		core/tests/empty-call-test.h \
 		core/tests/fibonacci-test-case.h \
 		core/tests/nwd-test-case.h \
-    core/loggers/ini-logger.h \
     core/platforms/linux-platform.h \
     core/functionals/elapsed-time.h \
     core/functionals/compiler-info.h \
@@ -66,4 +65,5 @@ HEADERS += \
     core/functionals/container-file.h \
     core/factories/container-factory.h \
     core/tests/factorial-test-case.h \
-    core/tests/base64-test.h
+    core/tests/base64-test.h \
+    core/containers/test-case-info-container.h

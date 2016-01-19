@@ -1,16 +1,15 @@
-#include <core/containers/test-result-container.h>
+#include <core/containers/test-case-info-container.h>
 #include <core/functionals/compiler-info.h>
 #include <core/functionals/platform-info.h>
 #include <core/interfaces/itestcase.h>
 #include <core/loggers/raw-logger.h>
 #include <QDir>
 
+using namespace Functional;
 using namespace Logger;
 
 RawLogger::RawLogger(const QString &name)
-	: m_file(QDir::homePath() + "/" + name) {
-	m_file.write(Functional::CompilerInfo::info());
-	m_file.write(Functional::PlatformInfo::info());
+	: m_file(name) {
 }
 
 Enum::LoggerType RawLogger::type() const {
@@ -21,9 +20,11 @@ void RawLogger::init(Interface::ITestCase *) {
 }
 
 void RawLogger::done(Interface::ITestCase *test, double duration) {
-	Container::TestResultContainer container;
-	container.setName(test->name());
-	container.setCount(test->count());
-	container.setDuration(duration);
+	Container::TestCaseContainer container;
+	container.compiler() = CompilerInfo::info();
+	container.platform() = PlatformInfo::info();
+	container.testcase().setCount(test->count());
+	container.testcase().setDuration(duration);
+	container.testcase().setName(test->name());
 	m_file.write(container);
 }

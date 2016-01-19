@@ -18,12 +18,12 @@ void AbstractPlatform::attach(std::unique_ptr<ITestCase> &&object) {
 }
 
 void AbstractPlatform::attach(std::unique_ptr<ILogger> &&object) {
-	m_logger = std::move(object);
+	m_loggerList.push_back(std::move(object));
 }
 
 void AbstractPlatform::initTestCase(Interface::ITestCase *test) {
-	if (m_logger)
-		m_logger->init(test);
+	for (auto &logger : m_loggerList)
+		logger->init(test);
 
 	m_elapsed.start();
 	std::cout << "Running '" << test->name().toStdString()
@@ -31,7 +31,7 @@ void AbstractPlatform::initTestCase(Interface::ITestCase *test) {
 }
 
 void AbstractPlatform::executeTest(Interface::ITestCase *test) {
-	auto count = test->count();
+	volatile auto count = test->count();
 
 	for (volatile decltype(count) i = 0; i < count; ++i)
 		test->execute();
@@ -40,8 +40,8 @@ void AbstractPlatform::executeTest(Interface::ITestCase *test) {
 void AbstractPlatform::doneTestCase(Interface::ITestCase *test) {
 	const auto duration = m_elapsed.stop();
 
-	if (m_logger)
-		m_logger->done(test, duration);
+	for (auto &logger : m_loggerList)
+		logger->done(test, duration);
 
 	std::cout << "done. [" << duration << "sec]" << std::endl;
 }

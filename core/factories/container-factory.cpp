@@ -1,7 +1,8 @@
-#include <core/factories/container-factory.h>
 #include <core/containers/compiler-info-container.h>
 #include <core/containers/platform-info-container.h>
+#include <core/containers/test-case-info-container.h>
 #include <core/containers/test-result-container.h>
+#include <core/factories/container-factory.h>
 
 using namespace Enum;
 using namespace Factory;
@@ -14,8 +15,11 @@ std::unique_ptr<Abstract::AbstractContainer> ContainerFactory::create(const Cont
 		case ContainerType::PlatformInfo:
 			return std::make_unique<Container::PlatformInfoContainer>();
 
-		case ContainerType::TestResult:
-			return std::make_unique<Container::TestResultContainer>();
+		case ContainerType::TestCaseInfo:
+			return std::make_unique<Container::TestCaseInfoContainer>();
+
+		case ContainerType::TestCase:
+			return std::make_unique<Container::TestCaseContainer>();
 	};
 
 	return nullptr;
