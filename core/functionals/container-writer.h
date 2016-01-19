@@ -2,24 +2,23 @@
 
 #include <core/abstracts/abstract-container.h>
 #include <core/core/data-stream.h>
-#include <QString>
-#include <QFile>
 
+#include <QFile>
 #include <memory>
 
 namespace Functional {
 
-	class ContainerFile {
+	class ContainerWritter {
 	public:
-		explicit ContainerFile(const QString &filePath);
-		virtual ~ContainerFile() = default;
+		explicit ContainerWritter(const QString &filePath);
+		virtual ~ContainerWritter() = default;
 
-		std::unique_ptr<Abstract::AbstractContainer> read();
 		void write(const Abstract::AbstractContainer &container);
 
 	private:
 		QFile m_file;
 		Core::DataStream m_stream;
 	};
+
 
 }

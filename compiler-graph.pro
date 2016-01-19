@@ -16,9 +16,11 @@ HEADERS += \
     core/core/data-stream.h \
     core/enums/container-type-enum.h \
     core/factories/container-factory.h \
-    core/functionals/container-file.h \
     gui/widgets/plot-tab.h \
-    gui/widgets/plot.h
+    gui/widgets/plot.h \
+    core/factories/color-factory.h \
+    core/functionals/container-reader.h \
+    core/containers/test-case-info-container.h
 
 SOURCES += \
     gui/window/main-window.cpp \
@@ -30,9 +32,11 @@ SOURCES += \
     core/core/data-stream.cpp \
     core/enums/container-type-enum.cpp \
     core/factories/container-factory.cpp \
-    core/functionals/container-file.cpp \
     gui/widgets/plot-tab.cpp \
-    gui/widgets/plot.cpp
+    gui/widgets/plot.cpp \
+    core/factories/color-factory.cpp \
+    core/functionals/container-reader.cpp \
+    core/containers/test-case-info-container.cpp
 
 FORMS += \
     gui/window/main-window.ui

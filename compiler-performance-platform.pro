@@ -30,11 +30,12 @@ SOURCES += main/platform/main.cpp \
     core/containers/platform-info-container.cpp \
     core/functionals/platform-info.cpp \
     core/loggers/raw-logger.cpp \
-    core/functionals/container-file.cpp \
     core/factories/container-factory.cpp \
     core/tests/factorial-test-case.cpp \
     core/tests/base64-test.cpp \
-    core/containers/test-case-info-container.cpp
+    core/containers/test-case-info-container.cpp \
+    core/functionals/container-reader.cpp \
+    core/functionals/container-writer.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -62,8 +63,9 @@ HEADERS += \
     core/containers/platform-info-container.h \
     core/functionals/platform-info.h \
     core/loggers/raw-logger.h \
-    core/functionals/container-file.h \
     core/factories/container-factory.h \
     core/tests/factorial-test-case.h \
     core/tests/base64-test.h \
-    core/containers/test-case-info-container.h
+    core/containers/test-case-info-container.h \
+    core/functionals/container-reader.h \
+    core/functionals/container-writer.h

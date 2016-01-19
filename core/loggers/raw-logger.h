@@ -1,7 +1,7 @@
 #pragma once
 
 #include <core/interfaces/ilogger.h>
-#include <core/functionals/container-file.h>
+#include <core/functionals/container-writer.h>
 
 namespace Logger {
 
@@ -16,7 +16,7 @@ namespace Logger {
 		virtual void done(Interface::ITestCase *, double duration) override;
 
 	private:
-		Functional::ContainerFile m_file;
+		Functional::ContainerWritter m_file;
 
 	};
 

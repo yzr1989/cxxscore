@@ -1,4 +1,5 @@
 #include <gui/widgets/plot.h>
+#include <core/factories/color-factory.h>
 
 using namespace Widget;
 
@@ -24,9 +25,46 @@ Plot::Plot(QWidget *parent)
 	legend->setFont(legendFont);
 	setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 	xAxis->setRange(0, 1);
+	setGrid();
 }
 
 Plot::~Plot() {
+}
+
+void Plot::insert(Container::TestCaseContainer &test) {
+	m_tests.push_back(test);
+	QVector <double> ticks;
+	QVector <QString> labels;
+
+	for (size_t i = 0; i < m_tests.size(); ++i) {
+		QString barName = (m_tests.at(i).platform().arch() +
+		                   "/" + m_tests.at(i).compiler().name().toUpper());
+		ticks << i;
+		labels << barName;
+	}
+
+	yAxis->setTickVector(ticks);
+	yAxis->setTickVectorLabels(labels);
+	yAxis->setRange(-1, m_tests.size());
+
+	for (size_t i = 0; i < m_tests.size(); ++i) {
+		auto bar = new QCPBars(yAxis, xAxis);
+		QString barName = (m_tests.at(i).platform().arch() +
+		                   "/" + m_tests.at(i).compiler().name().toUpper());
+		addPlottable(bar);
+		QPen pen;
+		pen.setWidthF(2);
+		bar->setName(barName + " (" + QString::number(m_tests.at(i).testcase().duration(), 'f', 4) + "s)");
+		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
+		bar->setPen(pen);
+		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
+		QVector<double> data;
+		data.resize(ticks.length());
+		data.fill(0);
+		data[i] = m_tests.at(i).testcase().duration();
+		bar->setData(ticks, data);
+		m_testBars.push_back(bar);
+	}
 }
 
 QCPPlotTitle *Plot::title() {
@@ -47,6 +85,19 @@ QCPBars *Plot::bars(const QString &name) {
 	}
 
 	return ptr;
+}
+
+void Plot::setGrid() {
+	xAxis->setPadding(5);
+	xAxis->setLabel("Czas (s)");
+	xAxis->grid()->setSubGridVisible(true);
+	QPen gridPen;
+	gridPen.setStyle(Qt::SolidLine);
+	gridPen.setColor(QColor(0, 0, 0, 25));
+	xAxis->grid()->setPen(gridPen);
+	gridPen.setStyle(Qt::DotLine);
+	xAxis->grid()->setSubGridPen(gridPen);
+	xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
 }
 
 void Plot::reset() {
