@@ -4,6 +4,7 @@
 #include <core/tests/factorial-test-case.h>
 #include <core/tests/fibonacci-test-case.h>
 #include <core/tests/nwd-test-case.h>
+#include <core/tests/merge-sort-test-case.h>
 
 using namespace Test;
 using namespace Enum;
@@ -25,6 +26,9 @@ std::unique_ptr<Interface::ITestCase> TestFactory::create(const TestType &type) 
 
 		case TestType::Fibonacci:
 			return std::make_unique<FibonacciTest>();
+
+		case TestType::MergeSort:
+			return std::make_unique<MergeSortTest>();
 
 		case TestType::Last:
 			return nullptr;

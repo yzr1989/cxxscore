@@ -35,7 +35,8 @@ SOURCES += main/platform/main.cpp \
     core/tests/base64-test.cpp \
     core/containers/test-case-info-container.cpp \
     core/functionals/container-reader.cpp \
-    core/functionals/container-writer.cpp
+    core/functionals/container-writer.cpp \
+    core/tests/merge-sort-test-case.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -68,4 +69,5 @@ HEADERS += \
     core/tests/base64-test.h \
     core/containers/test-case-info-container.h \
     core/functionals/container-reader.h \
-    core/functionals/container-writer.h
+    core/functionals/container-writer.h \
+    core/tests/merge-sort-test-case.h

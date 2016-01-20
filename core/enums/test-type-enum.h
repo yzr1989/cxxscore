@@ -9,6 +9,7 @@ namespace Enum {
 		EmptyCall,
 		Factorial,
 		Fibonacci,
+		MergeSort,
 		NWD,
 		Last
 	};
