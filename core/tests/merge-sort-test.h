@@ -4,10 +4,10 @@
 
 namespace Test {
 
-	class EmptyCallTest final : public Abstract::AbstractTestCase {
+	class MergeSortTest final : public Abstract::AbstractTestCase {
 	public:
-		explicit EmptyCallTest() = default;
-		virtual ~EmptyCallTest() = default;
+		explicit MergeSortTest() = default;
+		virtual ~MergeSortTest() = default;
 
 		virtual Enum::TestType type() const override;
 		virtual uint64_t execute() override;

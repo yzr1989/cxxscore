@@ -99,12 +99,8 @@ std::string base64_decode(std::string const &encoded_string) {
 	return ret;
 }
 
-Enum::TestType Base64Test::id() const {
+Enum::TestType Base64Test::type() const {
 	return Enum::TestType::Base64;
-}
-
-QString Base64Test::name() const {
-	return "Base64";
 }
 
 uint64_t Base64Test::execute() {
@@ -112,8 +108,4 @@ uint64_t Base64Test::execute() {
 	std::string base64 = base64_encode(source.data(), source.size());
 	std::string decode = base64_decode(base64);
 	return decode.length();
-}
-
-uint64_t Base64Test::count() const {
-	return 10000000;
 }

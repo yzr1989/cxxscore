@@ -1,19 +1,16 @@
 #pragma once
 
-#include <core/interfaces/itestcase.h>
+#include <core/abstracts/abstract-test-case.h>
 
 namespace Test {
 
-	class Base64Test final : public Interface::ITestCase {
+	class Base64Test final : public Abstract::AbstractTestCase {
 	public:
 		explicit Base64Test() = default;
 		virtual ~Base64Test() = default;
 
-		virtual Enum::TestType id() const override;
-		virtual QString name() const override;
+		virtual Enum::TestType type() const override;
 		virtual uint64_t execute() override;
-		virtual uint64_t count() const override;
-
 
 	};
 

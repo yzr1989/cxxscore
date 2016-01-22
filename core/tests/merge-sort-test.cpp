@@ -1,4 +1,4 @@
-#include <core/tests/merge-sort-test-case.h>
+#include <core/tests/merge-sort-test.h>
 #include <vector>
 #include <iostream>
 
@@ -44,19 +44,11 @@ std::vector<int> merge_sort(std::vector<int> &vec) {
 	return merge(vec, left, right);
 }
 
-Enum::TestType MergeSortTest::id() const {
+Enum::TestType MergeSortTest::type() const {
 	return Enum::TestType::MergeSort;
-}
-
-QString MergeSortTest::name() const {
-	return "MergeSort";
 }
 
 uint64_t MergeSortTest::execute() {
 	std::vector<int> data = { 11, 34, 1, 23, 24, 22, 22, 44, 85, 12, 334, 5, 2, 32, 64, 7 };
 	return merge_sort(data).size();
-}
-
-uint64_t MergeSortTest::count() const {
-	return 10000000;
 }

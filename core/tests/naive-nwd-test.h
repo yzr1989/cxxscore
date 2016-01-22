@@ -4,10 +4,10 @@
 
 namespace Test {
 
-	class EmptyCallTest final : public Abstract::AbstractTestCase {
+	class NaiveNWDTest final : public Abstract::AbstractTestCase {
 	public:
-		explicit EmptyCallTest() = default;
-		virtual ~EmptyCallTest() = default;
+		explicit NaiveNWDTest() = default;
+		virtual ~NaiveNWDTest() = default;
 
 		virtual Enum::TestType type() const override;
 		virtual uint64_t execute() override;

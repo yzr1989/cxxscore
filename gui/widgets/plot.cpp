@@ -64,6 +64,9 @@ void Plot::insert(Container::TestCaseContainer &test) {
 		data[i] = m_tests.at(i).testcase().duration();
 		bar->setData(ticks, data);
 		m_testBars.push_back(bar);
+
+		if (xAxis->range().upper < m_tests.at(i).testcase().duration())
+			xAxis->setRange(0, m_tests.at(i).testcase().duration() + 1);
 	}
 }
 

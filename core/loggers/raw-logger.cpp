@@ -9,7 +9,7 @@ using namespace Functional;
 using namespace Logger;
 
 RawLogger::RawLogger(const QString &name)
-	: m_file(name) {
+	: m_file(QDir::homePath() + "/" + name) {
 }
 
 Enum::LoggerType RawLogger::type() const {
@@ -25,6 +25,6 @@ void RawLogger::done(Interface::ITestCase *test, double duration) {
 	container.platform() = PlatformInfo::info();
 	container.testcase().setCount(test->count());
 	container.testcase().setDuration(duration);
-	container.testcase().setName(test->name());
+	container.testcase().setName(QString::fromStdString(name(test->type())));
 	m_file.write(container);
 }

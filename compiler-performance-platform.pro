@@ -17,8 +17,6 @@ SOURCES += main/platform/main.cpp \
 		core/interfaces/itestcase.cpp \
 		core/interfaces/templates/itemplate-attach.cpp \
 		core/tests/empty-call-test.cpp \
-		core/tests/fibonacci-test-case.cpp \
-		core/tests/nwd-test-case.cpp \
     core/platforms/linux-platform.cpp \
     core/functionals/elapsed-time.cpp \
     core/functionals/compiler-info.cpp \
@@ -31,12 +29,17 @@ SOURCES += main/platform/main.cpp \
     core/functionals/platform-info.cpp \
     core/loggers/raw-logger.cpp \
     core/factories/container-factory.cpp \
-    core/tests/factorial-test-case.cpp \
     core/tests/base64-test.cpp \
     core/containers/test-case-info-container.cpp \
     core/functionals/container-reader.cpp \
     core/functionals/container-writer.cpp \
-    core/tests/merge-sort-test-case.cpp
+    core/tests/tail-call-fibonacci-test.cpp \
+    core/tests/naive-nwd-test.cpp \
+    core/tests/naive-factorial-test.cpp \
+    core/tests/naive-fibonacci-test.cpp \
+    core/tests/merge-sort-test.cpp \
+    core/tests/tail-call-factorial-test.cpp \
+    core/abstracts/abstract-test-case.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -51,8 +54,6 @@ HEADERS += \
 		core/interfaces/itestcase.h \
 		core/interfaces/templates/itemplate-attach.h \
 		core/tests/empty-call-test.h \
-		core/tests/fibonacci-test-case.h \
-		core/tests/nwd-test-case.h \
     core/platforms/linux-platform.h \
     core/functionals/elapsed-time.h \
     core/functionals/compiler-info.h \
@@ -65,9 +66,14 @@ HEADERS += \
     core/functionals/platform-info.h \
     core/loggers/raw-logger.h \
     core/factories/container-factory.h \
-    core/tests/factorial-test-case.h \
     core/tests/base64-test.h \
     core/containers/test-case-info-container.h \
     core/functionals/container-reader.h \
     core/functionals/container-writer.h \
-    core/tests/merge-sort-test-case.h
+    core/tests/tail-call-fibonacci-test.h \
+    core/tests/naive-nwd-test.h \
+    core/tests/naive-factorial-test.h \
+    core/tests/naive-fibonacci-test.h \
+    core/tests/tail-call-factorial-test.h \
+    core/tests/merge-sort-test.h \
+    core/abstracts/abstract-test-case.h
