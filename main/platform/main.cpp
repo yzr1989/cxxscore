@@ -17,13 +17,15 @@ int main(int argc, char *argv[]) {
 	Functional::CompilerInfo::printInfo();
 	Functional::PlatformInfo::printInfo();
 	Manager::FileManager manager(QDir::homePath());
+	QByteArray cxxflags = Functional::CompilerInfo::info().flags().toUtf8();
+	QString id = QString::number(qChecksum(cxxflags.data(), cxxflags.size()), 16);
+	id = id.rightJustified(4, '0', true);
 	QString outputFile =
 	  manager.path(Enum::Folder::Data,
 	               Functional::PlatformInfo::info().name() + "-" +
 	               Functional::PlatformInfo::info().arch() + "-" +
 	               filename(Functional::CompilerInfo::info().id()) + "-" +
-	               Functional::CompilerInfo::info().version().toString() + "-" +
-	               QCoreApplication::applicationName() + ".raw");
+	               Functional::CompilerInfo::info().version().toString() + "-" + id + ".raw");
 	auto platform = PlatformFactory::create(PlatformType::Linux);
 	platform->attach(LoggerFactory::create(LoggerType::RawLogger, outputFile));
 

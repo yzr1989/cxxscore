@@ -1,14 +1,12 @@
 #include <core/containers/compiler-info-container.h>
 #include <core/containers/platform-info-container.h>
 #include <core/containers/test-result-container.h>
+#include <core/enums/font-type.h>
 #include <core/factories/color-factory.h>
 #include <core/functionals/container-reader.h>
 #include <gui/widgets/plot.h>
 #include <gui/window/main-window.h>
-#include <QtDebug>
 #include <ui_main-window.h>
-#include <QDir>
-#include <QRect>
 
 using namespace Window;
 
@@ -42,13 +40,11 @@ void MainWindow::loadFromFile(const QString &fileName) {
 		if (container->type() != Enum::ContainerType::TestCase)
 			continue;
 
-		// stack bars ontop of each other:qChecksum(hash.data(), hash.size()
 		Container::TestCaseContainer *result = static_cast<Container::TestCaseContainer *>(container.get());
-		QString tabname = prettyname(result->testcase().id());
+		QString tabname = name(result->testcase().id());
 		Widget::Plot *plot = ui->tabWidget->insert(tabname);
-		plot->title()->setText("Przypadek testowy: \"" + tabname  + "\" x  " + QString::number(result->testcase().count()) + "");
-		//plot->subtitle()->setFont(QFont());
-		plot->subtitle()->setText("Mniejszy czas wykonania = lepszy wynik");
+		plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(result->testcase().count()) + " iteracji");
+		plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
 		plot->subtitle()->setTextColor(Qt::darkGray);
 		plot->insert(*static_cast<Container::TestCaseContainer *>(container.get()));
 	} while (true);

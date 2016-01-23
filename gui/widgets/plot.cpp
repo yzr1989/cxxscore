@@ -1,6 +1,8 @@
 #include <gui/widgets/plot.h>
+#include <core/enums/font-type.h>
 #include <core/factories/color-factory.h>
 
+using namespace Enum;
 using namespace Widget;
 
 Plot::Plot(const QString &testName, QWidget *parent)
@@ -21,12 +23,9 @@ Plot::Plot(const QString &testName, QWidget *parent)
 	QPen legendPen;
 	legendPen.setColor(QColor(130, 130, 130, 200));
 	legend->setBorderPen(legendPen);
-	QFont legendFont = font();
-	legendFont.setPointSize(12);
-	legend->setFont(legendFont);
-	//setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 	xAxis->setRange(0, 0.01);
 	setGrid();
+	setFont();
 }
 
 Plot::~Plot() {
@@ -42,13 +41,10 @@ void Plot::insert(Container::TestCaseContainer &test) {
 	QVector <QString> labels;
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
-		//const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
+		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
 		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
-		//const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
-		const QString bar = QString("[%1] %2").arg(
-		                      platform.arch(), name(m_tests.at(i).compiler().id()));
-		//  QString barName = (m_tests.at(i).platform().arch() +
-		//                     "/" + QString::fromStdString(name(m_tests.at(i).compiler().id())));
+		const QString bar = QString("[%1] %2 v%3").arg(
+		                      platform.arch(), name(compiler.id()), compiler.constVersion().toString());
 		ticks << i;
 		labels << bar;
 	}
@@ -63,13 +59,9 @@ void Plot::insert(Container::TestCaseContainer &test) {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 		const QString compilerName = name(compiler.id());
 		auto bar = new QCPBars(yAxis, xAxis);
-		QString barName = platform.arch() + "/" + compilerName + " v"
-		                  + QString::number(compiler.constVersion().major()) + "."
-		                  + QString::number(compiler.constVersion().minor()) + "."
-		                  + QString::number(compiler.constVersion().patch());
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName(barName + " (" + QString::number(testcase.duration(), 'f', 4) + "s)");
+		bar->setName("" +  QString::number(testcase.duration(), 'f', 4) + "s, CXXFLAGS: " + compiler.flags() + ", [" + platform.arch() + "] " + compilerName);
 		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
 		bar->setPen(pen);
 		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
@@ -124,6 +116,15 @@ void Plot::setGrid() {
 	xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
 }
 
+void Plot::setFont() {
+	m_title->setFont(factory(FontType::Title));
+	m_subtitle->setFont(factory(FontType::Subtitle));
+	legend->setFont(factory(FontType::Legend));
+	yAxis->setTickLabelFont(factory(FontType::YAxis));
+	xAxis->setTickLabelFont(factory(FontType::XAxis));
+	xAxis->setLabelFont(factory(FontType::YAxis));
+}
+
 void Plot::reset() {
 	yAxis->setAutoTicks(false);
 	yAxis->setAutoTickLabels(false);
@@ -133,7 +134,7 @@ void Plot::reset() {
 	yAxis->setSubTickCount(0);
 	yAxis->setTickLength(0, 4);
 	yAxis->grid()->setVisible(true);
-	yAxis->setRange(-1, 1);
+	yAxis->setRange(-2, 1);
 }
 
 QString Plot::testName() const {

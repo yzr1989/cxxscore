@@ -26,7 +26,7 @@ namespace Widget {
 
 	protected:
 		void setGrid();
-
+		void setFont();
 		void reset();
 
 	private:

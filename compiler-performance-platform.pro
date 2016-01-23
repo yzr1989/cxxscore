@@ -45,7 +45,8 @@ SOURCES += main/platform/main.cpp \
     core/enums/architecture-type.cpp \
     core/containers/version-info-container.cpp \
     core/managers/file-manager.cpp \
-    core/enums/folder.cpp
+    core/enums/folder.cpp \
+    core/functionals/iterator-namer.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -87,4 +88,5 @@ HEADERS += \
     core/enums/architecture-type.h \
     core/containers/version-info-container.h \
     core/managers/file-manager.h \
-    core/enums/folder.h
+    core/enums/folder.h \
+    core/functionals/iterator-namer.h
