@@ -12,10 +12,15 @@ Plot *PlotTab::insert(const QString &name) {
 	Plot *ptr = m_table.value(name, nullptr);
 
 	if (ptr == nullptr) {
-		ptr = new Plot(this);
+		ptr = new Plot(name, this);
 		m_table[name] = ptr;
 		addTab(ptr, name);
 	}
 
 	return ptr;
+}
+
+void Widget::PlotTab::saveAllPlots(Manager::FileManager &manager) {
+	for (auto plot : m_table.values())
+		plot->saveToFile(manager.path(Enum::Folder::Plot, plot->testName()));
 }

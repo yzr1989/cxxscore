@@ -5,6 +5,7 @@
 #include <core/functionals/compiler-info.h>
 #include <core/functionals/platform-info.h>
 #include <core/interfaces/iplatform.h>
+#include <core/managers/file-manager.h>
 #include <iostream>
 
 using namespace Enum;
@@ -15,12 +16,14 @@ int main(int argc, char *argv[]) {
 	application.setApplicationName("cpp");
 	Functional::CompilerInfo::printInfo();
 	Functional::PlatformInfo::printInfo();
+	Manager::FileManager manager(QDir::homePath());
 	QString outputFile =
-	  Functional::PlatformInfo::info().name() + "-" +
-	  Functional::PlatformInfo::info().arch() + "-" +
-	  filename(Functional::CompilerInfo::info().id()) + "-" +
-	  Functional::CompilerInfo::info().version().toString() + "-" +
-	  QCoreApplication::applicationName() + ".raw";
+	  manager.path(Enum::Folder::Data,
+	               Functional::PlatformInfo::info().name() + "-" +
+	               Functional::PlatformInfo::info().arch() + "-" +
+	               filename(Functional::CompilerInfo::info().id()) + "-" +
+	               Functional::CompilerInfo::info().version().toString() + "-" +
+	               QCoreApplication::applicationName() + ".raw");
 	auto platform = PlatformFactory::create(PlatformType::Linux);
 	platform->attach(LoggerFactory::create(LoggerType::RawLogger, outputFile));
 

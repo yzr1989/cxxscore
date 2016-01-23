@@ -26,7 +26,9 @@ HEADERS += \
     core/enums/logger-type.h \
     core/enums/platform-type.h \
     core/enums/test-type.h \
-    core/containers/version-info-container.h
+    core/containers/version-info-container.h \
+    core/managers/file-manager.h \
+    core/enums/folder.h
 
 SOURCES += \
     gui/window/main-window.cpp \
@@ -48,7 +50,9 @@ SOURCES += \
     core/enums/logger-type.cpp \
     core/enums/platform-type.cpp \
     core/enums/test-type.cpp \
-    core/containers/version-info-container.cpp
+    core/containers/version-info-container.cpp \
+    core/managers/file-manager.cpp \
+    core/enums/folder.cpp
 
 FORMS += \
     gui/window/main-window.ui

@@ -3,8 +3,9 @@
 
 using namespace Widget;
 
-Plot::Plot(QWidget *parent)
+Plot::Plot(const QString &testName, QWidget *parent)
 	: QCustomPlot(parent)
+	, m_testName(testName)
 
 {
 	m_title = new QCPPlotTitle(this);
@@ -35,6 +36,7 @@ void Plot::insert(Container::TestCaseContainer &test) {
 	for (QCPBars *bar : m_testBars)
 		removePlottable(bar);
 
+	m_testBars.clear();
 	m_tests.push_back(test);
 	QVector <double> ticks;
 	QVector <QString> labels;
@@ -134,3 +136,25 @@ void Plot::reset() {
 	yAxis->setRange(-1, 1);
 }
 
+QString Plot::testName() const {
+	return m_testName;
+}
+
+void Widget::Plot::saveToFile(const QString &fileName) {
+	Plot plot(m_testName, nullptr);
+
+	for (auto &test : m_tests)
+		plot.insert(test);
+
+	plot.title()->setFont(m_title->font());
+	plot.title()->setText(m_title->text());
+	plot.title()->setTextColor(m_title->textColor());
+	plot.subtitle()->setFont(m_subtitle->font());
+	plot.subtitle()->setText(m_subtitle->text());
+	plot.subtitle()->setTextColor(m_subtitle->textColor());
+	QSize size(1800, 900);
+	QPixmap pixmap(size);
+	plot.resize(size);
+	plot.render(&pixmap, {}, {0, 0, size.width(), size.height()});
+	pixmap.save(fileName, "PNG", 100);
+}

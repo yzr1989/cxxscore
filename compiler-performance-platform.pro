@@ -43,7 +43,9 @@ SOURCES += main/platform/main.cpp \
     core/enums/platform-type.cpp \
     core/enums/test-type.cpp \
     core/enums/architecture-type.cpp \
-    core/containers/version-info-container.cpp
+    core/containers/version-info-container.cpp \
+    core/managers/file-manager.cpp \
+    core/enums/folder.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -83,4 +85,6 @@ HEADERS += \
     core/enums/platform-type.h \
     core/enums/test-type.h \
     core/enums/architecture-type.h \
-    core/containers/version-info-container.h
+    core/containers/version-info-container.h \
+    core/managers/file-manager.h \
+    core/enums/folder.h

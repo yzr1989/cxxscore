@@ -35,6 +35,39 @@ QString Enum::name(const TestType &type) {
 	return {};
 }
 
+QString Enum::prettyname(const TestType &type) {
+	switch (type) {
+		case TestType::Base64:
+			return "Base64 encoding & decoding";
+
+		case TestType::EmptyCall:
+			return "Empty function calls";
+
+		case TestType::NaiveFactorial:
+			return "Recursive factorial";
+
+		case TestType::TailCallFactorial:
+			return "Tail call factorial";
+
+		case TestType::MergeSort:
+			return "Merge sort";
+
+		case TestType::NaiveFibonacci:
+			return "Naive fibonacci";
+
+		case TestType::NaiveNWD:
+			return "Naive NWD";
+
+		case TestType::TailCallFibonacci:
+			return "Tail call fibonacci";
+
+		case TestType::Last:
+			return {};
+	}
+
+	return {};
+}
+
 uint64_t Enum::count(const TestType &type) {
 	switch (type) {
 		case TestType::Base64:
@@ -68,35 +101,3 @@ uint64_t Enum::count(const TestType &type) {
 	return 0;
 }
 
-QString Enum::prettyname(const TestType &type) {
-	switch (type) {
-		case TestType::Base64:
-			return "Base64 encoding & decoding";
-
-		case TestType::EmptyCall:
-			return "Empty function calls";
-
-		case TestType::NaiveFactorial:
-			return "Recursive factorial";
-
-		case TestType::TailCallFactorial:
-			return "Tail call factorial";
-
-		case TestType::MergeSort:
-			return "Merge sort";
-
-		case TestType::NaiveFibonacci:
-			return "Naive fibonacci";
-
-		case TestType::NaiveNWD:
-			return "Naive NWD";
-
-		case TestType::TailCallFibonacci:
-			return "Tail call fibonacci";
-
-		case TestType::Last:
-			return {};
-	}
-
-	return {};
-}

@@ -1,6 +1,12 @@
 #pragma once
 
+#include <core/managers/file-manager.h>
+
 #include <QMainWindow>
+
+namespace Widget {
+	class Plot;
+}
 
 namespace Window {
 
@@ -18,6 +24,7 @@ namespace Window {
 		void loadFromFile(const QString &fileName);
 
 	private:
+		Manager::FileManager m_manager;
 		Ui::MainWindow *ui;
 	};
 
