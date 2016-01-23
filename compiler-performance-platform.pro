@@ -1,6 +1,7 @@
 TARGET = compiler-performance-platform
 TEMPLATE = app
 QT += core
+QT -= gui
 
 include(cflags.pri)
 
