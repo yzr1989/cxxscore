@@ -155,5 +155,5 @@ void Widget::Plot::saveToFile(const QString &fileName) {
 	QPixmap pixmap(size);
 	plot.resize(size);
 	plot.render(&pixmap, {}, {0, 0, size.width(), size.height()});
-	pixmap.save(fileName, "PNG", 100);
+	pixmap.save(fileName, "PNG");
 }
