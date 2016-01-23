@@ -62,7 +62,7 @@ void MainWindow::generatePlots() {
 
 void MainWindow::savePlots() {
 	for (auto plot : m_plots)
-		plot->saveToFile(m_manager.path(Enum::Folder::Plot, plot->testName()));
+		plot->saveToFile(m_manager.path(Enum::Folder::Plot, plot->testName() + ".png"));
 }
 
 
