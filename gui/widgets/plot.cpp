@@ -2,6 +2,8 @@
 #include <core/enums/font-type.h>
 #include <core/factories/color-factory.h>
 
+#include <algorithm>
+
 using namespace Enum;
 using namespace Widget;
 
@@ -19,9 +21,9 @@ Plot::Plot(const QString &testName, QWidget *parent)
 	reset();
 	legend->setVisible(true);
 	axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignBottom | Qt::AlignRight);
-	legend->setBrush(QColor(255, 255, 255, 200));
+	legend->setBrush(QColor(255, 255, 255, 150));
 	QPen legendPen;
-	legendPen.setColor(QColor(130, 130, 130, 200));
+	legendPen.setColor(QColor(130, 130, 130, 150));
 	legend->setBorderPen(legendPen);
 	xAxis->setRange(0, 0.01);
 	setGrid();
@@ -32,32 +34,24 @@ Plot::~Plot() {
 }
 
 void Plot::insert(Container::TestCaseContainer &test) {
-	for (QCPBars *bar : m_testBars)
-		removePlottable(bar);
-
-	m_testBars.clear();
 	m_tests.push_back(test);
+}
+
+void Plot::generate() {
+	std::sort(m_tests.begin(), m_tests.end(),
+	[](const Container::TestCaseContainer & a, const Container::TestCaseContainer & b) {
+		return a.constTestcase().duration() < b.constTestcase().duration();
+	});
 	QVector <double> ticks;
 	QVector <QString> labels;
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
 		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
 		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
-		const QString bar = QString("[%1] %2 v%3").arg(
-		                      name(platform.arch()), name(compiler.id()), compiler.constVersion().toString());
-		ticks << i;
-		labels << bar;
-	}
-
-	yAxis->setTickVector(ticks);
-	yAxis->setTickVectorLabels(labels);
-	yAxis->setRange(-1, m_tests.size());
-
-	for (size_t i = 0; i < m_tests.size(); ++i) {
-		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
-		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 		const QString compilerName = name(compiler.id());
+		ticks << i;
+		labels << QString("[%1] %2 v%3").arg(name(platform.arch()), name(compiler.id()), compiler.constVersion().toString());
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
@@ -76,6 +70,9 @@ void Plot::insert(Container::TestCaseContainer &test) {
 			xAxis->setRange(0, testcase.duration() + (testcase.duration() * 0.01));
 	}
 
+	yAxis->setTickVector(ticks);
+	yAxis->setTickVectorLabels(labels);
+	yAxis->setRange(-2, m_tests.size());
 	size_t i = m_testBars.size();
 
 	do {
@@ -117,24 +114,24 @@ void Plot::setGrid() {
 }
 
 void Plot::setFont() {
-	m_title->setFont(factory(FontType::Title));
-	m_subtitle->setFont(factory(FontType::Subtitle));
 	legend->setFont(factory(FontType::Legend));
-	yAxis->setTickLabelFont(factory(FontType::YAxis));
-	xAxis->setTickLabelFont(factory(FontType::XAxis));
+	m_subtitle->setFont(factory(FontType::Subtitle));
+	m_title->setFont(factory(FontType::Title));
 	xAxis->setLabelFont(factory(FontType::YAxis));
+	xAxis->setTickLabelFont(factory(FontType::XAxis));
+	yAxis->setTickLabelFont(factory(FontType::YAxis));
 }
 
 void Plot::reset() {
-	yAxis->setAutoTicks(false);
+	yAxis->grid()->setVisible(true);
 	yAxis->setAutoTickLabels(false);
+	yAxis->setAutoTicks(false);
+	yAxis->setRange(-2, 1);
+	yAxis->setSubTickCount(0);
+	yAxis->setTickLabelRotation(0);
+	yAxis->setTickLength(0, 4);
 	yAxis->setTickVector({});
 	yAxis->setTickVectorLabels({});
-	yAxis->setTickLabelRotation(0);
-	yAxis->setSubTickCount(0);
-	yAxis->setTickLength(0, 4);
-	yAxis->grid()->setVisible(true);
-	yAxis->setRange(-2, 1);
 }
 
 QString Plot::testName() const {
@@ -147,6 +144,7 @@ void Widget::Plot::saveToFile(const QString &fileName) {
 	for (auto &test : m_tests)
 		plot.insert(test);
 
+	plot.generate();
 	plot.title()->setFont(m_title->font());
 	plot.title()->setText(m_title->text());
 	plot.title()->setTextColor(m_title->textColor());

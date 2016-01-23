@@ -19,8 +19,3 @@ Plot *PlotTab::insert(const QString &name) {
 
 	return ptr;
 }
-
-void Widget::PlotTab::saveAllPlots(Manager::FileManager &manager) {
-	for (auto plot : m_table.values())
-		plot->saveToFile(manager.path(Enum::Folder::Plot, plot->testName()));
-}

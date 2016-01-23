@@ -16,16 +16,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
 {
 	ui->setupUi(this);
-	setWindowTitle("Compiler performance platform: graph generator");
+	setWindowTitle("CPP: Graph generator");
 
 	for (auto &file : m_manager.list(Enum::Folder::Data))
 		loadFromFile(file.absoluteFilePath());
 
-	ui->tabWidget->saveAllPlots(m_manager);
+	generatePlots();
+	savePlots();
 }
 
 MainWindow::~MainWindow() {
 	delete ui;
+}
+
+void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
+	QString tabname = name(container->testcase().id());
+	Widget::Plot *plot = ui->tabWidget->insert(tabname);
+	plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
+	plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
+	plot->subtitle()->setTextColor(Qt::darkGray);
+	plot->insert(*container);
+	m_plots.insert(plot);
 }
 
 void MainWindow::loadFromFile(const QString &fileName) {
@@ -40,13 +51,18 @@ void MainWindow::loadFromFile(const QString &fileName) {
 		if (container->type() != Enum::ContainerType::TestCase)
 			continue;
 
-		Container::TestCaseContainer *result = static_cast<Container::TestCaseContainer *>(container.get());
-		QString tabname = name(result->testcase().id());
-		Widget::Plot *plot = ui->tabWidget->insert(tabname);
-		plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(result->testcase().count()) + " iteracji");
-		plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
-		plot->subtitle()->setTextColor(Qt::darkGray);
-		plot->insert(*static_cast<Container::TestCaseContainer *>(container.get()));
+		insertTestCase(static_cast<Container::TestCaseContainer *>(container.get()));
 	} while (true);
 }
+
+void MainWindow::generatePlots() {
+	for (auto plot : m_plots)
+		plot->generate();
+}
+
+void MainWindow::savePlots() {
+	for (auto plot : m_plots)
+		plot->saveToFile(m_manager.path(Enum::Folder::Plot, plot->testName()));
+}
+
 

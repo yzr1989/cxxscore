@@ -31,3 +31,15 @@ PlatformInfoContainer &TestCaseContainer::platform() {
 TestCaseInfoContainer &TestCaseContainer::testcase() {
 	return m_testcase;
 }
+
+const CompilerInfoContainer &TestCaseContainer::constCompiler() const {
+	return m_compiler;
+}
+
+const PlatformInfoContainer &TestCaseContainer::constPlatform() const {
+	return m_platform;
+}
+
+const TestCaseInfoContainer &TestCaseContainer::constTestcase() const {
+	return m_testcase;
+}

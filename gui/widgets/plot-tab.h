@@ -16,8 +16,6 @@ namespace Widget {
 
 		Plot *insert(const QString &name);
 
-		void saveAllPlots(Manager::FileManager &manager);
-
 	private:
 		QMap<QString, Plot *> m_table;
 	};

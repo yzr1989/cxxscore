@@ -20,6 +20,10 @@ namespace Container {
 		PlatformInfoContainer &platform();
 		TestCaseInfoContainer &testcase();
 
+		const CompilerInfoContainer &constCompiler() const;
+		const PlatformInfoContainer &constPlatform() const;
+		const TestCaseInfoContainer &constTestcase() const;
+
 	private:
 		CompilerInfoContainer m_compiler;
 		PlatformInfoContainer m_platform;

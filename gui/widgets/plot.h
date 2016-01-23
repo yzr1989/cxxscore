@@ -18,6 +18,8 @@ namespace Widget {
 		void saveToFile(const QString &fileName);
 		void insert(Container::TestCaseContainer &test);
 
+		void generate();
+
 		QCPPlotTitle *title();
 		QCPPlotTitle *subtitle();
 		QCPBars *bars(const QString &name);

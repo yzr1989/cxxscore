@@ -2,7 +2,12 @@
 
 #include <core/managers/file-manager.h>
 
+#include <set>
 #include <QMainWindow>
+
+namespace Container {
+	class TestCaseContainer;
+}
 
 namespace Widget {
 	class Plot;
@@ -14,17 +19,23 @@ namespace Window {
 		class MainWindow;
 	}
 
-	class MainWindow : public QMainWindow {
+	class MainWindow final : public QMainWindow {
 		Q_OBJECT
 
 	public:
 		explicit MainWindow(QWidget *parent = 0);
 		~MainWindow();
 
+	protected:
+		void insertTestCase(Container::TestCaseContainer *container);
 		void loadFromFile(const QString &fileName);
+		void generatePlots();
+		void savePlots();
+
 
 	private:
 		Manager::FileManager m_manager;
+		std::set<Widget::Plot *> m_plots;
 		Ui::MainWindow *ui;
 	};
 
