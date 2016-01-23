@@ -7,29 +7,30 @@ Enum::ContainerType PlatformInfoContainer::type() const {
 }
 
 Core::DataStream &PlatformInfoContainer::operator <<(Core::DataStream &in) {
-	m_arch = in.readThrivedUtf8String();
-	m_name = in.readThrivedUtf8String();
+	in.readRawData(reinterpret_cast<char *>(&m_arch), sizeof(m_arch));
+	in.readRawData(reinterpret_cast<char *>(&m_platform), sizeof(m_platform));
 	return in;
 }
 
 Core::DataStream &PlatformInfoContainer::operator >>(Core::DataStream &out) const {
-	out.writeThrivedUtf8String(m_arch);
-	out.writeThrivedUtf8String(m_name);
+	out.writeRawData(reinterpret_cast<const char *>(&m_arch), sizeof(m_arch));
+	out.writeRawData(reinterpret_cast<const char *>(&m_platform), sizeof(m_platform));
 	return out;
 }
 
-QString PlatformInfoContainer::name() const {
-	return m_name;
-}
-
-void PlatformInfoContainer::setName(const QString &name) {
-	m_name = name;
-}
-
-QString PlatformInfoContainer::arch() const {
+Enum::ArchitectureType PlatformInfoContainer::arch() const {
 	return m_arch;
 }
 
-void PlatformInfoContainer::setArch(const QString &architecture) {
-	m_arch = architecture;
+void PlatformInfoContainer::setArch(const Enum::ArchitectureType &arch) {
+	m_arch = arch;
 }
+
+Enum::PlatformType PlatformInfoContainer::platform() const {
+	return m_platform;
+}
+
+void PlatformInfoContainer::setPlatform(const Enum::PlatformType &platform) {
+	m_platform = platform;
+}
+

@@ -21,8 +21,10 @@ namespace Container {
 		void setFlags(const QString &flags);
 		void setId(const Enum::CompilerType &id);
 
-		Container::VersionInfoContainer &version();
-		const Container::VersionInfoContainer &constVersion() const;
+		auto version() -> VersionInfoContainer&;
+		auto constVersion() const -> const VersionInfoContainer&;
+
+		QString checksum() const;
 
 	private:
 		Enum::CompilerType m_id;

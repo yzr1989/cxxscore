@@ -36,6 +36,11 @@ void CompilerInfoContainer::setId(const Enum::CompilerType &id) {
 	m_id = id;
 }
 
+QString CompilerInfoContainer::checksum() const {
+	QByteArray array = m_flags.toUtf8();
+	return QString::number(qChecksum(array.data(), static_cast<uint>(array.size())), 16).rightJustified(4, '0', true);
+}
+
 
 QString CompilerInfoContainer::flags() const {
 	return m_flags;

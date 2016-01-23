@@ -1,6 +1,6 @@
 #pragma once
 
-#include <qglobal.h>
+#include <QString>
 
 namespace Enum {
 
@@ -9,5 +9,7 @@ namespace Enum {
 		x86,
 		x86_64
 	};
+
+	QString name(const ArchitectureType &type);
 
 }

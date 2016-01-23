@@ -17,13 +17,11 @@ SOURCES += main/platform/main.cpp \
 		core/tests/empty-call-test.cpp \
     core/platforms/linux-platform.cpp \
     core/functionals/elapsed-time.cpp \
-    core/functionals/compiler-info.cpp \
     core/abstracts/abstract-container.cpp \
     core/containers/test-result-container.cpp \
     core/core/data-stream.cpp \
     core/containers/compiler-info-container.cpp \
     core/containers/platform-info-container.cpp \
-    core/functionals/platform-info.cpp \
     core/loggers/raw-logger.cpp \
     core/factories/container-factory.cpp \
     core/tests/base64-test.cpp \
@@ -46,7 +44,7 @@ SOURCES += main/platform/main.cpp \
     core/containers/version-info-container.cpp \
     core/managers/file-manager.cpp \
     core/enums/folder.cpp \
-    core/functionals/iterator-namer.cpp
+    core/functionals/info-center.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -60,13 +58,11 @@ HEADERS += \
 		core/tests/empty-call-test.h \
     core/platforms/linux-platform.h \
     core/functionals/elapsed-time.h \
-    core/functionals/compiler-info.h \
     core/abstracts/abstract-container.h \
     core/containers/test-result-container.h \
     core/core/data-stream.h \
     core/containers/compiler-info-container.h \
     core/containers/platform-info-container.h \
-    core/functionals/platform-info.h \
     core/loggers/raw-logger.h \
     core/factories/container-factory.h \
     core/tests/base64-test.h \
@@ -89,4 +85,4 @@ HEADERS += \
     core/containers/version-info-container.h \
     core/managers/file-manager.h \
     core/enums/folder.h \
-    core/functionals/iterator-namer.h
+    core/functionals/info-center.h

@@ -44,7 +44,7 @@ void Plot::insert(Container::TestCaseContainer &test) {
 		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
 		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
 		const QString bar = QString("[%1] %2 v%3").arg(
-		                      platform.arch(), name(compiler.id()), compiler.constVersion().toString());
+		                      name(platform.arch()), name(compiler.id()), compiler.constVersion().toString());
 		ticks << i;
 		labels << bar;
 	}
@@ -61,7 +61,7 @@ void Plot::insert(Container::TestCaseContainer &test) {
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName("" +  QString::number(testcase.duration(), 'f', 4) + "s, CXXFLAGS: " + compiler.flags() + ", [" + platform.arch() + "] " + compilerName);
+		bar->setName("" +  QString::number(testcase.duration(), 'f', 4) + "s, CXXFLAGS: " + compiler.flags() + ", [" + name(platform.arch()) + "] " + compilerName);
 		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
 		bar->setPen(pen);
 		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));

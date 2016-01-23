@@ -1,6 +1,8 @@
 #pragma once
 
 #include <core/abstracts/abstract-container.h>
+#include <core/enums/architecture-type.h>
+#include <core/enums/platform-type.h>
 #include <QString>
 
 namespace Container {
@@ -14,15 +16,15 @@ namespace Container {
 		virtual Core::DataStream &operator << (Core::DataStream &in) override;
 		virtual Core::DataStream &operator >> (Core::DataStream &out) const override;
 
-		QString arch() const;
-		QString name() const;
+		Enum::ArchitectureType arch() const;
+		Enum::PlatformType platform() const;
 
-		void setArch(const QString &architecture);
-		void setName(const QString &name);
+		void setArch(const Enum::ArchitectureType &arch);
+		void setPlatform(const Enum::PlatformType &platform);
 
 	private:
-		QString m_name;
-		QString m_arch;
+		Enum::ArchitectureType m_arch;
+		Enum::PlatformType m_platform;
 
 	};
 
