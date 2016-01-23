@@ -7,18 +7,16 @@ Enum::ContainerType TestCaseInfoContainer::type() const {
 }
 
 Core::DataStream &TestCaseInfoContainer::operator <<(Core::DataStream &in) {
-	m_name = in.readThrivedUtf8String();
-	m_description = in.readThrivedUtf8String();
 	in >> m_duration;
 	in >> m_count;
+	in.readRawData(reinterpret_cast<char *>(&m_id), sizeof(m_id));
 	return in;
 }
 
 Core::DataStream &TestCaseInfoContainer::operator >>(Core::DataStream &out) const {
-	out.writeThrivedUtf8String(m_name);
-	out.writeThrivedUtf8String(m_description);
 	out << m_duration;
 	out << m_count;
+	out.writeRawData(reinterpret_cast<const char *>(&m_id), sizeof(m_id));
 	return out;
 }
 
@@ -30,20 +28,12 @@ void TestCaseInfoContainer::setDuration(double duration) {
 	m_duration = duration;
 }
 
-QString TestCaseInfoContainer::name() const {
-	return m_name;
+Enum::TestType TestCaseInfoContainer::id() const {
+	return m_id;
 }
 
-void TestCaseInfoContainer::setName(const QString &name) {
-	m_name = name;
-}
-
-QString TestCaseInfoContainer::description() const {
-	return m_description;
-}
-
-void TestCaseInfoContainer::setDescription(const QString &description) {
-	m_description = description;
+void TestCaseInfoContainer::setId(const Enum::TestType &id) {
+	m_id = id;
 }
 
 quint64 TestCaseInfoContainer::count() const {

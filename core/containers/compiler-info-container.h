@@ -1,6 +1,7 @@
 #pragma once
 
-#include <core/abstracts/abstract-container.h>
+#include <core/containers/version-info-container.h>
+#include <core/enums/compiler-type.h>
 #include <QString>
 
 namespace Container {
@@ -14,14 +15,18 @@ namespace Container {
 		virtual Core::DataStream &operator << (Core::DataStream &in) override;
 		virtual Core::DataStream &operator >> (Core::DataStream &out) const override;
 
+		Enum::CompilerType id() const;
 		QString flags() const;
-		QString name() const;
 
 		void setFlags(const QString &flags);
-		void setName(const QString &name);
+		void setId(const Enum::CompilerType &id);
+
+		Container::VersionInfoContainer &version();
+		const Container::VersionInfoContainer &constVersion() const;
 
 	private:
-		QString m_name;
+		Enum::CompilerType m_id;
+		Container::VersionInfoContainer m_version;
 		QString m_flags;
 
 	};

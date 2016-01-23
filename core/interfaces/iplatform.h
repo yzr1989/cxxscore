@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/enums/platform-type-enum.h>
+#include <core/enums/platform-type.h>
 #include <core/interfaces/templates/itemplate-attach.h>
 
 namespace Interface {

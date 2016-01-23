@@ -7,24 +7,35 @@ Enum::ContainerType CompilerInfoContainer::type() const {
 }
 
 Core::DataStream &CompilerInfoContainer::operator <<(Core::DataStream &in) {
-	m_name = in.readThrivedUtf8String();
+	in.readRawData(reinterpret_cast<char *>(&m_id), sizeof(m_id));
 	m_flags = in.readThrivedUtf8String();
+	m_version << in;
 	return in;
 }
 
 Core::DataStream &CompilerInfoContainer::operator >>(Core::DataStream &out) const {
-	out.writeThrivedUtf8String(m_name);
+	out.writeRawData(reinterpret_cast<const char *>(&m_id), sizeof(m_id));
 	out.writeThrivedUtf8String(m_flags);
+	m_version >> out;
 	return out;
 }
 
-QString CompilerInfoContainer::name() const {
-	return m_name;
+Container::VersionInfoContainer &CompilerInfoContainer::version() {
+	return m_version;
 }
 
-void CompilerInfoContainer::setName(const QString &name) {
-	m_name = name;
+const VersionInfoContainer &CompilerInfoContainer::constVersion() const {
+	return m_version;
 }
+
+Enum::CompilerType CompilerInfoContainer::id() const {
+	return m_id;
+}
+
+void CompilerInfoContainer::setId(const Enum::CompilerType &id) {
+	m_id = id;
+}
+
 
 QString CompilerInfoContainer::flags() const {
 	return m_flags;

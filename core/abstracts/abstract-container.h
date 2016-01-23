@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/enums/container-type-enum.h>
+#include <core/enums/container-type.h>
 #include <core/core/data-stream.h>
 
 #include <memory>

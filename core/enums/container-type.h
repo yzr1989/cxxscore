@@ -1,6 +1,6 @@
 #pragma once
 
-#include <qnamespace.h>
+#include <qglobal.h>
 
 namespace Enum {
 
@@ -8,7 +8,8 @@ namespace Enum {
 		CompilerInfo,
 		PlatformInfo,
 		TestCaseInfo,
-		TestCase
+		TestCase,
+		VersionInfo
 	};
 
 }

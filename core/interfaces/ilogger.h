@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/enums/logger-type-enum.h>
+#include <core/enums/logger-type.h>
 
 namespace Interface {
 

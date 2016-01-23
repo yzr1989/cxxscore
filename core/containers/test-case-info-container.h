@@ -3,7 +3,7 @@
 #include <core/containers/compiler-info-container.h>
 #include <core/containers/platform-info-container.h>
 #include <core/containers/test-result-container.h>
-#include <core/enums/test-type-enum.h>
+#include <core/enums/test-type.h>
 
 namespace Container {
 

@@ -6,9 +6,6 @@ include(cflags.pri)
 
 SOURCES += main/platform/main.cpp \
 		core/abstracts/abstract-platform.cpp \
-		core/enums/logger-type-enum.cpp \
-		core/enums/platform-type-enum.cpp \
-		core/enums/test-type-enum.cpp \
 		core/factories/logger-factory.cpp \
 		core/factories/platform-factory.cpp \
 		core/factories/test-factory.cpp \
@@ -21,7 +18,6 @@ SOURCES += main/platform/main.cpp \
     core/functionals/elapsed-time.cpp \
     core/functionals/compiler-info.cpp \
     core/abstracts/abstract-container.cpp \
-    core/enums/container-type-enum.cpp \
     core/containers/test-result-container.cpp \
     core/core/data-stream.cpp \
     core/containers/compiler-info-container.cpp \
@@ -39,13 +35,17 @@ SOURCES += main/platform/main.cpp \
     core/tests/naive-fibonacci-test.cpp \
     core/tests/merge-sort-test.cpp \
     core/tests/tail-call-factorial-test.cpp \
-    core/abstracts/abstract-test-case.cpp
+    core/abstracts/abstract-test-case.cpp \
+    core/enums/compiler-type.cpp \
+    core/enums/container-type.cpp \
+    core/enums/logger-type.cpp \
+    core/enums/platform-type.cpp \
+    core/enums/test-type.cpp \
+    core/enums/architecture-type.cpp \
+    core/containers/version-info-container.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
-		core/enums/logger-type-enum.h \
-		core/enums/platform-type-enum.h \
-		core/enums/test-type-enum.h \
 		core/factories/logger-factory.h \
 		core/factories/platform-factory.h \
 		core/factories/test-factory.h \
@@ -58,7 +58,6 @@ HEADERS += \
     core/functionals/elapsed-time.h \
     core/functionals/compiler-info.h \
     core/abstracts/abstract-container.h \
-    core/enums/container-type-enum.h \
     core/containers/test-result-container.h \
     core/core/data-stream.h \
     core/containers/compiler-info-container.h \
@@ -76,4 +75,11 @@ HEADERS += \
     core/tests/naive-fibonacci-test.h \
     core/tests/tail-call-factorial-test.h \
     core/tests/merge-sort-test.h \
-    core/abstracts/abstract-test-case.h
+    core/abstracts/abstract-test-case.h \
+    core/enums/compiler-type.h \
+    core/enums/container-type.h \
+    core/enums/logger-type.h \
+    core/enums/platform-type.h \
+    core/enums/test-type.h \
+    core/enums/architecture-type.h \
+    core/containers/version-info-container.h

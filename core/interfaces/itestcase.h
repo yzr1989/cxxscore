@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/enums/test-type-enum.h>
+#include <core/enums/test-type.h>
 
 #include <QString>
 

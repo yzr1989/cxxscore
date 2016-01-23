@@ -25,6 +25,6 @@ void RawLogger::done(Interface::ITestCase *test, double duration) {
 	container.platform() = PlatformInfo::info();
 	container.testcase().setCount(test->count());
 	container.testcase().setDuration(duration);
-	container.testcase().setName(QString::fromStdString(name(test->type())));
+	container.testcase().setId(test->type());
 	m_file.write(container);
 }

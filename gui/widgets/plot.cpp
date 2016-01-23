@@ -23,8 +23,8 @@ Plot::Plot(QWidget *parent)
 	QFont legendFont = font();
 	legendFont.setPointSize(12);
 	legend->setFont(legendFont);
-	setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-	xAxis->setRange(0, 1);
+	//setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+	xAxis->setRange(0, 0.01);
 	setGrid();
 }
 
@@ -32,15 +32,23 @@ Plot::~Plot() {
 }
 
 void Plot::insert(Container::TestCaseContainer &test) {
+	for (QCPBars *bar : m_testBars)
+		removePlottable(bar);
+
 	m_tests.push_back(test);
 	QVector <double> ticks;
 	QVector <QString> labels;
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
-		QString barName = (m_tests.at(i).platform().arch() +
-		                   "/" + m_tests.at(i).compiler().name().toUpper());
+		//const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
+		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
+		//const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
+		const QString bar = QString("[%1] %2").arg(
+		                      platform.arch(), name(m_tests.at(i).compiler().id()));
+		//  QString barName = (m_tests.at(i).platform().arch() +
+		//                     "/" + QString::fromStdString(name(m_tests.at(i).compiler().id())));
 		ticks << i;
-		labels << barName;
+		labels << bar;
 	}
 
 	yAxis->setTickVector(ticks);
@@ -48,26 +56,37 @@ void Plot::insert(Container::TestCaseContainer &test) {
 	yAxis->setRange(-1, m_tests.size());
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
+		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
+		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
+		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
+		const QString compilerName = name(compiler.id());
 		auto bar = new QCPBars(yAxis, xAxis);
-		QString barName = (m_tests.at(i).platform().arch() +
-		                   "/" + m_tests.at(i).compiler().name().toUpper());
-		addPlottable(bar);
+		QString barName = platform.arch() + "/" + compilerName + " v"
+		                  + QString::number(compiler.constVersion().major()) + "."
+		                  + QString::number(compiler.constVersion().minor()) + "."
+		                  + QString::number(compiler.constVersion().patch());
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName(barName + " (" + QString::number(m_tests.at(i).testcase().duration(), 'f', 4) + "s)");
+		bar->setName(barName + " (" + QString::number(testcase.duration(), 'f', 4) + "s)");
 		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
 		bar->setPen(pen);
 		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
 		QVector<double> data;
 		data.resize(ticks.length());
 		data.fill(0);
-		data[i] = m_tests.at(i).testcase().duration();
+		data[i] = testcase.duration();
 		bar->setData(ticks, data);
 		m_testBars.push_back(bar);
 
-		if (xAxis->range().upper < m_tests.at(i).testcase().duration())
-			xAxis->setRange(0, m_tests.at(i).testcase().duration() + 1);
+		if (xAxis->range().upper < testcase.duration())
+			xAxis->setRange(0, testcase.duration() + (testcase.duration() * 0.01));
 	}
+
+	size_t i = m_testBars.size();
+
+	do {
+		addPlottable(m_testBars.at(--i));
+	} while (i != 0);
 }
 
 QCPPlotTitle *Plot::title() {

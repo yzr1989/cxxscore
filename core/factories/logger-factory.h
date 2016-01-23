@@ -1,7 +1,7 @@
 #pragma once
 
 #include <core/interfaces/ilogger.h>
-#include <core/enums/logger-type-enum.h>
+#include <core/enums/logger-type.h>
 #include <memory>
 #include <QString>
 

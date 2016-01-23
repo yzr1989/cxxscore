@@ -18,7 +18,8 @@ int main(int argc, char *argv[]) {
 	QString outputFile =
 	  Functional::PlatformInfo::info().name() + "-" +
 	  Functional::PlatformInfo::info().arch() + "-" +
-	  Functional::CompilerInfo::info().name() + "-" +
+	  filename(Functional::CompilerInfo::info().id()) + "-" +
+	  Functional::CompilerInfo::info().version().toString() + "-" +
 	  QCoreApplication::applicationName() + ".raw";
 	auto platform = PlatformFactory::create(PlatformType::Linux);
 	platform->attach(LoggerFactory::create(LoggerType::RawLogger, outputFile));

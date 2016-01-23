@@ -1,7 +1,6 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include <QString>
 
 namespace Enum {
 
@@ -17,8 +16,8 @@ namespace Enum {
 		Last
 	};
 
-	std::string name(const TestType &type);
-
+	QString prettyname(const TestType &type);
+	QString name(const TestType &type);
 	uint64_t count(const TestType &type);
 
 }

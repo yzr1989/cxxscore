@@ -26,7 +26,7 @@ void AbstractPlatform::initTestCase(Interface::ITestCase *test) {
 		logger->init(test);
 
 	m_elapsed.start();
-	std::cout << "Running '" << name(test->type())
+	std::cout << "Running '" << name(test->type()).toStdString()
 	          << "' test " << test->count() << " times... " << std::flush;
 }
 
