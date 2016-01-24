@@ -19,12 +19,12 @@ namespace Interface {
 		virtual ~IPlatform() = default;
 
 		virtual Enum::PlatformType type() const = 0;
-		virtual void run() = 0;
+		virtual void run(volatile int count) = 0;
 
 	protected:
-		virtual void initTestCase(Interface::ITestCase *test) = 0;
-		virtual void executeTest(Interface::ITestCase *test) = 0;
-		virtual void doneTestCase(Interface::ITestCase *test) = 0;
+		virtual void init(Interface::ITestCase *test) = 0;
+		virtual void exec(Interface::ITestCase *test) = 0;
+		virtual void done(Interface::ITestCase *test) = 0;
 
 	};
 

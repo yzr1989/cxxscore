@@ -13,18 +13,18 @@ namespace Abstract {
 
 		virtual void attach(std::unique_ptr<Interface::ITestCase> &&object) override;
 		virtual void attach(std::unique_ptr<Interface::ILogger> &&object) override;
-		virtual void run() override;
+		virtual void run(int count) override;
 
 	protected:
-		virtual void initTestCase(Interface::ITestCase *test) override;
-		virtual void executeTest(Interface::ITestCase *test) override;
-		virtual void doneTestCase(Interface::ITestCase *test) override;
+		virtual void init(Interface::ITestCase *test) override;
+		virtual void exec(Interface::ITestCase *test) override;
+		virtual void done(Interface::ITestCase *test) override;
 
 	private:
 		std::list <std::unique_ptr<Interface::ILogger>> m_loggerList;
 		std::list <std::unique_ptr<Interface::ITestCase>> m_testCaseList;
-		std::unique_ptr<Interface::ILogger> m_logger;
 		Functional::ElapsedTime m_elapsed;
+		int m_count;
 	};
 
 }

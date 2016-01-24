@@ -23,7 +23,7 @@ void run(const QString &fileName) {
 	     i < static_cast<std::underlying_type<TestType>::type>(TestType::Last); ++i)
 		core->attach(TestFactory::create(static_cast<TestType>(i)));
 
-	core->run();
+	core->run(10);
 }
 
 int main(int argc, char *argv[]) {

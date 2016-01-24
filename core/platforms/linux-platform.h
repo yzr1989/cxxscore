@@ -6,7 +6,7 @@ namespace Platform {
 
 	class LinuxPlatform final : public Abstract::AbstractPlatform {
 	public:
-		explicit LinuxPlatform() = default;
+		explicit LinuxPlatform();
 		virtual ~LinuxPlatform() = default;
 
 		virtual Enum::PlatformType type() const override;

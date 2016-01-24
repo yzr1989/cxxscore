@@ -13,5 +13,5 @@ Enum::TestType NaiveFibonacciTest::type() const {
 }
 
 uint64_t NaiveFibonacciTest::execute() {
-	return fibonacci(41);
+	return fibonacci(38);
 }

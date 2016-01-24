@@ -21,24 +21,24 @@ void AbstractPlatform::attach(std::unique_ptr<ILogger> &&object) {
 	m_loggerList.push_back(std::move(object));
 }
 
-void AbstractPlatform::initTestCase(Interface::ITestCase *test) {
+void AbstractPlatform::init(Interface::ITestCase *test) {
 	for (auto &logger : m_loggerList)
 		logger->init(test);
 
 	m_elapsed.start();
 	std::cout << "Running '" << name(test->type()).toStdString()
-	          << "' test " << test->count() << " times... " << std::flush;
+	          << "' test " << test->count() << " iterations... " << std::flush;
 }
 
-void AbstractPlatform::executeTest(Interface::ITestCase *test) {
+void AbstractPlatform::exec(Interface::ITestCase *test) {
 	volatile auto count = test->count();
 
 	for (volatile decltype(count) i = 0; i < count; ++i)
 		test->execute();
 }
 
-void AbstractPlatform::doneTestCase(Interface::ITestCase *test) {
-	const auto duration = m_elapsed.stop();
+void AbstractPlatform::done(Interface::ITestCase *test) {
+	const auto duration = m_elapsed.stop() / static_cast<double>(m_count);
 
 	for (auto &logger : m_loggerList)
 		logger->done(test, duration);
@@ -46,12 +46,17 @@ void AbstractPlatform::doneTestCase(Interface::ITestCase *test) {
 	std::cout << "done. [" << duration << "sec]" << std::endl;
 }
 
-void AbstractPlatform::run() {
+void AbstractPlatform::run(volatile int count) {
+	m_count = count;
+
 	for (auto &testCase : m_testCaseList) {
 		ITestCase *pointer = testCase.get();
-		initTestCase(pointer);
-		executeTest(pointer);
-		doneTestCase(pointer);
+		init(pointer);
+
+		for (int i = 0; i < count; ++i)
+			exec(pointer);
+
+		done(pointer);
 	}
 }
 
