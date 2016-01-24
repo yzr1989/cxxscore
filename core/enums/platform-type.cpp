@@ -5,7 +5,7 @@ using namespace Enum;
 QString Enum::name(const PlatformType &type) {
 	switch (type) {
 		case PlatformType::Linux:
-			return "linux";
+			return "Linux";
 	}
 
 	return {};

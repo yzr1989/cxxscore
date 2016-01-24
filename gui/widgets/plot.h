@@ -26,9 +26,11 @@ namespace Widget {
 
 		QString testName() const;
 
+		void setGuiFont();
+		void setPaperFont();
+
 	protected:
 		void setGrid();
-		void setFont();
 		void reset();
 
 	private:

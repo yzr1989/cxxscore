@@ -13,5 +13,6 @@ namespace Enum {
 	};
 
 	QFont factory(const FontType &type);
+	QFont paper(const FontType &type);
 
 }

@@ -27,7 +27,7 @@ Plot::Plot(const QString &testName, QWidget *parent)
 	legend->setBorderPen(legendPen);
 	xAxis->setRange(0, 0.01);
 	setGrid();
-	setFont();
+	setGuiFont();
 }
 
 Plot::~Plot() {
@@ -52,14 +52,16 @@ void Plot::generate() {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 		const QString compilerName = name(compiler.id());
 		ticks << i;
-		labels << QString("Linux/%1 %2 %3\n%4").arg(name(platform.arch()),
-		       name(compiler.id()),
-		       compiler.constVersion().toString(),
-		       compiler.flags().replace(' ', '\n'));
+		labels << QString("%1/%2 %3 %4\n%5").arg(
+		         name(platform.platform()),
+		         name(platform.arch()),
+		         name(compiler.id()),
+		         compiler.constVersion().toString(),
+		         compiler.flags().replace(' ', '\n'));
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName(QString::number(testcase.duration(), 'f', 3) + "s");
+		bar->setName(QString::number(testcase.duration(), 'f', 4) + "s");
 		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
 		bar->setPen(pen);
 		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
@@ -85,8 +87,11 @@ void Plot::generate() {
 	do {
 		QCPBars *bar = m_testBars.at(--i);
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
-		bar->setName(bar->name() + ", "
-		             + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%+");
+
+		if (i != m_testBars.size() - 1)
+			bar->setName(bar->name() + ", +"
+			             + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%");
+
 		addPlottable(bar);
 	} while (i != 0);
 }
@@ -124,13 +129,22 @@ void Plot::setGrid() {
 	xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
 }
 
-void Plot::setFont() {
+void Plot::setGuiFont() {
 	legend->setFont(factory(FontType::Legend));
 	m_subtitle->setFont(factory(FontType::Subtitle));
 	m_title->setFont(factory(FontType::Title));
 	xAxis->setLabelFont(factory(FontType::YAxis));
 	xAxis->setTickLabelFont(factory(FontType::XAxis));
 	yAxis->setTickLabelFont(factory(FontType::YAxis));
+}
+
+void Plot::setPaperFont() {
+	legend->setFont(paper(FontType::Legend));
+	m_subtitle->setFont(paper(FontType::Subtitle));
+	m_title->setFont(paper(FontType::Title));
+	xAxis->setLabelFont(paper(FontType::YAxis));
+	xAxis->setTickLabelFont(paper(FontType::XAxis));
+	yAxis->setTickLabelFont(paper(FontType::YAxis));
 }
 
 void Plot::reset() {
@@ -155,6 +169,7 @@ void Widget::Plot::saveToFile(const QString &fileName) {
 	for (auto &test : m_tests)
 		plot.insert(test);
 
+	plot.setPaperFont();
 	plot.generate();
 	plot.title()->setFont(m_title->font());
 	plot.title()->setText(m_title->text());
@@ -162,7 +177,7 @@ void Widget::Plot::saveToFile(const QString &fileName) {
 	plot.subtitle()->setFont(m_subtitle->font());
 	plot.subtitle()->setText(m_subtitle->text());
 	plot.subtitle()->setTextColor(m_subtitle->textColor());
-	QSize size(1800, 900);
+	QSize size(2000, 1200);
 	QPixmap pixmap(size);
 	plot.resize(size);
 	plot.render(&pixmap, {}, {0, 0, size.width(), size.height()});
