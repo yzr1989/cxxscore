@@ -28,6 +28,7 @@ Plot::Plot(const QString &testName, QWidget *parent)
 	xAxis->setRange(0, 0.01);
 	setGrid();
 	setGuiFont();
+	setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 }
 
 Plot::~Plot() {
