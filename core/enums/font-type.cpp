@@ -23,7 +23,7 @@ QFont Enum::factory(const FontType &type) {
 
 		case FontType::YAxis:
 			font.setBold(true);
-			font.setPointSize(12);
+			font.setPointSize(10);
 			break;
 
 		case FontType::Legend:

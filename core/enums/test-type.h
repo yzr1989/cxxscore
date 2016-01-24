@@ -16,7 +16,7 @@ namespace Enum {
 		Last
 	};
 
-	QString prettyname(const TestType &type);
+	QString title(const TestType &type);
 	QString name(const TestType &type);
 	uint64_t count(const TestType &type);
 

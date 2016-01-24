@@ -32,7 +32,9 @@ MainWindow::~MainWindow() {
 void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
 	QString tabname = name(container->testcase().id());
 	Widget::Plot *plot = ui->tabWidget->insert(tabname);
-	plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
+	//plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
+	plot->title()->setText(title(container->testcase().id()) + ", " +
+	                       QString::number(container->testcase().count()) + " iteracji");
 	plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
 	plot->subtitle()->setTextColor(Qt::darkGray);
 	plot->insert(*container);

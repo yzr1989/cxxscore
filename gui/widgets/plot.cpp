@@ -44,6 +44,7 @@ void Plot::generate() {
 	});
 	QVector <double> ticks;
 	QVector <QString> labels;
+	double max = 0;
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
 		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
@@ -51,11 +52,14 @@ void Plot::generate() {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 		const QString compilerName = name(compiler.id());
 		ticks << i;
-		labels << QString("[%1] %2 v%3").arg(name(platform.arch()), name(compiler.id()), compiler.constVersion().toString());
+		labels << QString("Linux/%1 %2 %3\n%4").arg(name(platform.arch()),
+		       name(compiler.id()),
+		       compiler.constVersion().toString(),
+		       compiler.flags().replace(' ', '\n'));
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName("" +  QString::number(testcase.duration(), 'f', 4) + "s, CXXFLAGS: " + compiler.flags() + ", [" + name(platform.arch()) + "] " + compilerName);
+		bar->setName(QString::number(testcase.duration(), 'f', 3) + "s");
 		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
 		bar->setPen(pen);
 		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
@@ -66,17 +70,24 @@ void Plot::generate() {
 		bar->setData(ticks, data);
 		m_testBars.push_back(bar);
 
+		if (max < testcase.duration())
+			max = testcase.duration();
+
 		if (xAxis->range().upper < testcase.duration())
-			xAxis->setRange(0, testcase.duration() + (testcase.duration() * 0.01));
+			xAxis->setRange(0, testcase.duration() + (testcase.duration() * 0.25));
 	}
 
 	yAxis->setTickVector(ticks);
 	yAxis->setTickVectorLabels(labels);
-	yAxis->setRange(-2, m_tests.size());
+	yAxis->setRange(-1, m_tests.size());
 	size_t i = m_testBars.size();
 
 	do {
-		addPlottable(m_testBars.at(--i));
+		QCPBars *bar = m_testBars.at(--i);
+		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
+		bar->setName(bar->name() + ", "
+		             + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%+");
+		addPlottable(bar);
 	} while (i != 0);
 }
 
