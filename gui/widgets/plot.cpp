@@ -177,7 +177,7 @@ void Widget::Plot::saveToFile(const QString &fileName) {
 	plot.subtitle()->setFont(m_subtitle->font());
 	plot.subtitle()->setText(m_subtitle->text());
 	plot.subtitle()->setTextColor(m_subtitle->textColor());
-	QSize size(2000, 1200);
+	QSize size(2000, 1125);
 	QPixmap pixmap(size);
 	plot.resize(size);
 	plot.render(&pixmap, {}, {0, 0, size.width(), size.height()});

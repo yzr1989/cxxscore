@@ -14,7 +14,7 @@ using namespace Factory;
 using namespace Functional;
 using namespace Manager;
 
-void run(const QString &fileName) {
+void run(const QString &fileName, int count) {
 	FileManager manager(QDir::homePath());
 	auto core = PlatformFactory::create(PlatformType::Linux);
 	core->attach(LoggerFactory::create(LoggerType::RawLogger, manager.path(Folder::Data, fileName)));
@@ -23,7 +23,7 @@ void run(const QString &fileName) {
 	     i < static_cast<std::underlying_type<TestType>::type>(TestType::Last); ++i)
 		core->attach(TestFactory::create(static_cast<TestType>(i)));
 
-	core->run(10);
+	core->run(count);
 }
 
 int main(int argc, char *argv[]) {
@@ -35,9 +35,14 @@ int main(int argc, char *argv[]) {
 	InfoCenter::populate(platform);
 	InfoCenter::print(compiler);
 	InfoCenter::print(platform);
+	int count = 10;
+
+	if (argc > 1)
+		count = std::atoi(argv[1]);
+
 	run(name(platform.platform()) + "-" +
 	    name(platform.arch()) + "-" +
 	    name(compiler.id()).toLower() + "-" +
 	    compiler.constVersion().toString() + "-" +
-	    compiler.checksum() + ".raw");
+	    compiler.checksum() + ".raw", count);
 }

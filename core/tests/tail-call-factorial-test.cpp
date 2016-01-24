@@ -12,6 +12,6 @@ Enum::TestType TailCallFactorialTest::type() const {
 	return Enum::TestType::TailCallFactorial;
 }
 
-uint64_t TailCallFactorialTest::execute() {
-	return factorial(256);
+uint64_t TailCallFactorialTest::execute(uint64_t in) {
+	return factorial(in % 256);
 }

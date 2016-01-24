@@ -10,9 +10,9 @@ namespace Test {
 		virtual ~TailCallFibonacciTest() = default;
 
 		virtual Enum::TestType type() const override;
-		virtual uint64_t execute() override;
+		virtual uint64_t execute(uint64_t in) override;
 
-		static uint64_t fibonacci(int n, int f = 0, int fPop = 1);
+		static uint64_t fibonacci(uint64_t n, uint64_t f = 0, uint64_t fPop = 1);
 	};
 
 }

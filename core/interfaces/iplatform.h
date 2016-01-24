@@ -24,7 +24,7 @@ namespace Interface {
 	protected:
 		virtual void init(Interface::ITestCase *test) = 0;
 		virtual void exec(Interface::ITestCase *test) = 0;
-		virtual void done(Interface::ITestCase *test) = 0;
+		virtual void done(Interface::ITestCase *test, const double duration) = 0;
 
 	};
 

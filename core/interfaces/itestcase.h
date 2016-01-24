@@ -12,7 +12,7 @@ namespace Interface {
 		virtual ~ITestCase() = default;
 
 		virtual Enum::TestType type() const = 0;
-		virtual uint64_t execute() = 0;
+		virtual uint64_t execute(uint64_t in) = 0;
 		virtual uint64_t count() const = 0;
 	};
 

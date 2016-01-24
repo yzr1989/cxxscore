@@ -3,7 +3,7 @@
 #include <core/interfaces/ilogger.h>
 
 #include <iostream>
-
+#include <limits>
 using namespace Abstract;
 using namespace Interface;
 
@@ -25,21 +25,24 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 	for (auto &logger : m_loggerList)
 		logger->init(test);
 
-	m_elapsed.start();
-	std::cout << "Running '" << name(test->type()).toStdString()
-	          << "' test " << test->count() << " iterations... " << std::flush;
+	std::cout
+	    << "Running '"
+	    << name(test->type()).toStdString()
+	    << "' test "
+	    << test->count()
+	    << " iterations... "
+	    << std::endl
+	    << std::flush;
 }
 
 void AbstractPlatform::exec(Interface::ITestCase *test) {
-	volatile auto count = test->count();
+	auto count = test->count();
 
-	for (volatile decltype(count) i = 0; i < count; ++i)
-		test->execute();
+	for (decltype(count) i = 0; i < count; ++i)
+		test->execute(count);
 }
 
-void AbstractPlatform::done(Interface::ITestCase *test) {
-	const auto duration = m_elapsed.stop() / static_cast<double>(m_count);
-
+void AbstractPlatform::done(Interface::ITestCase *test, const double duration) {
 	for (auto &logger : m_loggerList)
 		logger->done(test, duration);
 
@@ -52,11 +55,25 @@ void AbstractPlatform::run(volatile int count) {
 	for (auto &testCase : m_testCaseList) {
 		ITestCase *pointer = testCase.get();
 		init(pointer);
+		auto duration = std::numeric_limits<double>::max();
 
-		for (int i = 0; i < count; ++i)
+		for (int i = 0; i < count; ++i) {
+			m_elapsed.start();
 			exec(pointer);
+			const double last = m_elapsed.stop();
+			std::cout
+			    << std::to_string(i + 1)
+			    << "/"
+			    << std::to_string(count)
+			    << ", "
+			    << last
+			    << "s" << std::endl;
 
-		done(pointer);
+			if (last < duration)
+				duration = last;
+		}
+
+		done(pointer, duration);
 	}
 }
 

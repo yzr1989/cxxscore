@@ -12,6 +12,6 @@ Enum::TestType NaiveFibonacciTest::type() const {
 	return Enum::TestType::NaiveFibonacci;
 }
 
-uint64_t NaiveFibonacciTest::execute() {
-	return fibonacci(30);
+uint64_t NaiveFibonacciTest::execute(uint64_t in) {
+	return fibonacci(in % 40);
 }

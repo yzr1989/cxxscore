@@ -18,7 +18,7 @@ namespace Abstract {
 	protected:
 		virtual void init(Interface::ITestCase *test) override;
 		virtual void exec(Interface::ITestCase *test) override;
-		virtual void done(Interface::ITestCase *test) override;
+		virtual void done(Interface::ITestCase *test, const double duration) override;
 
 	private:
 		std::list <std::unique_ptr<Interface::ILogger>> m_loggerList;
