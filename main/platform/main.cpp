@@ -44,5 +44,5 @@ int main(int argc, char *argv[]) {
 	    name(platform.arch()) + "-" +
 	    name(compiler.id()).toLower() + "-" +
 	    compiler.constVersion().toString() + "-" +
-	    compiler.checksum() + ".raw", count);
+	    compiler.flags().remove('-').replace(' ', '-') + ".raw", count);
 }
