@@ -5,7 +5,7 @@
 using namespace Widget;
 
 PlotTab::PlotTab(QWidget *parent)
-	: QTabWidget(parent) {
+		: QTabWidget(parent) {
 }
 
 Plot *PlotTab::insert(const QString &name) {

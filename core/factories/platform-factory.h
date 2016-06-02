@@ -5,12 +5,11 @@
 
 namespace Factory {
 
-	class PlatformFactory {
-	public:
-		explicit PlatformFactory() = delete;
-		virtual ~PlatformFactory() = delete;
+class PlatformFactory {
+public:
+	explicit PlatformFactory() = delete;
+	virtual ~PlatformFactory() = delete;
 
-		static std::unique_ptr<Interface::IPlatform> create(const Enum::PlatformType &type);
-	};
-
+	static std::unique_ptr<Interface::IPlatform> create(const Enum::PlatformType &type);
+};
 }

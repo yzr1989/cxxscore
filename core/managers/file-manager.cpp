@@ -5,14 +5,13 @@ using namespace Enum;
 using namespace Manager;
 
 FileManager::FileManager(const QString &workdir)
-	: m_workdir(workdir)
-	, m_dir(workdir)
+		: m_workdir(workdir)
+		, m_dir(workdir)
 
 {
 	const auto list = {
 		Folder::Data,
-		Folder::Plot
-	};
+		Folder::Plot};
 
 	for (auto &type : list)
 		m_dir.mkdir(name(type));
@@ -20,7 +19,7 @@ FileManager::FileManager(const QString &workdir)
 
 QString FileManager::path(const Enum::Folder &folder, const QString &fileName) {
 	return m_workdir + QDir::separator() + name(folder) +
-	       QDir::separator() + fileName;
+		QDir::separator() + fileName;
 }
 
 QFileInfoList FileManager::list(const Enum::Folder &folder) {

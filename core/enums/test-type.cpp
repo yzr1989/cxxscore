@@ -100,4 +100,3 @@ uint64_t Enum::count(const TestType &type) {
 
 	return 0;
 }
-

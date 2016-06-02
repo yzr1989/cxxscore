@@ -12,5 +12,3 @@ std::unique_ptr<Interface::IPlatform> PlatformFactory::create(const PlatformType
 
 	return nullptr;
 }
-
-

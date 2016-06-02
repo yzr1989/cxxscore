@@ -4,13 +4,12 @@
 
 namespace Test {
 
-	class MergeSortTest final : public Abstract::AbstractTestCase {
-	public:
-		explicit MergeSortTest() = default;
-		virtual ~MergeSortTest() = default;
+class MergeSortTest final : public Abstract::AbstractTestCase {
+public:
+	explicit MergeSortTest() = default;
+	virtual ~MergeSortTest() = default;
 
-		virtual Enum::TestType type() const override;
-		virtual uint64_t execute(uint64_t in) override;
-	};
-
+	virtual Enum::TestType type() const override;
+	virtual uint64_t execute(uint64_t in) override;
+};
 }

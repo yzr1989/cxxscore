@@ -6,13 +6,13 @@ Enum::ContainerType PlatformInfoContainer::type() const {
 	return Enum::ContainerType::PlatformInfo;
 }
 
-Core::DataStream &PlatformInfoContainer::operator <<(Core::DataStream &in) {
+Core::DataStream &PlatformInfoContainer::operator<<(Core::DataStream &in) {
 	in.readRawData(reinterpret_cast<char *>(&m_arch), sizeof(m_arch));
 	in.readRawData(reinterpret_cast<char *>(&m_platform), sizeof(m_platform));
 	return in;
 }
 
-Core::DataStream &PlatformInfoContainer::operator >>(Core::DataStream &out) const {
+Core::DataStream &PlatformInfoContainer::operator>>(Core::DataStream &out) const {
 	out.writeRawData(reinterpret_cast<const char *>(&m_arch), sizeof(m_arch));
 	out.writeRawData(reinterpret_cast<const char *>(&m_platform), sizeof(m_platform));
 	return out;
@@ -33,4 +33,3 @@ Enum::PlatformType PlatformInfoContainer::platform() const {
 void PlatformInfoContainer::setPlatform(const Enum::PlatformType &platform) {
 	m_platform = platform;
 }
-

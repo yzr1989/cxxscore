@@ -7,27 +7,26 @@
 
 namespace Container {
 
-	class TestCaseContainer final : public Abstract::AbstractContainer {
-	public:
-		explicit TestCaseContainer() = default;
-		virtual ~TestCaseContainer() = default;
+class TestCaseContainer final : public Abstract::AbstractContainer {
+public:
+	explicit TestCaseContainer() = default;
+	virtual ~TestCaseContainer() = default;
 
-		virtual Enum::ContainerType type() const override;
-		virtual Core::DataStream &operator << (Core::DataStream &in) override;
-		virtual Core::DataStream &operator >> (Core::DataStream &out) const override;
+	virtual Enum::ContainerType type() const override;
+	virtual Core::DataStream &operator<<(Core::DataStream &in) override;
+	virtual Core::DataStream &operator>>(Core::DataStream &out) const override;
 
-		CompilerInfoContainer &compiler();
-		PlatformInfoContainer &platform();
-		TestCaseInfoContainer &testcase();
+	CompilerInfoContainer &compiler();
+	PlatformInfoContainer &platform();
+	TestCaseInfoContainer &testcase();
 
-		const CompilerInfoContainer &constCompiler() const;
-		const PlatformInfoContainer &constPlatform() const;
-		const TestCaseInfoContainer &constTestcase() const;
+	const CompilerInfoContainer &constCompiler() const;
+	const PlatformInfoContainer &constPlatform() const;
+	const TestCaseInfoContainer &constTestcase() const;
 
-	private:
-		CompilerInfoContainer m_compiler;
-		PlatformInfoContainer m_platform;
-		TestCaseInfoContainer m_testcase;
-	};
-
+private:
+	CompilerInfoContainer m_compiler;
+	PlatformInfoContainer m_platform;
+	TestCaseInfoContainer m_testcase;
+};
 }

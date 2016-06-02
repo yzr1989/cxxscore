@@ -6,14 +6,14 @@ Enum::ContainerType VersionInfoContainer::type() const {
 	return Enum::ContainerType::CompilerInfo;
 }
 
-Core::DataStream &VersionInfoContainer::operator <<(Core::DataStream &in) {
+Core::DataStream &VersionInfoContainer::operator<<(Core::DataStream &in) {
 	in >> m_major;
 	in >> m_minor;
 	in >> m_patch;
 	return in;
 }
 
-Core::DataStream &VersionInfoContainer::operator >>(Core::DataStream &out) const {
+Core::DataStream &VersionInfoContainer::operator>>(Core::DataStream &out) const {
 	out << m_major;
 	out << m_minor;
 	out << m_patch;
@@ -45,8 +45,7 @@ void VersionInfoContainer::setPatch(const quint8 &patch) {
 }
 
 QString VersionInfoContainer::toString() const {
-	return
-	  QString::number(m_major) + "." +
-	  QString::number(m_minor) + "." +
-	  QString::number(m_patch);
+	return QString::number(m_major) + "." +
+		QString::number(m_minor) + "." +
+		QString::number(m_patch);
 }

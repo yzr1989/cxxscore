@@ -5,17 +5,15 @@
 
 namespace Functional {
 
-	class InfoCenter final {
-	public:
-		explicit InfoCenter() = delete;
-		virtual ~InfoCenter() = delete;
+class InfoCenter final {
+public:
+	explicit InfoCenter() = delete;
+	virtual ~InfoCenter() = delete;
 
-		static void populate(Container::CompilerInfoContainer &container);
-		static void populate(Container::PlatformInfoContainer &container);
+	static void populate(Container::CompilerInfoContainer &container);
+	static void populate(Container::PlatformInfoContainer &container);
 
-		static void print(Container::CompilerInfoContainer &container);
-		static void print(Container::PlatformInfoContainer &container);
-
-	};
-
+	static void print(Container::CompilerInfoContainer &container);
+	static void print(Container::PlatformInfoContainer &container);
+};
 }

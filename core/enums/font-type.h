@@ -4,15 +4,14 @@
 
 namespace Enum {
 
-	enum class FontType : quint8 {
-		Title,
-		Subtitle,
-		Legend,
-		XAxis,
-		YAxis
-	};
+enum class FontType : quint8 {
+	Title,
+	Subtitle,
+	Legend,
+	XAxis,
+	YAxis
+};
 
-	QFont factory(const FontType &type);
-	QFont paper(const FontType &type);
-
+QFont factory(const FontType &type);
+QFont paper(const FontType &type);
 }

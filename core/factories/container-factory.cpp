@@ -28,4 +28,3 @@ std::unique_ptr<Abstract::AbstractContainer> ContainerFactory::create(const Cont
 
 	return nullptr;
 }
-

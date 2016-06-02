@@ -7,25 +7,23 @@
 
 namespace Container {
 
-	class PlatformInfoContainer final : public Abstract::AbstractContainer {
-	public:
-		explicit PlatformInfoContainer() = default;
-		virtual ~PlatformInfoContainer() = default;
+class PlatformInfoContainer final : public Abstract::AbstractContainer {
+public:
+	explicit PlatformInfoContainer() = default;
+	virtual ~PlatformInfoContainer() = default;
 
-		virtual Enum::ContainerType type() const override;
-		virtual Core::DataStream &operator << (Core::DataStream &in) override;
-		virtual Core::DataStream &operator >> (Core::DataStream &out) const override;
+	virtual Enum::ContainerType type() const override;
+	virtual Core::DataStream &operator<<(Core::DataStream &in) override;
+	virtual Core::DataStream &operator>>(Core::DataStream &out) const override;
 
-		Enum::ArchitectureType arch() const;
-		Enum::PlatformType platform() const;
+	Enum::ArchitectureType arch() const;
+	Enum::PlatformType platform() const;
 
-		void setArch(const Enum::ArchitectureType &arch);
-		void setPlatform(const Enum::PlatformType &platform);
+	void setArch(const Enum::ArchitectureType &arch);
+	void setPlatform(const Enum::PlatformType &platform);
 
-	private:
-		Enum::ArchitectureType m_arch;
-		Enum::PlatformType m_platform;
-
-	};
-
+private:
+	Enum::ArchitectureType m_arch;
+	Enum::PlatformType m_platform;
+};
 }

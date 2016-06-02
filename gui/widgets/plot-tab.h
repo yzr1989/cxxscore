@@ -7,17 +7,16 @@
 
 namespace Widget {
 
-	class Plot;
+class Plot;
 
-	class PlotTab : public QTabWidget {
-	public:
-		explicit PlotTab(QWidget *parent = nullptr);
-		virtual ~PlotTab() = default;
+class PlotTab : public QTabWidget {
+public:
+	explicit PlotTab(QWidget *parent = nullptr);
+	virtual ~PlotTab() = default;
 
-		Plot *insert(const QString &name);
+	Plot *insert(const QString &name);
 
-	private:
-		QMap<QString, Plot *> m_table;
-	};
-
+private:
+	QMap<QString, Plot *> m_table;
+};
 }

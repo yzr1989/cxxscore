@@ -8,17 +8,15 @@
 
 namespace Functional {
 
-	class ContainerReader {
-	public:
-		explicit ContainerReader(const QString &filePath);
-		virtual ~ContainerReader() = default;
+class ContainerReader {
+public:
+	explicit ContainerReader(const QString &filePath);
+	virtual ~ContainerReader() = default;
 
-		std::unique_ptr<Abstract::AbstractContainer> read();
+	std::unique_ptr<Abstract::AbstractContainer> read();
 
-	private:
-		QFile m_file;
-		Core::DataStream m_stream;
-	};
-
-
+private:
+	QFile m_file;
+	Core::DataStream m_stream;
+};
 }

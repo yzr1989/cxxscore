@@ -20,7 +20,7 @@ void run(const QString &fileName, int count) {
 	core->attach(LoggerFactory::create(LoggerType::RawLogger, manager.path(Folder::Data, fileName)));
 
 	for (std::underlying_type<TestType>::type i = 0;
-	     i < static_cast<std::underlying_type<TestType>::type>(TestType::Last); ++i)
+		 i < static_cast<std::underlying_type<TestType>::type>(TestType::Last); ++i)
 		core->attach(TestFactory::create(static_cast<TestType>(i)));
 
 	core->run(count);
@@ -41,8 +41,9 @@ int main(int argc, char *argv[]) {
 		count = std::atoi(argv[1]);
 
 	run(name(platform.platform()) + "-" +
-	    name(platform.arch()) + "-" +
-	    name(compiler.id()).toLower() + "-" +
-	    compiler.constVersion().toString() + "-" +
-	    compiler.flags().remove('-').replace(' ', '-') + ".raw", count);
+			name(platform.arch()) + "-" +
+			name(compiler.id()).toLower() + "-" +
+			compiler.constVersion().toString() + "-" +
+			compiler.flags().remove('-').replace(' ', '-') + ".raw",
+		count);
 }

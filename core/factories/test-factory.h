@@ -6,12 +6,11 @@
 
 namespace Factory {
 
-	class TestFactory {
-	public:
-		explicit TestFactory() = delete;
-		virtual ~TestFactory() = delete;
+class TestFactory {
+public:
+	explicit TestFactory() = delete;
+	virtual ~TestFactory() = delete;
 
-		static std::unique_ptr<Interface::ITestCase> create(const Enum::TestType &type);
-	};
-
+	static std::unique_ptr<Interface::ITestCase> create(const Enum::TestType &type);
+};
 }

@@ -4,12 +4,11 @@
 
 namespace Abstract {
 
-	class AbstractTestCase : public Interface::ITestCase {
-	public:
-		explicit AbstractTestCase() = default;
-		virtual ~AbstractTestCase() = default;
+class AbstractTestCase : public Interface::ITestCase {
+public:
+	explicit AbstractTestCase() = default;
+	virtual ~AbstractTestCase() = default;
 
-		virtual uint64_t count() const;
-	};
-
+	virtual uint64_t count() const;
+};
 }

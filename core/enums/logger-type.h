@@ -4,8 +4,7 @@
 
 namespace Enum {
 
-	enum class LoggerType : quint8 {
-		RawLogger
-	};
-
+enum class LoggerType : quint8 {
+	RawLogger
+};
 }

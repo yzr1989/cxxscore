@@ -8,8 +8,8 @@ using namespace Enum;
 using namespace Widget;
 
 Plot::Plot(const QString &testName, QWidget *parent)
-	: QCustomPlot(parent)
-	, m_testName(testName)
+		: QCustomPlot(parent)
+		, m_testName(testName)
 
 {
 	m_title = new QCPPlotTitle(this);
@@ -40,11 +40,11 @@ void Plot::insert(Container::TestCaseContainer &test) {
 
 void Plot::generate() {
 	std::sort(m_tests.begin(), m_tests.end(),
-	[](const Container::TestCaseContainer & a, const Container::TestCaseContainer & b) {
-		return a.constTestcase().duration() < b.constTestcase().duration();
-	});
-	QVector <double> ticks;
-	QVector <QString> labels;
+		[](const Container::TestCaseContainer &a, const Container::TestCaseContainer &b) {
+			return a.constTestcase().duration() < b.constTestcase().duration();
+		});
+	QVector<double> ticks;
+	QVector<QString> labels;
 	double max = 0;
 
 	for (size_t i = 0; i < m_tests.size(); ++i) {
@@ -53,12 +53,7 @@ void Plot::generate() {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 		const QString compilerName = name(compiler.id());
 		ticks << i;
-		labels << QString("%1/%2 %3 %4\n%5").arg(
-		         name(platform.platform()),
-		         name(platform.arch()),
-		         name(compiler.id()),
-		         compiler.constVersion().toString(),
-		         compiler.flags().replace(' ', '\n'));
+		labels << QString("%1/%2 %3 %4\n%5").arg(name(platform.platform()), name(platform.arch()), name(compiler.id()), compiler.constVersion().toString(), compiler.flags().replace(' ', '\n'));
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
@@ -90,8 +85,7 @@ void Plot::generate() {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 
 		if (i != m_testBars.size() - 1)
-			bar->setName(bar->name() + ", +"
-			             + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%");
+			bar->setName(bar->name() + ", +" + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%");
 
 		addPlottable(bar);
 	} while (i != 0);
@@ -109,7 +103,7 @@ QCPBars *Plot::bars(const QString &name) {
 	QCPBars *ptr = m_bars.value(name, nullptr);
 
 	if (ptr == nullptr) {
-		ptr =  new QCPBars(yAxis, xAxis);
+		ptr = new QCPBars(yAxis, xAxis);
 		addPlottable(ptr);
 		m_bars[name] = ptr;
 	}

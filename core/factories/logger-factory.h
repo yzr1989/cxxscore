@@ -7,12 +7,11 @@
 
 namespace Factory {
 
-	class LoggerFactory {
-	public:
-		explicit LoggerFactory() = delete;
-		virtual ~LoggerFactory() = delete;
+class LoggerFactory {
+public:
+	explicit LoggerFactory() = delete;
+	virtual ~LoggerFactory() = delete;
 
-		static std::unique_ptr<Interface::ILogger> create(const Enum::LoggerType &type, const QString &filePath);
-	};
-
+	static std::unique_ptr<Interface::ILogger> create(const Enum::LoggerType &type, const QString &filePath);
+};
 }

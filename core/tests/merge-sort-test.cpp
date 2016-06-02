@@ -49,7 +49,7 @@ Enum::TestType MergeSortTest::type() const {
 }
 
 uint64_t MergeSortTest::execute(uint64_t in) {
-	std::vector<int> data = { 11, 34, 1, 23, 24, 22, 22, 44, 85, 12, 334, 5, 2, 32, 64, 7};
+	std::vector<int> data = {11, 34, 1, 23, 24, 22, 22, 44, 85, 12, 334, 5, 2, 32, 64, 7};
 	data.push_back(static_cast<int>(in));
 	return merge_sort(data).size();
 }

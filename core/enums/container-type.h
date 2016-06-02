@@ -4,12 +4,11 @@
 
 namespace Enum {
 
-	enum class ContainerType : quint8 {
-		CompilerInfo,
-		PlatformInfo,
-		TestCaseInfo,
-		TestCase,
-		VersionInfo
-	};
-
+enum class ContainerType : quint8 {
+	CompilerInfo,
+	PlatformInfo,
+	TestCaseInfo,
+	TestCase,
+	VersionInfo
+};
 }

@@ -3,11 +3,10 @@
 
 using namespace Test;
 
-
 static const std::string base64_chars =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  "abcdefghijklmnopqrstuvwxyz"
-  "0123456789+/";
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	"abcdefghijklmnopqrstuvwxyz"
+	"0123456789+/";
 
 static inline bool is_base64(unsigned char c) {
 	return (isalnum(c) || (c == '+') || (c == '/'));
@@ -29,7 +28,7 @@ std::string base64_encode(char const *bytes_to_encode, unsigned int in_len) {
 			char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
 			char_array_4[3] = char_array_3[2] & 0x3f;
 
-			for (i = 0; (i < 4) ; i++)
+			for (i = 0; (i < 4); i++)
 				ret += base64_chars[char_array_4[i]];
 
 			i = 0;

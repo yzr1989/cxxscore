@@ -8,7 +8,7 @@ using namespace Functional;
 using namespace Logger;
 
 RawLogger::RawLogger(const QString &name)
-	: m_file(name) {
+		: m_file(name) {
 }
 
 Enum::LoggerType RawLogger::type() const {

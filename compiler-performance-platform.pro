@@ -1,5 +1,6 @@
 TARGET = compiler-performance-platform
 TEMPLATE = app
+CONFIG += c++14
 QT += core
 QT -= gui
 

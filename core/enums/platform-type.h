@@ -4,10 +4,9 @@
 
 namespace Enum {
 
-	enum class PlatformType : quint8 {
-		Linux
-	};
+enum class PlatformType : quint8 {
+	Linux
+};
 
-	QString name(const PlatformType &type);
-
+QString name(const PlatformType &type);
 }

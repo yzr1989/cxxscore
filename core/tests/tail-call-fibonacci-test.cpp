@@ -14,5 +14,5 @@ Enum::TestType TailCallFibonacciTest::type() const {
 }
 
 uint64_t TailCallFibonacciTest::execute(uint64_t in) {
-	return fibonacci(in % 100, 0 , 1);
+	return fibonacci(in % 100, 0, 1);
 }

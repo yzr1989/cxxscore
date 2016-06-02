@@ -8,17 +8,15 @@
 
 namespace Functional {
 
-	class ContainerWritter {
-	public:
-		explicit ContainerWritter(const QString &filePath);
-		virtual ~ContainerWritter() = default;
+class ContainerWritter {
+public:
+	explicit ContainerWritter(const QString &filePath);
+	virtual ~ContainerWritter() = default;
 
-		void write(const Abstract::AbstractContainer &container);
+	void write(const Abstract::AbstractContainer &container);
 
-	private:
-		QFile m_file;
-		Core::DataStream m_stream;
-	};
-
-
+private:
+	QFile m_file;
+	Core::DataStream m_stream;
+};
 }

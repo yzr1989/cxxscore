@@ -10,9 +10,9 @@
 
 using namespace Window;
 
-MainWindow::MainWindow(QWidget *parent) :
-	QMainWindow(parent),
-	ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+		: QMainWindow(parent)
+		, ui(new Ui::MainWindow)
 
 {
 	ui->setupUi(this);
@@ -34,7 +34,7 @@ void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
 	Widget::Plot *plot = ui->tabWidget->insert(tabname);
 	//plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
 	plot->title()->setText(title(container->testcase().id()) + ", " +
-	                       QString::number(container->testcase().count()) + " iteracji");
+		QString::number(container->testcase().count()) + " iteracji");
 	plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
 	plot->subtitle()->setTextColor(Qt::darkGray);
 	plot->insert(*container);
@@ -66,5 +66,3 @@ void MainWindow::savePlots() {
 	for (auto plot : m_plots)
 		plot->saveToFile(m_manager.path(Enum::Folder::Plot, plot->testName() + ".png"));
 }
-
-

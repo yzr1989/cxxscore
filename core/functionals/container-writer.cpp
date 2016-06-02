@@ -5,7 +5,7 @@ using namespace Functional;
 using namespace Factory;
 
 ContainerWritter::ContainerWritter(const QString &filePath)
-	: m_file(filePath) {
+		: m_file(filePath) {
 	m_file.open(QIODevice::WriteOnly | QIODevice::Truncate);
 	m_stream.setDevice(&m_file);
 }

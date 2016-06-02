@@ -4,11 +4,10 @@
 
 namespace Enum {
 
-	enum class Folder : quint8 {
-		Data,
-		Plot
-	};
+enum class Folder : quint8 {
+	Data,
+	Plot
+};
 
-	QString name(const Folder &folder);
-
+QString name(const Folder &folder);
 }

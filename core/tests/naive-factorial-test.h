@@ -5,15 +5,14 @@
 
 namespace Test {
 
-	class NaiveFactorialTest final : public Abstract::AbstractTestCase {
-	public:
-		explicit NaiveFactorialTest() = default;
-		virtual ~NaiveFactorialTest() = default;
+class NaiveFactorialTest final : public Abstract::AbstractTestCase {
+public:
+	explicit NaiveFactorialTest() = default;
+	virtual ~NaiveFactorialTest() = default;
 
-		virtual Enum::TestType type() const override;
-		virtual uint64_t execute(uint64_t in) override;
+	virtual Enum::TestType type() const override;
+	virtual uint64_t execute(uint64_t in) override;
 
-		static uint64_t factorial(uint64_t n);
-	};
-
+	static uint64_t factorial(uint64_t n);
+};
 }

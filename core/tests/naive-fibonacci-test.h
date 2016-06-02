@@ -4,15 +4,14 @@
 
 namespace Test {
 
-	class NaiveFibonacciTest final : public Abstract::AbstractTestCase {
-	public:
-		explicit NaiveFibonacciTest() = default;
-		virtual ~NaiveFibonacciTest() = default;
+class NaiveFibonacciTest final : public Abstract::AbstractTestCase {
+public:
+	explicit NaiveFibonacciTest() = default;
+	virtual ~NaiveFibonacciTest() = default;
 
-		virtual Enum::TestType type() const override;
-		virtual uint64_t execute(uint64_t in) override;
+	virtual Enum::TestType type() const override;
+	virtual uint64_t execute(uint64_t in) override;
 
-		static uint64_t fibonacci(uint64_t n);
-	};
-
+	static uint64_t fibonacci(uint64_t n);
+};
 }

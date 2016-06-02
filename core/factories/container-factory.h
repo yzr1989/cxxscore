@@ -5,12 +5,11 @@
 
 namespace Factory {
 
-	class ContainerFactory {
-	public:
-		explicit ContainerFactory() = delete;
-		virtual ~ContainerFactory() = delete;
+class ContainerFactory {
+public:
+	explicit ContainerFactory() = delete;
+	virtual ~ContainerFactory() = delete;
 
-		static std::unique_ptr<Abstract::AbstractContainer> create(const Enum::ContainerType &type);
-	};
-
+	static std::unique_ptr<Abstract::AbstractContainer> create(const Enum::ContainerType &type);
+};
 }

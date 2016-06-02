@@ -6,37 +6,35 @@
 #include <QMainWindow>
 
 namespace Container {
-	class TestCaseContainer;
+class TestCaseContainer;
 }
 
 namespace Widget {
-	class Plot;
+class Plot;
 }
 
 namespace Window {
 
-	namespace Ui {
-		class MainWindow;
-	}
+namespace Ui {
+class MainWindow;
+}
 
-	class MainWindow final : public QMainWindow {
-		Q_OBJECT
+class MainWindow final : public QMainWindow {
+	Q_OBJECT
 
-	public:
-		explicit MainWindow(QWidget *parent = 0);
-		~MainWindow();
+public:
+	explicit MainWindow(QWidget *parent = 0);
+	~MainWindow();
 
-	protected:
-		void insertTestCase(Container::TestCaseContainer *container);
-		void loadFromFile(const QString &fileName);
-		void generatePlots();
-		void savePlots();
+protected:
+	void insertTestCase(Container::TestCaseContainer *container);
+	void loadFromFile(const QString &fileName);
+	void generatePlots();
+	void savePlots();
 
-
-	private:
-		Manager::FileManager m_manager;
-		std::set<Widget::Plot *> m_plots;
-		Ui::MainWindow *ui;
-	};
-
+private:
+	Manager::FileManager m_manager;
+	std::set<Widget::Plot *> m_plots;
+	Ui::MainWindow *ui;
+};
 }

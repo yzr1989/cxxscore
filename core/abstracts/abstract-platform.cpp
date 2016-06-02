@@ -26,13 +26,13 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 		logger->init(test);
 
 	std::cout
-	    << "Running '"
-	    << name(test->type()).toStdString()
-	    << "' test "
-	    << test->count()
-	    << " iterations... "
-	    << std::endl
-	    << std::flush;
+		<< "Running '"
+		<< name(test->type()).toStdString()
+		<< "' test "
+		<< test->count()
+		<< " iterations... "
+		<< std::endl
+		<< std::flush;
 }
 
 void AbstractPlatform::exec(Interface::ITestCase *test) {
@@ -62,12 +62,12 @@ void AbstractPlatform::run(volatile int count) {
 			exec(pointer);
 			const double last = m_elapsed.stop();
 			std::cout
-			    << std::to_string(i + 1)
-			    << "/"
-			    << std::to_string(count)
-			    << ", "
-			    << last
-			    << "s" << std::endl;
+				<< std::to_string(i + 1)
+				<< "/"
+				<< std::to_string(count)
+				<< ", "
+				<< last
+				<< "s" << std::endl;
 
 			if (last < duration)
 				duration = last;
@@ -76,4 +76,3 @@ void AbstractPlatform::run(volatile int count) {
 		done(pointer, duration);
 	}
 }
-

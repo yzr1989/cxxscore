@@ -37,9 +37,9 @@ int main(int argc, char *argv[]) {
 	}
 
 	sort(tests.begin(), tests.end(),
-	[](const std::unique_ptr<TestCaseContainer> &a, const std::unique_ptr<TestCaseContainer> &b) {
-		return a->testcase().duration() < b->testcase().duration();
-	});
+		[](const std::unique_ptr<TestCaseContainer> &a, const std::unique_ptr<TestCaseContainer> &b) {
+			return a->testcase().duration() < b->testcase().duration();
+		});
 	std::array<double, 2> m_compilerDuration;
 	m_compilerDuration.fill(0);
 

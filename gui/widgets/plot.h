@@ -5,44 +5,43 @@
 #include <core/containers/test-case-info-container.h>
 
 #include <QMap>
-#include  <list>
+#include <list>
 #include <memory>
 
 namespace Widget {
 
-	class Plot : public QCustomPlot {
-	public:
-		explicit Plot(const QString &testName, QWidget *parent = nullptr);
-		virtual ~Plot();
+class Plot : public QCustomPlot {
+public:
+	explicit Plot(const QString &testName, QWidget *parent = nullptr);
+	virtual ~Plot();
 
-		void saveToFile(const QString &fileName);
-		void insert(Container::TestCaseContainer &test);
+	void saveToFile(const QString &fileName);
+	void insert(Container::TestCaseContainer &test);
 
-		void generate();
+	void generate();
 
-		QCPPlotTitle *title();
-		QCPPlotTitle *subtitle();
-		QCPBars *bars(const QString &name);
+	QCPPlotTitle *title();
+	QCPPlotTitle *subtitle();
+	QCPBars *bars(const QString &name);
 
-		QString testName() const;
+	QString testName() const;
 
-		void setGuiFont();
-		void setPaperFont();
+	void setGuiFont();
+	void setPaperFont();
 
-	protected:
-		void setGrid();
-		void reset();
+protected:
+	void setGrid();
+	void reset();
 
-	private:
-		QString m_testName;
+private:
+	QString m_testName;
 
-		std::vector<Container::TestCaseContainer> m_tests;
-		std::vector<QCPBars *> m_testBars;
+	std::vector<Container::TestCaseContainer> m_tests;
+	std::vector<QCPBars *> m_testBars;
 
-		QMap <QString, QCPBars *> m_bars;
+	QMap<QString, QCPBars *> m_bars;
 
-		QCPPlotTitle *m_title;
-		QCPPlotTitle *m_subtitle;
-	};
-
+	QCPPlotTitle *m_title;
+	QCPPlotTitle *m_subtitle;
+};
 }
