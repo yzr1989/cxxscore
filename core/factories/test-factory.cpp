@@ -7,6 +7,9 @@
 #include <core/tests/naive-nwd-test.h>
 #include <core/tests/tail-call-factorial-test.h>
 #include <core/tests/tail-call-fibonacci-test.h>
+#include <core/tests/lambda-test.h>
+#include <core/tests/string-concate-test.h>
+#include <core/tests/sieve-of-eratosthenes-test.h>
 
 using namespace Test;
 using namespace Enum;
@@ -37,6 +40,15 @@ std::unique_ptr<Interface::ITestCase> TestFactory::create(const TestType &type) 
 
 		case TestType::MergeSort:
 			return std::make_unique<MergeSortTest>();
+
+		case TestType::Lambda:
+			return std::make_unique<LambdaTest>();
+
+		case TestType::StringConcate:
+			return std::make_unique<StringConcateTest>();
+
+		case TestType::SieveOfEratosthenes:
+			return std::make_unique<SieveOfEratosthenesTest>();
 
 		case TestType::Last:
 			return nullptr;

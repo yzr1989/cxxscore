@@ -45,7 +45,10 @@ SOURCES += main/platform/main.cpp \
     core/containers/version-info-container.cpp \
     core/managers/file-manager.cpp \
     core/enums/folder.cpp \
-    core/functionals/info-center.cpp
+    core/functionals/info-center.cpp \
+    core/tests/lambda-test.cpp \
+    core/tests/string-concate-test.cpp \
+    core/tests/sieve-of-eratosthenes-test.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -86,4 +89,7 @@ HEADERS += \
     core/containers/version-info-container.h \
     core/managers/file-manager.h \
     core/enums/folder.h \
-    core/functionals/info-center.h
+    core/functionals/info-center.h \
+    core/tests/lambda-test.h \
+    core/tests/string-concate-test.h \
+    core/tests/sieve-of-eratosthenes-test.h

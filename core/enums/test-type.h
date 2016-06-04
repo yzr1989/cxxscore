@@ -13,6 +13,9 @@ enum class TestType : uint8_t {
 	NaiveNWD,
 	TailCallFibonacci,
 	TailCallFactorial,
+	Lambda,
+	StringConcate,
+	SieveOfEratosthenes,
 	Last
 };
 

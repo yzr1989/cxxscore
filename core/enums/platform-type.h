@@ -9,4 +9,5 @@ enum class PlatformType : quint8 {
 };
 
 QString name(const PlatformType &type);
+QString filename(const PlatformType &type);
 }

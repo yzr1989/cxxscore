@@ -1,7 +1,6 @@
 #pragma once
 
 #include <core/abstracts/abstract-test-case.h>
-#include <cstdint>
 
 namespace Test {
 
