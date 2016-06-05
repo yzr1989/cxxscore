@@ -1,6 +1,7 @@
 #include <core/tests/sieve-of-eratosthenes-test.h>
 #include <algorithm>
 #include <limits>
+#include <vector>
 
 using namespace Test;
 using namespace Enum;
