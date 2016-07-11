@@ -1,4 +1,5 @@
 QT += core gui widgets printsupport
+CONFIG += c++14
 
 include(cflags.pri)
 

@@ -16,6 +16,7 @@ enum class TestType : uint8_t {
 	Lambda,
 	StringConcate,
 	SieveOfEratosthenes,
+	ColorBrightnessCorrection,
 	Last
 };
 

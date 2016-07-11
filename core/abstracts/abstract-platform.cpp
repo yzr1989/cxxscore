@@ -36,9 +36,9 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 }
 
 void AbstractPlatform::exec(Interface::ITestCase *test) {
-	auto count = test->count();
+	volatile uint64_t count = test->count();
 
-	for (decltype(count) i = 0; i < count; ++i)
+	for (volatile uint64_t i = 0; i < count; ++i)
 		test->execute(count);
 }
 

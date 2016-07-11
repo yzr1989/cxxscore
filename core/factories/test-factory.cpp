@@ -10,6 +10,7 @@
 #include <core/tests/lambda-test.h>
 #include <core/tests/string-concate-test.h>
 #include <core/tests/sieve-of-eratosthenes-test.h>
+#include <core/tests/color-brightness-correction-test.h>
 
 using namespace Test;
 using namespace Enum;
@@ -49,6 +50,9 @@ std::unique_ptr<Interface::ITestCase> TestFactory::create(const TestType &type) 
 
 		case TestType::SieveOfEratosthenes:
 			return std::make_unique<SieveOfEratosthenesTest>();
+
+		case TestType::ColorBrightnessCorrection:
+			return std::make_unique<ColorBrightnessCorrectionTest>();
 
 		case TestType::Last:
 			return nullptr;
