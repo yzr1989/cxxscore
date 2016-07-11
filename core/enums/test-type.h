@@ -17,6 +17,7 @@ enum class TestType : uint8_t {
 	StringConcate,
 	SieveOfEratosthenes,
 	ColorBrightnessCorrection,
+	ColorRGBCorrection,
 	Last
 };
 

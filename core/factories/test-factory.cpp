@@ -11,6 +11,7 @@
 #include <core/tests/string-concate-test.h>
 #include <core/tests/sieve-of-eratosthenes-test.h>
 #include <core/tests/color-brightness-correction-test.h>
+#include <core/tests/color-rgb-correction-test.h>
 
 using namespace Test;
 using namespace Enum;
@@ -53,6 +54,9 @@ std::unique_ptr<Interface::ITestCase> TestFactory::create(const TestType &type) 
 
 		case TestType::ColorBrightnessCorrection:
 			return std::make_unique<ColorBrightnessCorrectionTest>();
+
+		case TestType::ColorRGBCorrection:
+			return std::make_unique<ColorRGBCorrectionTest>();
 
 		case TestType::Last:
 			return nullptr;

@@ -16,6 +16,7 @@ QString Enum::name(const TestType &type) {
 		case TestType::StringConcate: return "StringConcate";
 		case TestType::SieveOfEratosthenes: return "SieveOfEratosthenes";
 		case TestType::ColorBrightnessCorrection: return "ColorBrightnessCorrection";
+		case TestType::ColorRGBCorrection: return "ColorRGBCorrection";
 		case TestType::Last: return {};
 	}
 
@@ -36,6 +37,7 @@ QString Enum::title(const TestType &type) {
 		case TestType::StringConcate: return "Konkatenacja ciągu znaków";
 		case TestType::SieveOfEratosthenes: return "Sito Eratostenesa";
 		case TestType::ColorBrightnessCorrection: return "Korekcja koloru (jasność)";
+		case TestType::ColorRGBCorrection: return "Korekcja koloru (rgb)";
 		case TestType::Last:
 			return {};
 	}
@@ -57,6 +59,7 @@ uint64_t Enum::count(const TestType &type) {
 		case TestType::StringConcate: return 1000000;
 		case TestType::SieveOfEratosthenes: return 10000;
 		case TestType::ColorBrightnessCorrection: return 1000000000;
+		case TestType::ColorRGBCorrection: return 1000000000;
 		case TestType::Last: return 0;
 	}
 

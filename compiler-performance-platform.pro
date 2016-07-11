@@ -49,7 +49,8 @@ SOURCES += main/platform/main.cpp \
     core/tests/lambda-test.cpp \
     core/tests/string-concate-test.cpp \
     core/tests/sieve-of-eratosthenes-test.cpp \
-    core/tests/color-brightness-correction-test.cpp
+    core/tests/color-brightness-correction-test.cpp \
+    core/tests/color-rgb-correction-test.cpp
 
 HEADERS += \
 		core/abstracts/abstract-platform.h \
@@ -94,4 +95,5 @@ HEADERS += \
     core/tests/lambda-test.h \
     core/tests/string-concate-test.h \
     core/tests/sieve-of-eratosthenes-test.h \
-    core/tests/color-brightness-correction-test.h
+    core/tests/color-brightness-correction-test.h \
+    core/tests/color-rgb-correction-test.h
