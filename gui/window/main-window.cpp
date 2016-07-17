@@ -35,7 +35,7 @@ void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
 	//plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
 	plot->title()->setText(title(container->testcase().id()) + ", " +
 		QString::number(container->testcase().count()) + " iteracji");
-	plot->subtitle()->setText("Mniejszy czas wykonania = wieksza wydajność");
+	plot->subtitle()->setText("Wiecej iteracji = wieksza wydajność");
 	plot->subtitle()->setTextColor(Qt::darkGray);
 	plot->insert(*container);
 	m_plots.insert(plot);

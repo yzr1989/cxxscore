@@ -17,8 +17,8 @@ public:
 
 protected:
 	virtual void init(Interface::ITestCase *test) override;
-	virtual void exec(Interface::ITestCase *test) override;
-	virtual void done(Interface::ITestCase *test, const double duration) override;
+	virtual uint64_t exec(Interface::ITestCase *test) override ;
+	virtual void done(Interface::ITestCase *test, const double duration, const uint64_t ir) override;
 
 private:
 	std::list<std::unique_ptr<Interface::ILogger>> m_loggerList;

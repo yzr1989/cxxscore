@@ -18,14 +18,17 @@ public:
 	Enum::TestType id() const;
 	quint64 count() const;
 	double duration() const;
+	uint64_t ips() const;
 
 	void setCount(const quint64 &count);
 	void setDuration(double duration);
 	void setId(const Enum::TestType &id);
+	void setIps(const uint64_t ips);
 
 private:
 	Enum::TestType m_id;
 	double m_duration;
 	quint64 m_count;
+	uint64_t m_ips;
 };
 }

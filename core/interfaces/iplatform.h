@@ -23,7 +23,7 @@ public:
 
 protected:
 	virtual void init(Interface::ITestCase *test) = 0;
-	virtual void exec(Interface::ITestCase *test) = 0;
-	virtual void done(Interface::ITestCase *test, const double duration) = 0;
+	virtual uint64_t exec(Interface::ITestCase *test) = 0;
+	virtual void done(Interface::ITestCase *test, const double duration, const uint64_t ir) = 0;
 };
 }

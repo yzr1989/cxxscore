@@ -18,12 +18,13 @@ Enum::LoggerType RawLogger::type() const {
 void RawLogger::init(Interface::ITestCase *) {
 }
 
-void RawLogger::done(Interface::ITestCase *test, double duration) {
+void RawLogger::done(Interface::ITestCase *test, double duration, const uint64_t ips) {
 	Container::TestCaseContainer container;
 	InfoCenter::populate(container.compiler());
 	InfoCenter::populate(container.platform());
 	container.testcase().setCount(test->count());
 	container.testcase().setDuration(duration);
 	container.testcase().setId(test->type());
+	container.testcase().setIps(ips);
 	m_file.write(container);
 }

@@ -41,7 +41,7 @@ void Plot::insert(Container::TestCaseContainer &test) {
 void Plot::generate() {
 	std::sort(m_tests.begin(), m_tests.end(),
 		[](const Container::TestCaseContainer &a, const Container::TestCaseContainer &b) {
-			return a.constTestcase().duration() < b.constTestcase().duration();
+			return a.constTestcase().ips() < b.constTestcase().ips();
 		});
 	QVector<double> ticks;
 	QVector<QString> labels;
@@ -57,22 +57,22 @@ void Plot::generate() {
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);
-		bar->setName(QString::number(testcase.duration(), 'f', 4) + "s");
-		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 255));
+		bar->setName(QString::number(testcase.ips()) + "ir/s");
+		pen.setBrush(Factory::ColorFactory::color(static_cast<int>(compiler.id()), 125, 255));
 		bar->setPen(pen);
-		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(i), 125, 180));
+		bar->setBrush(Factory::ColorFactory::color(static_cast<int>(compiler.id()), 125, 180));
 		QVector<double> data;
 		data.resize(ticks.length());
 		data.fill(0);
-		data[i] = testcase.duration();
+		data[i] = testcase.ips();
 		bar->setData(ticks, data);
 		m_testBars.push_back(bar);
 
-		if (max < testcase.duration())
-			max = testcase.duration();
+		if (max < testcase.ips())
+			max = testcase.ips();
 
-		if (xAxis->range().upper < testcase.duration())
-			xAxis->setRange(0, testcase.duration() + (testcase.duration() * 0.25));
+		if (xAxis->range().upper < testcase.ips())
+			xAxis->setRange(0, testcase.ips() + (testcase.ips() * 0.25));
 	}
 
 	yAxis->setTickVector(ticks);
@@ -85,7 +85,7 @@ void Plot::generate() {
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
 
 		if (i != m_testBars.size() - 1)
-			bar->setName(bar->name() + ", +" + QString::number(static_cast<int>(max / testcase.duration() * 100) - 100) + "%");
+			bar->setName(bar->name() + ", +" + QString::number(static_cast<int>(max / testcase.ips() * 100) - 100) + "%");
 
 		addPlottable(bar);
 	} while (i != 0);

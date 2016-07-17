@@ -13,7 +13,7 @@ public:
 	virtual Enum::LoggerType type() const override;
 
 	virtual void init(Interface::ITestCase *) override;
-	virtual void done(Interface::ITestCase *, double duration) override;
+	virtual void done(Interface::ITestCase *, double duration, const uint64_t ips) override;
 
 private:
 	Functional::ContainerWritter m_file;

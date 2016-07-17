@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <limits>
+#include <time.h>
+
 using namespace Abstract;
 using namespace Interface;
 
@@ -35,18 +37,28 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 		<< std::flush;
 }
 
-void AbstractPlatform::exec(Interface::ITestCase *test) {
-	volatile uint64_t count = test->count();
+uint64_t AbstractPlatform::exec(Interface::ITestCase *test) {
+	volatile uint64_t ir = 0;
 
-	for (volatile uint64_t i = 0; i < count; ++i)
-		test->execute(count);
+	struct timespec time_b;
+	struct timespec time_e;
+
+	clock_gettime(CLOCK_MONOTONIC, &time_b);
+
+	do {
+		test->execute(++ir);
+		clock_gettime(CLOCK_MONOTONIC, &time_e);
+
+	} while((time_e.tv_sec - time_b.tv_sec) < 1);
+
+	return ir;
 }
 
-void AbstractPlatform::done(Interface::ITestCase *test, const double duration) {
+void AbstractPlatform::done(Interface::ITestCase *test, const double duration, const uint64_t ir) {
 	for (auto &logger : m_loggerList)
-		logger->done(test, duration);
+		logger->done(test, duration, ir);
 
-	std::cout << "done. [" << duration << "sec]" << std::endl;
+	std::cout << "done. [" << duration << "sec]" << "[" << ir << "]" << std::endl;
 }
 
 void AbstractPlatform::run(volatile int count) {
@@ -55,11 +67,11 @@ void AbstractPlatform::run(volatile int count) {
 	for (auto &testCase : m_testCaseList) {
 		ITestCase *pointer = testCase.get();
 		init(pointer);
-		auto duration = std::numeric_limits<double>::max();
+		auto min_ir = std::numeric_limits<uint64_t>::max();
 
 		for (int i = 0; i < count; ++i) {
 			m_elapsed.start();
-			exec(pointer);
+			uint64_t ir = exec(pointer);
 			const double last = m_elapsed.stop();
 			std::cout
 				<< std::to_string(i + 1)
@@ -69,10 +81,9 @@ void AbstractPlatform::run(volatile int count) {
 				<< last
 				<< "s" << std::endl;
 
-			if (last < duration)
-				duration = last;
+			min_ir = std::min(min_ir, ir);
 		}
 
-		done(pointer, duration);
+		done(pointer, 5, min_ir);
 	}
 }
