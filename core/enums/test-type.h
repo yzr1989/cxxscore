@@ -23,5 +23,4 @@ enum class TestType : uint8_t {
 
 QString title(const TestType &type);
 QString name(const TestType &type);
-uint64_t count(const TestType &type);
 }

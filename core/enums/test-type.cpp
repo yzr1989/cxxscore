@@ -44,24 +44,3 @@ QString Enum::title(const TestType &type) {
 
 	return {};
 }
-
-uint64_t Enum::count(const TestType &type) {
-	switch (type) {
-		case TestType::Base64: return 1000000;
-		case TestType::EmptyCall: return 100000000;
-		case TestType::MergeSort: return 100000;
-		case TestType::NaiveFactorial: return 1000000;
-		case TestType::NaiveFibonacci: return 100;
-		case TestType::NaiveNWD: return 10000000;
-		case TestType::TailCallFactorial: return 1000000;
-		case TestType::TailCallFibonacci: return 10000000;
-		case TestType::Lambda: return 100000000;
-		case TestType::StringConcate: return 1000000;
-		case TestType::SieveOfEratosthenes: return 10000;
-		case TestType::ColorBrightnessCorrection: return 1000000000;
-		case TestType::ColorRGBCorrection: return 1000000000;
-		case TestType::Last: return 0;
-	}
-
-	return 0;
-}

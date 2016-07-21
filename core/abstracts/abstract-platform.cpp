@@ -5,6 +5,7 @@
 #include <iostream>
 #include <limits>
 #include <time.h>
+#include <chrono>
 
 using namespace Abstract;
 using namespace Interface;
@@ -30,26 +31,25 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 	std::cout
 		<< "Running '"
 		<< name(test->type()).toStdString()
-		<< "' test "
-		<< test->count()
-		<< " iterations... "
-		<< std::endl
+		<< "' "
 		<< std::flush;
 }
 
 uint64_t AbstractPlatform::exec(Interface::ITestCase *test) {
 	volatile uint64_t ir = 0;
 
-	struct timespec time_b;
-	struct timespec time_e;
+	std::chrono::time_point<std::chrono::high_resolution_clock> begin = std::chrono::high_resolution_clock::now();
+//	double ElapsedTime::stop() {
+//	m_end = std::chrono::high_resolution_clock::now();
+//	std::chrono::duration<double> elapsed_seconds = m_end - m_begin;
+//	return elapsed_seconds.count();
 
-	clock_gettime(CLOCK_MONOTONIC, &time_b);
-
+	std::chrono::duration<double> timeout;
 	do {
 		test->execute(++ir);
-		clock_gettime(CLOCK_MONOTONIC, &time_e);
+		timeout = std::chrono::high_resolution_clock::now() - begin;
 
-	} while((time_e.tv_sec - time_b.tv_sec) < 1);
+	} while(timeout.count() < 1);
 
 	return ir;
 }
@@ -63,27 +63,16 @@ void AbstractPlatform::done(Interface::ITestCase *test, const double duration, c
 
 void AbstractPlatform::run(volatile int count) {
 	m_count = count;
+	uint64_t ips = 0;
 
 	for (auto &testCase : m_testCaseList) {
 		ITestCase *pointer = testCase.get();
 		init(pointer);
-		auto min_ir = std::numeric_limits<uint64_t>::max();
-
-		for (int i = 0; i < count; ++i) {
-			m_elapsed.start();
-			uint64_t ir = exec(pointer);
-			const double last = m_elapsed.stop();
-			std::cout
-				<< std::to_string(i + 1)
-				<< "/"
-				<< std::to_string(count)
-				<< ", "
-				<< last
-				<< "s" << std::endl;
-
-			min_ir = std::min(min_ir, ir);
-		}
-
-		done(pointer, 5, min_ir);
+		m_elapsed.start();
+		ips = exec(pointer);
+		auto duration = m_elapsed.stop();
+		std::cout << " <<" << ips << ">> ";
+		ips /= duration;
+		done(pointer, duration, ips);
 	}
 }

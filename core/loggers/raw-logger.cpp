@@ -22,7 +22,7 @@ void RawLogger::done(Interface::ITestCase *test, double duration, const uint64_t
 	Container::TestCaseContainer container;
 	InfoCenter::populate(container.compiler());
 	InfoCenter::populate(container.platform());
-	container.testcase().setCount(test->count());
+	container.testcase().setCount(ips);
 	container.testcase().setDuration(duration);
 	container.testcase().setId(test->type());
 	container.testcase().setIps(ips);
