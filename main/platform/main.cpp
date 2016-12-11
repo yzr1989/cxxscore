@@ -3,7 +3,6 @@
 #include <core/factories/test-factory.h>
 #include <core/functionals/info-center.h>
 #include <core/interfaces/iplatform.h>
-#include <core/managers/file-manager.h>
 
 #include <iostream>
 
@@ -11,10 +10,8 @@ using namespace Container;
 using namespace Enum;
 using namespace Factory;
 using namespace Functional;
-using namespace Manager;
 
 void run(const std::string &fileName, int count) {
-	FileManager manager("/home/dev/");
 	auto platform = PlatformFactory::create(PlatformType::Linux);
 	platform->attach(LoggerFactory::create(LoggerType::RawLogger, fileName));
 

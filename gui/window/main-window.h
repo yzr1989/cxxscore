@@ -1,7 +1,5 @@
 #pragma once
 
-#include <core/managers/file-manager.h>
-
 #include <set>
 #include <QMainWindow>
 
