@@ -15,14 +15,13 @@ using namespace Manager;
 
 void run(const std::string &fileName, int count) {
 	FileManager manager("/home/dev/");
-	auto core = PlatformFactory::create(PlatformType::Linux);
-	core->attach(LoggerFactory::create(LoggerType::RawLogger, manager.path(Folder::Data, fileName)));
+	auto platform = PlatformFactory::create(PlatformType::Linux);
+	platform->attach(LoggerFactory::create(LoggerType::RawLogger, fileName));
 
-	for (std::underlying_type<TestType>::type i = 0;
-		 i < static_cast<std::underlying_type<TestType>::type>(TestType::Last); ++i)
-		core->attach(TestFactory::create(static_cast<TestType>(i)));
+	for (const auto test : testsToRun())
+		platform->attach(TestFactory::create(test));
 
-	core->run(count);
+	platform->run(count);
 }
 
 int main(int argc, char *argv[]) {

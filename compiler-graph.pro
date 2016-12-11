@@ -28,7 +28,6 @@ HEADERS += \
     core/enums/platform-type.h \
     core/enums/test-type.h \
     core/containers/version-info-container.h \
-    core/managers/file-manager.h \
     core/enums/folder.h \
     core/enums/font-type.h
 
@@ -53,7 +52,6 @@ SOURCES += \
     core/enums/platform-type.cpp \
     core/enums/test-type.cpp \
     core/containers/version-info-container.cpp \
-    core/managers/file-manager.cpp \
     core/enums/folder.cpp \
     core/enums/font-type.cpp
 

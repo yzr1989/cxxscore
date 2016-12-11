@@ -33,7 +33,6 @@ protected:
 	void savePlots();
 
 private:
-	Manager::FileManager m_manager;
 	std::set<Widget::Plot *> m_plots;
 	Ui::MainWindow *ui;
 };

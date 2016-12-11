@@ -17,7 +17,6 @@ std::string Enum::name(const TestType &type) {
 		case TestType::SieveOfEratosthenes: return "SieveOfEratosthenes";
 		case TestType::ColorBrightnessCorrection: return "ColorBrightnessCorrection";
 		case TestType::ColorRGBCorrection: return "ColorRGBCorrection";
-		case TestType::Last: return {};
 	}
 
 	return {};
@@ -38,8 +37,6 @@ std::string Enum::title(const TestType &type) {
 		case TestType::SieveOfEratosthenes: return "Sito Eratostenesa";
 		case TestType::ColorBrightnessCorrection: return "Korekcja koloru (jasność)";
 		case TestType::ColorRGBCorrection: return "Korekcja koloru (rgb)";
-		case TestType::Last:
-			return {};
 	}
 
 	return {};

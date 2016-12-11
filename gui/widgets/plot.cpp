@@ -51,9 +51,9 @@ void Plot::generate() {
 		const Container::CompilerInfoContainer &compiler = m_tests.at(i).compiler();
 		const Container::PlatformInfoContainer &platform = m_tests.at(i).platform();
 		const Container::TestCaseInfoContainer &testcase = m_tests.at(i).testcase();
-		const QString compilerName = name(compiler.id());
+		const QString compilerName = QString::fromStdString(name(compiler.id()));
 		ticks << i;
-		labels << QString("%1/%2 %3 %4\n%5").arg(name(platform.platform()), name(platform.arch()), name(compiler.id()), compiler.constVersion().toString(), compiler.flags().replace(' ', '\n'));
+		labels << QString("%1/%2 %3 %4\n%5").arg(QString::fromStdString(name(platform.platform())), QString::fromStdString(name(platform.arch())), QString::fromStdString(name(compiler.id())), QString::fromStdString(compiler.constVersion().toString()), QString::fromStdString(compiler.flags()));
 		auto bar = new QCPBars(yAxis, xAxis);
 		QPen pen;
 		pen.setWidthF(2);

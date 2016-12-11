@@ -26,8 +26,7 @@ double TestCaseInfoContainer::duration() const {
 	return m_duration;
 }
 
-u64 TestCaseInfoContainer::ips() const
-{
+u64 TestCaseInfoContainer::ips() const {
 	return m_ips;
 }
 
@@ -43,8 +42,7 @@ void TestCaseInfoContainer::setId(const Enum::TestType &id) {
 	m_id = id;
 }
 
-void TestCaseInfoContainer::setIps(const u64 ips)
-{
+void TestCaseInfoContainer::setIps(const u64 ips) {
 	m_ips = ips;
 }
 

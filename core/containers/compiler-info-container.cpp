@@ -9,15 +9,15 @@ Enum::ContainerType CompilerInfoContainer::type() const {
 Core::DataStream &CompilerInfoContainer::operator<<(Core::DataStream &in) {
 	in.readRawData(reinterpret_cast<char *>(&m_id), sizeof(m_id));
 	in >> m_flags;
-//	m_flags << in;
-//	m_flags = in.readThrivedUtf8String();
+	//	m_flags << in;
+	//	m_flags = in.readThrivedUtf8String();
 	m_version << in;
 	return in;
 }
 
 Core::DataStream &CompilerInfoContainer::operator>>(Core::DataStream &out) const {
 	out.writeRawData(reinterpret_cast<const char *>(&m_id), sizeof(m_id));
-//	out.writeThrivedUtf8String(m_flags);
+	//	out.writeThrivedUtf8String(m_flags);
 	out << m_flags;
 	m_version >> out;
 	return out;

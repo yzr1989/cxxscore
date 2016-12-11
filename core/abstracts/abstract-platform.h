@@ -17,7 +17,7 @@ public:
 
 protected:
 	virtual void init(Interface::ITestCase *test) override;
-	virtual u64 exec(Interface::ITestCase *test) override ;
+	virtual u64 exec(Interface::ITestCase *test) override;
 	virtual void done(Interface::ITestCase *test, const double duration, const u64 ir) override;
 
 private:

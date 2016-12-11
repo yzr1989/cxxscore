@@ -39,17 +39,12 @@ u64 AbstractPlatform::exec(Interface::ITestCase *test) {
 	volatile u64 ir = 0;
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> begin = std::chrono::high_resolution_clock::now();
-//	double ElapsedTime::stop() {
-//	m_end = std::chrono::high_resolution_clock::now();
-//	std::chrono::duration<double> elapsed_seconds = m_end - m_begin;
-//	return elapsed_seconds.count();
-
 	std::chrono::duration<double> timeout;
 	do {
 		test->execute(++ir);
 		timeout = std::chrono::high_resolution_clock::now() - begin;
 
-	} while(timeout.count() < 5);
+	} while (timeout.count() < 1);
 
 	return ir;
 }
@@ -58,7 +53,8 @@ void AbstractPlatform::done(Interface::ITestCase *test, const double duration, c
 	for (auto &logger : m_loggerList)
 		logger->done(test, duration, ir);
 
-	std::cout << "done. [" << duration << "sec]" << "[" << ir << "]" << std::endl;
+	std::cout << "done. [" << duration << "sec]"
+			  << "[" << ir << "]" << std::endl;
 }
 
 void AbstractPlatform::run(volatile int count) {

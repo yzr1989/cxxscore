@@ -5,7 +5,7 @@
 
 using namespace Platform;
 
-LinuxPlatform::LinuxPlatform() {/*
+LinuxPlatform::LinuxPlatform() { /*
 	QFile file("/proc/sys/vm/drop_caches");
 
 	if (!file.open(QIODevice::ReadWrite))

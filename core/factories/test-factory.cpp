@@ -57,9 +57,6 @@ std::unique_ptr<Interface::ITestCase> TestFactory::create(const TestType &type) 
 
 		case TestType::ColorRGBCorrection:
 			return std::make_unique<ColorRGBCorrectionTest>();
-
-		case TestType::Last:
-			return nullptr;
 	}
 
 	return nullptr;

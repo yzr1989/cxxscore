@@ -4,6 +4,7 @@
 #include <core/core/data-stream.h>
 
 #include <memory>
+#include <fstream>
 
 namespace Functional {
 
@@ -16,6 +17,7 @@ public:
 
 private:
 	const std::string m_filePath;
+	std::fstream m_file;
 	Core::DataStream m_stream;
 };
 }

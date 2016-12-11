@@ -18,7 +18,10 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 	setWindowTitle("CPP: Graph generator");
 
-	for (auto &file : m_manager.list(Enum::Folder::Data))
+	QDir dir = QDir::home();
+	dir.cd("data");
+
+	for (auto &file : dir.entryInfoList({"*.*"}, QDir::Files, QDir::Reversed | QDir::Name))
 		loadFromFile(file.absoluteFilePath());
 
 	generatePlots();
@@ -30,10 +33,10 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
-	QString tabname = name(container->testcase().id());
+	QString tabname = QString::fromStdString(name(container->testcase().id()));
 	Widget::Plot *plot = ui->tabWidget->insert(tabname);
 	//plot->title()->setText("Przypadek testowy: \"" + tabname  + "\", " + QString::number(container->testcase().count()) + " iteracji");
-	plot->title()->setText(title(container->testcase().id()) + ", " +
+	plot->title()->setText(QString::fromStdString(title(container->testcase().id())) + ", " +
 		QString::number(container->testcase().count()) + " iteracji");
 	plot->subtitle()->setText("Wiecej iteracji = wieksza wydajność");
 	plot->subtitle()->setTextColor(Qt::darkGray);
@@ -42,7 +45,7 @@ void MainWindow::insertTestCase(Container::TestCaseContainer *container) {
 }
 
 void MainWindow::loadFromFile(const QString &fileName) {
-	Functional::ContainerReader file(fileName);
+	Functional::ContainerReader file(fileName.toStdString());
 
 	do {
 		auto container = file.read();
@@ -63,6 +66,10 @@ void MainWindow::generatePlots() {
 }
 
 void MainWindow::savePlots() {
+	QDir dir = QDir::home();
+	dir.mkdir("plot");
+	dir.cd("plot");
+
 	for (auto plot : m_plots)
-		plot->saveToFile(m_manager.path(Enum::Folder::Plot, plot->testName() + ".png"));
+		plot->saveToFile(dir.path() + QDir::separator() + plot->testName() + ".png");
 }

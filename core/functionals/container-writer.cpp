@@ -6,8 +6,12 @@ using namespace Factory;
 
 ContainerWritter::ContainerWritter(const std::string &filePath)
 		: m_filePath(filePath) {
-//	m_file.open(QIODevice::WriteOnly | QIODevice::Truncate);
-//	m_stream.setDevice(&m_file);
+	m_file.open(filePath.c_str(), std::fstream::in | std::fstream::out | std::ios::trunc | std::ios::binary);
+}
+
+ContainerWritter::~ContainerWritter() {
+	m_file.write(m_stream.data(), m_stream.size());
+	m_file.close();
 }
 
 void ContainerWritter::write(const Abstract::AbstractContainer &container) {

@@ -18,9 +18,26 @@ enum class TestType : u8 {
 	StringConcate,
 	SieveOfEratosthenes,
 	ColorBrightnessCorrection,
-	ColorRGBCorrection,
-	Last
+	ColorRGBCorrection
 };
+
+constexpr auto testsToRun() -> std::initializer_list<const TestType> {
+	return {
+		TestType::Base64,
+		TestType::EmptyCall,
+		TestType::MergeSort,
+		TestType::NaiveFactorial,
+		TestType::NaiveFibonacci,
+		TestType::NaiveNWD,
+		TestType::TailCallFibonacci,
+		TestType::TailCallFactorial,
+		TestType::Lambda,
+		TestType::StringConcate,
+		TestType::SieveOfEratosthenes,
+		TestType::ColorBrightnessCorrection,
+		TestType::ColorRGBCorrection,
+	};
+}
 
 std::string title(const TestType &type);
 std::string name(const TestType &type);

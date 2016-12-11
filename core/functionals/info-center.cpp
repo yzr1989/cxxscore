@@ -1,6 +1,8 @@
 #include <core/functionals/info-center.h>
 #include <iostream>
 
+#include "config.h"
+
 using namespace Functional;
 using namespace Enum;
 
@@ -19,7 +21,7 @@ void InfoCenter::populate(Container::CompilerInfoContainer &container) {
 	container.version().setMinor(__GNUC_MINOR__);
 	container.version().setPatch(__GNUC_PATCHLEVEL__);
 #endif
-	container.setFlags(TOSTRING(CXXFLAGS));
+	container.setFlags(CMAKE_CXX_FLAGS);
 }
 
 void InfoCenter::populate(Container::PlatformInfoContainer &container) {

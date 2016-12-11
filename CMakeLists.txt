@@ -7,19 +7,20 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set(CMAKE_AUTOUIC ON)
 #set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunreachable-code")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -save-temps")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -fverbose-asm")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fverbose-asm")
 
 configure_file(config.h.in config.h)
 
-#find_package(Qt5Core)
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 9)
+set(VERSION_MINOR 0)
 
 include_directories(
 	${CMAKE_CURRENT_BINARY_DIR}
@@ -86,8 +87,6 @@ set(sources
 	core/interfaces/templates/itemplate-attach.h
 	core/loggers/raw-logger.cpp
 	core/loggers/raw-logger.h
-	core/managers/file-manager.cpp
-	core/managers/file-manager.h
 	core/platforms/linux-platform.cpp
 	core/platforms/linux-platform.h
 	core/tests/base64-test.cpp
@@ -120,10 +119,3 @@ set(sources
 )
 
 add_executable(cxxbench ${sources} ${x11-sources})
-
-#target_compile_definitions(cxxbench PRIVATE QT_DEPRECATED_WARNINGS)
-#target_compile_definitions(cxxbench PRIVATE QT_DISABLE_DEPRECATED_BEFORE=0x060000)
-
-target_link_libraries(cxxbench
-#	Qt5::Core
-)
