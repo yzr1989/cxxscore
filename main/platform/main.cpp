@@ -6,7 +6,6 @@
 #include <core/managers/file-manager.h>
 
 #include <iostream>
-#include <QCoreApplication>
 
 using namespace Container;
 using namespace Enum;
@@ -14,8 +13,8 @@ using namespace Factory;
 using namespace Functional;
 using namespace Manager;
 
-void run(const QString &fileName, int count) {
-	FileManager manager(QDir::homePath());
+void run(const std::string &fileName, int count) {
+	FileManager manager("/home/dev/");
 	auto core = PlatformFactory::create(PlatformType::Linux);
 	core->attach(LoggerFactory::create(LoggerType::RawLogger, manager.path(Folder::Data, fileName)));
 
@@ -27,23 +26,21 @@ void run(const QString &fileName, int count) {
 }
 
 int main(int argc, char *argv[]) {
-	QCoreApplication application(argc, argv);
-	application.setApplicationName("cpp");
 	CompilerInfoContainer compiler;
 	PlatformInfoContainer platform;
 	InfoCenter::populate(compiler);
 	InfoCenter::populate(platform);
 	InfoCenter::print(compiler);
 	InfoCenter::print(platform);
-	int count = 1;
+	int count = 5;
 
 	if (argc > 1)
 		count = std::atoi(argv[1]);
 
 	run(name(platform.platform()) + "-" +
 			name(platform.arch()) + "-" +
-			name(compiler.id()).toLower() + "-" +
+			name(compiler.id()) + "-" +
 			compiler.constVersion().toString() + "-" +
-			compiler.flags().remove('-').replace(' ', '-') + ".raw",
+			compiler.flags() + ".raw",
 		count);
 }

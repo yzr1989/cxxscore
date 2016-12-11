@@ -1,90 +1,44 @@
 #pragma once
 
-#include <QDataStream>
+#include <string>
+#include <vector>
+#include "core/types.h"
 
 namespace Core {
 
-//! Klasa zarzadzajaca strumieniami, rozszerza QDataStream o przydatne metody
-class DataStream : public QDataStream {
+class DataStream {
 public:
 	explicit DataStream();
-	explicit DataStream(QIODevice *device);
-	explicit DataStream(const QByteArray &array);
 	virtual ~DataStream() = default;
 
-	/// Enum zawierajacy magic numbery wykorzystane do oszczednej notacji
-	enum ThrivedLogic : uint8_t {
-		/// Oznacza 7-biotwe kodowanie informacji (na tej podstawie dane sa przesowane bitowo)
-		SevenBitEncoding = 7,
-		/// Najstarszy bit 8bitowego slowa, zapalony decyduje o tym ze nalezy przeczytac kolejny bajt informacji
-		HighestBit = 0x80,
-		/// Maska na 7 bitow znaczonych (dane)
-		DataMask = 0x7F
-	};
+	bool readRawData(char *data, i64 size) noexcept;
+	bool writeRawData(cchar *data, i64 size) noexcept;
 
-	/// Odczyt typu numerycznego oszczedzajac bajty (najstarszy bajt mowi o dodatkowym bajcie)
-	template <typename type>
-	type readThrivedNumeric();
+	DataStream &operator << (const std::string& value);
+	DataStream &operator >> (std::string& value);
 
-	/// Zapis typu numerycznego oszczedzajac bajty (najstarszy bajt mowi o dodatkowym bajcie)
-	template <typename type>
-	void writeThrivedNumeric(const type &value);
+	DataStream &operator << (ci64 value);
+	DataStream &operator << (ci32 value);
+	DataStream &operator << (ci16 value);
+	DataStream &operator << (ci8 value);
+	DataStream &operator << (cu64 value);
+	DataStream &operator << (cu32 value);
+	DataStream &operator << (cu16 value);
+	DataStream &operator << (cu8 value);
+	DataStream &operator << (const double value);
 
-	/// Odczyt typu numerycznego oszczedzajac bajty (wersja statyczna)
-	template <typename type>
-	static type readThrivedNumeric(DataStream &in);
+	DataStream &operator >> (i64 &value);
+	DataStream &operator >> (i32 &value);
+	DataStream &operator >> (i16 &value);
+	DataStream &operator >> (i8 &value);
+	DataStream &operator >> (u64 &value);
+	DataStream &operator >> (u32 &value);
+	DataStream &operator >> (u16 &value);
+	DataStream &operator >> (u8 &value);
+	DataStream &operator >> (double &value);
 
-	/// Zapis typu numerycznego oszczedzajac bajty (wersja statyczna)
-	template <typename type>
-	static void writeThrivedNumeric(DataStream &out, type value);
-
-	void writeThrivedUtf8String(const QString &input);
-	QString readThrivedUtf8String();
-
-	static void writeThrivedUtf8String(DataStream &out, const QString &input);
-	static QString readThrivedUtf8String(DataStream &in);
+private:
+	std::vector<byte> m_data;
+	i64 m_seek = 0;
 };
-
-template <typename type>
-void DataStream::writeThrivedNumeric(const type &value) {
-	writeThrivedNumeric<type>(*this, value);
-}
-
-template <typename type>
-type DataStream::readThrivedNumeric() {
-	return readThrivedNumeric<type>(*this);
-}
-
-template <typename type>
-type DataStream::readThrivedNumeric(DataStream &in) {
-	static_assert(std::is_integral<type>::value, "numeric type required.");
-	type value = 0;
-	uint8_t data;
-	int i = 0;
-
-	do {
-		data = 0;
-		in.readRawData(reinterpret_cast<char *>(&data), sizeof(data));
-		value |= static_cast<type>(data & DataMask) << (SevenBitEncoding * i++);
-	} while (data & HighestBit);
-
-	return value;
-}
-
-template <typename type>
-void DataStream::writeThrivedNumeric(DataStream &out, type value) {
-	static_assert(std::is_integral<type>::value, "numeric type required.");
-
-	while (true) {
-		uint8_t data = (value & DataMask);
-
-		if (value >>= SevenBitEncoding)
-			data |= HighestBit;
-
-		out.writeRawData(reinterpret_cast<char *>(&data), sizeof(data));
-
-		if (!value)
-			return;
-	}
-}
 }

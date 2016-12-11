@@ -2,7 +2,7 @@
 
 using namespace Test;
 
-uint64_t TailCallFactorialTest::factorial(uint64_t n) {
+u64 TailCallFactorialTest::factorial(u64 n) {
 	if (n < 2) return 1;
 
 	return n * TailCallFactorialTest::factorial(n - 1);
@@ -12,6 +12,6 @@ Enum::TestType TailCallFactorialTest::type() const {
 	return Enum::TestType::TailCallFactorial;
 }
 
-uint64_t TailCallFactorialTest::execute(uint64_t in) {
+u64 TailCallFactorialTest::execute(u64 in) {
 	return factorial(in % 256);
 }

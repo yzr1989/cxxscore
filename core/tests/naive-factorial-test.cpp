@@ -2,7 +2,7 @@
 
 using namespace Test;
 
-uint64_t NaiveFactorialTest::factorial(uint64_t n) {
+u64 NaiveFactorialTest::factorial(u64 n) {
 	if (n < 2) return 1;
 
 	return n * NaiveFactorialTest::factorial(n - 1);
@@ -12,6 +12,6 @@ Enum::TestType NaiveFactorialTest::type() const {
 	return Enum::TestType::NaiveFactorial;
 }
 
-uint64_t NaiveFactorialTest::execute(uint64_t in) {
+u64 NaiveFactorialTest::execute(u64 in) {
 	return factorial(in % 256);
 }

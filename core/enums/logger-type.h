@@ -1,10 +1,10 @@
 #pragma once
 
-#include <qglobal.h>
+#include "core/types.h"
 
 namespace Enum {
 
-enum class LoggerType : quint8 {
+enum class LoggerType : u8 {
 	RawLogger
 };
 }

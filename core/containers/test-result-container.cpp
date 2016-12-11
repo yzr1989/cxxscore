@@ -26,7 +26,7 @@ double TestCaseInfoContainer::duration() const {
 	return m_duration;
 }
 
-uint64_t TestCaseInfoContainer::ips() const
+u64 TestCaseInfoContainer::ips() const
 {
 	return m_ips;
 }
@@ -43,15 +43,15 @@ void TestCaseInfoContainer::setId(const Enum::TestType &id) {
 	m_id = id;
 }
 
-void TestCaseInfoContainer::setIps(const uint64_t ips)
+void TestCaseInfoContainer::setIps(const u64 ips)
 {
 	m_ips = ips;
 }
 
-quint64 TestCaseInfoContainer::count() const {
+u64 TestCaseInfoContainer::count() const {
 	return m_count;
 }
 
-void TestCaseInfoContainer::setCount(const quint64 &count) {
+void TestCaseInfoContainer::setCount(const u64 &count) {
 	m_count = count;
 }

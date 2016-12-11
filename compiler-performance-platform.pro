@@ -16,7 +16,7 @@ SOURCES += main/platform/main.cpp \
 		core/interfaces/itestcase.cpp \
 		core/interfaces/templates/itemplate-attach.cpp \
 		core/tests/empty-call-test.cpp \
-    core/platforms/linux-platform.cpp \
+        core/platforms/linux-platform.cpp \
     core/functionals/elapsed-time.cpp \
     core/abstracts/abstract-container.cpp \
     core/containers/test-result-container.cpp \

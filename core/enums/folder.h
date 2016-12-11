@@ -1,13 +1,14 @@
 #pragma once
 
-#include <QString>
+#include <string>
+#include "core/types.h"
 
 namespace Enum {
 
-enum class Folder : quint8 {
+enum class Folder : u8 {
 	Data,
 	Plot
 };
 
-QString name(const Folder &folder);
+std::string name(const Folder &folder);
 }

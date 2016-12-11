@@ -1,13 +1,13 @@
 #pragma once
 
-#include <QString>
+#include <string>
 
 namespace Enum {
 
-enum class PlatformType : quint8 {
+enum class PlatformType : uint8_t {
 	Linux
 };
 
-QString name(const PlatformType &type);
-QString filename(const PlatformType &type);
+std::string name(const PlatformType &type);
+std::string filename(const PlatformType &type);
 }

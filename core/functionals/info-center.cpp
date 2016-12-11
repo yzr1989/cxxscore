@@ -39,15 +39,15 @@ void InfoCenter::populate(Container::PlatformInfoContainer &container) {
 
 void InfoCenter::print(Container::CompilerInfoContainer &container) {
 	std::cout << "Compiler info:" << std::endl;
-	std::cout << "\tcompiler: " << name(container.id()).toStdString() << std::endl;
-	std::cout << "\tversion: " << container.version().toString().toStdString() << std::endl;
-	std::cout << "\tflags: " << container.flags().toStdString() << std::endl;
+	std::cout << "\tcompiler: " << name(container.id()) << std::endl;
+	std::cout << "\tversion: " << container.version().toString() << std::endl;
+	std::cout << "\tflags: " << container.flags() << std::endl;
 	std::cout << std::endl;
 }
 
 void InfoCenter::print(Container::PlatformInfoContainer &container) {
 	std::cout << "Platform info:" << std::endl;
-	std::cout << "\tplatform: " << name(container.platform()).toStdString() << std::endl;
-	std::cout << "\tarchitecture: " << name(container.arch()).toStdString() << std::endl;
+	std::cout << "\tplatform: " << name(container.platform()) << std::endl;
+	std::cout << "\tarchitecture: " << name(container.arch()) << std::endl;
 	std::cout << std::endl;
 }

@@ -10,8 +10,8 @@ public:
 	virtual ~TailCallFibonacciTest() = default;
 
 	virtual Enum::TestType type() const override;
-	virtual uint64_t execute(uint64_t in) override;
+	virtual u64 execute(u64 in) override;
 
-	static uint64_t fibonacci(uint64_t n, uint64_t f = 0, uint64_t fPop = 1);
+	static u64 fibonacci(u64 n, u64 f = 0, u64 fPop = 1);
 };
 }

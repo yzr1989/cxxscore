@@ -1,37 +1,136 @@
 #include <core/core/data-stream.h>
 
-namespace Core {
+#include <cstring>
+
+using namespace Core;
 
 DataStream::DataStream()
-		: QDataStream() {
+{
+	m_data.reserve(4096);
 }
 
-DataStream::DataStream(QIODevice *device)
-		: QDataStream(device) {
+bool DataStream::readRawData(char *data, i64 size) noexcept
+{
+	std::memcpy(data, m_data.data() + m_seek, size);
+	m_seek += size;
+	return true;
 }
 
-DataStream::DataStream(const QByteArray &array)
-		: QDataStream(array) {
+bool DataStream::writeRawData(cchar *data, i64 size) noexcept
+{
+	m_data.resize(m_data.size() + size);
+	std::memcpy(m_data.data() + m_seek, data, size);
+	m_seek += size;
+	return true;
 }
 
-void DataStream::writeThrivedUtf8String(const QString &input) {
-	writeThrivedUtf8String(*this, input);
+DataStream &DataStream::operator <<(const std::string &value) {
+	const auto size = static_cast<i32>(value.size());
+	writeRawData(reinterpret_cast<cchar*>(&size), sizeof(size));
+	writeRawData(value.c_str(), size);
+	return *this;
 }
 
-QString DataStream::readThrivedUtf8String() {
-	return readThrivedUtf8String(*this);
+DataStream &DataStream::operator >>(std::string &value) {
+	i32 size;
+	readRawData(reinterpret_cast<char*>(&size), sizeof(size));
+	value.resize(size);
+	readRawData(const_cast<char*>(value.data()), size);
+	return *this;
 }
 
-void DataStream::writeThrivedUtf8String(DataStream &out, const QString &input) {
-	out.writeThrivedNumeric<int>(input.length());
-	out.writeRawData(input.toUtf8().constData(), input.length());
+DataStream &DataStream::operator <<(cu64 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
 }
 
-QString DataStream::readThrivedUtf8String(DataStream &in) {
-	int length = in.readThrivedNumeric<int>();
-	QByteArray data;
-	data.resize(length);
-	in.readRawData(data.data(), length);
-	return QString::fromUtf8(data);
+DataStream &DataStream::operator <<(cu32 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
 }
+
+DataStream &DataStream::operator <<(cu16 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator <<(cu8 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator <<(ci32 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator <<(ci16 value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator <<(const double value)
+{
+	writeRawData(reinterpret_cast<cchar*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(i64 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(i32 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(i16 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(i8 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(u64 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(u32 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(u16 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(u8 &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
+}
+
+DataStream &DataStream::operator >>(double &value)
+{
+	readRawData(reinterpret_cast<char*>(&value), sizeof(value));
+	return *this;
 }

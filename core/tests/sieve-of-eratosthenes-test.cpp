@@ -1,19 +1,19 @@
 #include <core/tests/sieve-of-eratosthenes-test.h>
 #include <algorithm>
 #include <limits>
-#include <vector>
+#include <array>
 
 using namespace Test;
 using namespace Enum;
 
 TestType SieveOfEratosthenesTest::type() const { return TestType::SieveOfEratosthenes; }
 
-uint64_t SieveOfEratosthenesTest::execute(uint64_t in) {
+u64 SieveOfEratosthenesTest::execute(u64 in) {
 	constexpr auto size = 65536u;
-	std::vector<bool> isPrimeNumber;
-	isPrimeNumber.resize(size);
+	std::array<bool, size> isPrimeNumber;
+	//isPrimeNumber.resize(size);
 
-	std::fill(isPrimeNumber.begin(), isPrimeNumber.end(), true);
+	std::fill(std::begin(isPrimeNumber), std::end(isPrimeNumber), true);
 
 	for (auto i = 2u; i * i < size; i++)
 		if (isPrimeNumber.at(i))

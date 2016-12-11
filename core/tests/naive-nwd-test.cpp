@@ -6,7 +6,7 @@ Enum::TestType NaiveNWDTest::type() const {
 	return Enum::TestType::NaiveNWD;
 }
 
-uint64_t NaiveNWDTest::execute(uint64_t in) {
+u64 NaiveNWDTest::execute(u64 in) {
 	auto a = 5324;
 	auto b = 31;
 	auto c = 0;

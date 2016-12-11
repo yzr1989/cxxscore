@@ -2,6 +2,7 @@
 
 #include <core/enums/platform-type.h>
 #include <core/interfaces/templates/itemplate-attach.h>
+#include "core/types.h"
 
 namespace Interface {
 
@@ -23,7 +24,7 @@ public:
 
 protected:
 	virtual void init(Interface::ITestCase *test) = 0;
-	virtual uint64_t exec(Interface::ITestCase *test) = 0;
-	virtual void done(Interface::ITestCase *test, const double duration, const uint64_t ir) = 0;
+	virtual u64 exec(Interface::ITestCase *test) = 0;
+	virtual void done(Interface::ITestCase *test, const double duration, const u64 ir) = 0;
 };
 }

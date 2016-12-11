@@ -14,6 +14,6 @@ public:
 	virtual Enum::LoggerType type() const = 0;
 
 	virtual void init(ITestCase *) = 0;
-	virtual void done(ITestCase *, double duration, const uint64_t ips) = 0;
+	virtual void done(ITestCase *, double duration, const u64 ips) = 0;
 };
 }

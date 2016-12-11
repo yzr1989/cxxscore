@@ -2,12 +2,11 @@
 #include <core/functionals/info-center.h>
 #include <core/interfaces/itestcase.h>
 #include <core/loggers/raw-logger.h>
-#include <QDir>
 
 using namespace Functional;
 using namespace Logger;
 
-RawLogger::RawLogger(const QString &name)
+RawLogger::RawLogger(const std::string &name)
 		: m_file(name) {
 }
 
@@ -18,7 +17,7 @@ Enum::LoggerType RawLogger::type() const {
 void RawLogger::init(Interface::ITestCase *) {
 }
 
-void RawLogger::done(Interface::ITestCase *test, double duration, const uint64_t ips) {
+void RawLogger::done(Interface::ITestCase *test, double duration, const u64 ips) {
 	Container::TestCaseContainer container;
 	InfoCenter::populate(container.compiler());
 	InfoCenter::populate(container.platform());

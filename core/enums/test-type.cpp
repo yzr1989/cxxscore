@@ -2,7 +2,7 @@
 
 using namespace Enum;
 
-QString Enum::name(const TestType &type) {
+std::string Enum::name(const TestType &type) {
 	switch (type) {
 		case TestType::Base64: return "Base64";
 		case TestType::EmptyCall: return "EmptyCall";
@@ -23,7 +23,7 @@ QString Enum::name(const TestType &type) {
 	return {};
 }
 
-QString Enum::title(const TestType &type) {
+std::string Enum::title(const TestType &type) {
 	switch (type) {
 		case TestType::Base64: return "Kodowanie i dekodowanie Base64";
 		case TestType::EmptyCall: return "Wykonywanie pustych funkcji, O(n)";

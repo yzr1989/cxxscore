@@ -1,10 +1,11 @@
 #pragma once
 
-#include <QString>
+#include <string>
+#include "core/types.h"
 
 namespace Enum {
 
-enum class TestType : uint8_t {
+enum class TestType : u8 {
 	Base64,
 	EmptyCall,
 	MergeSort,
@@ -21,6 +22,6 @@ enum class TestType : uint8_t {
 	Last
 };
 
-QString title(const TestType &type);
-QString name(const TestType &type);
+std::string title(const TestType &type);
+std::string name(const TestType &type);
 }

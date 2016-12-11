@@ -4,7 +4,7 @@ using namespace Test;
 
 Enum::TestType ColorRGBCorrectionTest::type() const { return Enum::TestType::ColorRGBCorrection; }
 
-uint64_t ColorRGBCorrectionTest::execute(uint64_t in)
+u64 ColorRGBCorrectionTest::execute(u64 in)
 {
 	auto r = static_cast<uint32_t>((in >> 0x10) & 0xffu);
 	auto g = static_cast<uint32_t>((in >> 0x08) & 0xffu);
@@ -15,7 +15,7 @@ uint64_t ColorRGBCorrectionTest::execute(uint64_t in)
 	r = std::min(0xffu, r);
 	g = std::min(0xffu, g);
 	b = std::min(0xffu, b);
-	uint64_t color = 0;
+	u64 color = 0;
 	color |= r << 0x10;
 	color |= g << 0x08;
 	color |= b << 0x00;

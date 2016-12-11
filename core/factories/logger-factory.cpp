@@ -4,7 +4,7 @@
 using namespace Enum;
 using namespace Factory;
 
-std::unique_ptr<Interface::ILogger> LoggerFactory::create(const Enum::LoggerType &type, const QString &filePath) {
+std::unique_ptr<Interface::ILogger> LoggerFactory::create(const Enum::LoggerType &type, const std::string &filePath) {
 	switch (type) {
 		case LoggerType::RawLogger:
 			return std::make_unique<Logger::RawLogger>(filePath);

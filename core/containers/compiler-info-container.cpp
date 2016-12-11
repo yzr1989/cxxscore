@@ -8,14 +8,17 @@ Enum::ContainerType CompilerInfoContainer::type() const {
 
 Core::DataStream &CompilerInfoContainer::operator<<(Core::DataStream &in) {
 	in.readRawData(reinterpret_cast<char *>(&m_id), sizeof(m_id));
-	m_flags = in.readThrivedUtf8String();
+	in >> m_flags;
+//	m_flags << in;
+//	m_flags = in.readThrivedUtf8String();
 	m_version << in;
 	return in;
 }
 
 Core::DataStream &CompilerInfoContainer::operator>>(Core::DataStream &out) const {
 	out.writeRawData(reinterpret_cast<const char *>(&m_id), sizeof(m_id));
-	out.writeThrivedUtf8String(m_flags);
+//	out.writeThrivedUtf8String(m_flags);
+	out << m_flags;
 	m_version >> out;
 	return out;
 }
@@ -36,15 +39,14 @@ void CompilerInfoContainer::setId(const Enum::CompilerType &id) {
 	m_id = id;
 }
 
-QString CompilerInfoContainer::checksum() const {
-	QByteArray array = m_flags.toUtf8();
-	return QString::number(qChecksum(array.data(), static_cast<uint>(array.size())), 16).rightJustified(4, '0', true);
-}
-
-QString CompilerInfoContainer::flags() const {
+std::string CompilerInfoContainer::checksum() const {
 	return m_flags;
 }
 
-void CompilerInfoContainer::setFlags(const QString &flags) {
+std::string CompilerInfoContainer::flags() const {
+	return m_flags;
+}
+
+void CompilerInfoContainer::setFlags(const std::string &flags) {
 	m_flags = flags;
 }

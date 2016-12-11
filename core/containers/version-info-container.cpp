@@ -20,32 +20,32 @@ Core::DataStream &VersionInfoContainer::operator>>(Core::DataStream &out) const 
 	return out;
 }
 
-quint8 VersionInfoContainer::major() const {
+u8 VersionInfoContainer::major() const {
 	return m_major;
 }
 
-void VersionInfoContainer::setMajor(const quint8 &major) {
+void VersionInfoContainer::setMajor(const u8 &major) {
 	m_major = major;
 }
 
-quint8 VersionInfoContainer::minor() const {
+u8 VersionInfoContainer::minor() const {
 	return m_minor;
 }
 
-void VersionInfoContainer::setMinor(const quint8 &minor) {
+void VersionInfoContainer::setMinor(const u8 &minor) {
 	m_minor = minor;
 }
 
-quint8 VersionInfoContainer::patch() const {
+u8 VersionInfoContainer::patch() const {
 	return m_patch;
 }
 
-void VersionInfoContainer::setPatch(const quint8 &patch) {
+void VersionInfoContainer::setPatch(const u8 &patch) {
 	m_patch = patch;
 }
 
-QString VersionInfoContainer::toString() const {
-	return QString::number(m_major) + "." +
-		QString::number(m_minor) + "." +
-		QString::number(m_patch);
+std::string VersionInfoContainer::toString() const {
+	return std::to_string(m_major) + "." +
+		std::to_string(m_minor) + "." +
+		std::to_string(m_patch);
 }

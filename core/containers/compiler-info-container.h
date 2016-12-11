@@ -2,7 +2,6 @@
 
 #include <core/containers/version-info-container.h>
 #include <core/enums/compiler-type.h>
-#include <QString>
 
 namespace Container {
 
@@ -16,19 +15,19 @@ public:
 	virtual Core::DataStream &operator>>(Core::DataStream &out) const override;
 
 	Enum::CompilerType id() const;
-	QString flags() const;
+	std::string flags() const;
 
-	void setFlags(const QString &flags);
+	void setFlags(const std::string &flags);
 	void setId(const Enum::CompilerType &id);
 
 	auto version() -> VersionInfoContainer &;
 	auto constVersion() const -> const VersionInfoContainer &;
 
-	QString checksum() const;
+	std::string checksum() const;
 
 private:
 	Enum::CompilerType m_id;
 	Container::VersionInfoContainer m_version;
-	QString m_flags;
+	std::string m_flags;
 };
 }

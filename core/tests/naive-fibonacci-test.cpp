@@ -2,7 +2,7 @@
 
 using namespace Test;
 
-uint64_t NaiveFibonacciTest::fibonacci(uint64_t n) {
+u64 NaiveFibonacciTest::fibonacci(u64 n) {
 	if (n < 2) return n;
 
 	return NaiveFibonacciTest::fibonacci(n - 1) + NaiveFibonacciTest::fibonacci(n - 2);
@@ -12,6 +12,6 @@ Enum::TestType NaiveFibonacciTest::type() const {
 	return Enum::TestType::NaiveFibonacci;
 }
 
-uint64_t NaiveFibonacciTest::execute(uint64_t in) {
+u64 NaiveFibonacciTest::execute(u64 in) {
 	return fibonacci(in % 40);
 }

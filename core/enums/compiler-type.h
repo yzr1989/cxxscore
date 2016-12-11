@@ -1,14 +1,15 @@
 #pragma once
 
-#include <QString>
+#include <string>
+#include "core/types.h"
 
 namespace Enum {
 
-enum class CompilerType : quint8 {
+enum class CompilerType : u8 {
 	Gcc,
 	Clang
 };
 
-QString name(const CompilerType &type);
-QString filename(const CompilerType &type);
+std::string name(const CompilerType &type);
+std::string filename(const CompilerType &type);
 }

@@ -30,13 +30,13 @@ void AbstractPlatform::init(Interface::ITestCase *test) {
 
 	std::cout
 		<< "Running '"
-		<< name(test->type()).toStdString()
+		<< name(test->type())
 		<< "' "
 		<< std::flush;
 }
 
-uint64_t AbstractPlatform::exec(Interface::ITestCase *test) {
-	volatile uint64_t ir = 0;
+u64 AbstractPlatform::exec(Interface::ITestCase *test) {
+	volatile u64 ir = 0;
 
 	std::chrono::time_point<std::chrono::high_resolution_clock> begin = std::chrono::high_resolution_clock::now();
 //	double ElapsedTime::stop() {
@@ -49,12 +49,12 @@ uint64_t AbstractPlatform::exec(Interface::ITestCase *test) {
 		test->execute(++ir);
 		timeout = std::chrono::high_resolution_clock::now() - begin;
 
-	} while(timeout.count() < 1);
+	} while(timeout.count() < 5);
 
 	return ir;
 }
 
-void AbstractPlatform::done(Interface::ITestCase *test, const double duration, const uint64_t ir) {
+void AbstractPlatform::done(Interface::ITestCase *test, const double duration, const u64 ir) {
 	for (auto &logger : m_loggerList)
 		logger->done(test, duration, ir);
 
@@ -63,7 +63,7 @@ void AbstractPlatform::done(Interface::ITestCase *test, const double duration, c
 
 void AbstractPlatform::run(volatile int count) {
 	m_count = count;
-	uint64_t ips = 0;
+	u64 ips = 0;
 
 	for (auto &testCase : m_testCaseList) {
 		ITestCase *pointer = testCase.get();

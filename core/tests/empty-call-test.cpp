@@ -6,6 +6,6 @@ Enum::TestType EmptyCallTest::type() const {
 	return Enum::TestType::EmptyCall;
 }
 
-uint64_t EmptyCallTest::execute(uint64_t in) {
+u64 EmptyCallTest::execute(u64 in) {
 	return in;
 }

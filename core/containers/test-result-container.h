@@ -2,7 +2,7 @@
 
 #include <core/abstracts/abstract-container.h>
 #include <core/enums/test-type.h>
-#include <QString>
+#include "core/types.h"
 
 namespace Container {
 
@@ -16,19 +16,19 @@ public:
 	virtual Core::DataStream &operator>>(Core::DataStream &out) const override;
 
 	Enum::TestType id() const;
-	quint64 count() const;
+	u64 count() const;
 	double duration() const;
-	uint64_t ips() const;
+	u64 ips() const;
 
-	void setCount(const quint64 &count);
+	void setCount(const u64 &count);
 	void setDuration(double duration);
 	void setId(const Enum::TestType &id);
-	void setIps(const uint64_t ips);
+	void setIps(const u64 ips);
 
 private:
 	Enum::TestType m_id;
 	double m_duration;
-	quint64 m_count;
-	uint64_t m_ips;
+	u64 m_count;
+	u64 m_ips;
 };
 }

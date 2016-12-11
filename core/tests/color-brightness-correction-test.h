@@ -11,6 +11,6 @@ public:
 	virtual ~ColorBrightnessCorrectionTest() = default;
 
 	virtual Enum::TestType type() const override;
-	virtual uint64_t execute(uint64_t in) override;
+	virtual u64 execute(u64 in) override;
 };
 }

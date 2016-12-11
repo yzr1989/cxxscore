@@ -102,8 +102,8 @@ Enum::TestType Base64Test::type() const {
 	return Enum::TestType::Base64;
 }
 
-uint64_t Base64Test::execute(uint64_t in) {
-	std::string source = QString::number(in).toStdString();
+u64 Base64Test::execute(u64 in) {
+	std::string source = std::to_string(in);
 	std::string base64 = base64_encode(source.data(), source.size());
 	std::string decode = base64_decode(base64);
 	return decode.length();

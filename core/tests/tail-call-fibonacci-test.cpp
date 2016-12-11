@@ -2,7 +2,7 @@
 
 using namespace Test;
 
-uint64_t TailCallFibonacciTest::fibonacci(uint64_t n, uint64_t f, uint64_t fPop) {
+u64 TailCallFibonacciTest::fibonacci(u64 n, u64 f, u64 fPop) {
 	if (n < 3)
 		return f;
 
@@ -13,6 +13,6 @@ Enum::TestType TailCallFibonacciTest::type() const {
 	return Enum::TestType::TailCallFibonacci;
 }
 
-uint64_t TailCallFibonacciTest::execute(uint64_t in) {
+u64 TailCallFibonacciTest::execute(u64 in) {
 	return fibonacci(in % 100, 0, 1);
 }

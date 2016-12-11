@@ -2,7 +2,7 @@
 
 using namespace Enum;
 
-QString Enum::name(const Enum::Folder &folder) {
+std::string Enum::name(const Enum::Folder &folder) {
 	switch (folder) {
 		case Folder::Data:
 			return "data";

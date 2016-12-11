@@ -1,20 +1,18 @@
 #pragma once
 
 #include <core/enums/folder.h>
-#include <QDir>
 
 namespace Manager {
 
 class FileManager final {
 public:
-	explicit FileManager(const QString &workdir = QDir::homePath());
+	explicit FileManager(const std::string &workdir);
 	virtual ~FileManager() = default;
 
-	QString path(const Enum::Folder &folder, const QString &fileName);
-	QFileInfoList list(const Enum::Folder &folder);
+	std::string path(const Enum::Folder &folder, const std::string &fileName);
+	//QFileInfoList list(const Enum::Folder &folder);
 
 private:
-	QString m_workdir;
-	QDir m_dir;
+	std::string m_workdir;
 };
 }

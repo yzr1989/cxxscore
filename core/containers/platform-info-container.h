@@ -3,7 +3,6 @@
 #include <core/abstracts/abstract-container.h>
 #include <core/enums/architecture-type.h>
 #include <core/enums/platform-type.h>
-#include <QString>
 
 namespace Container {
 

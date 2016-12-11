@@ -2,7 +2,7 @@
 
 using namespace Enum;
 
-QString Enum::name(const PlatformType &type) {
+std::string Enum::name(const PlatformType &type) {
 	switch (type) {
 		case PlatformType::Linux: return "Linux";
 	}
@@ -10,6 +10,6 @@ QString Enum::name(const PlatformType &type) {
 	return {};
 }
 
-QString filename(const PlatformType &type) {
-	return name(type).toLower();
+std::string filename(const PlatformType &type) {
+	return name(type);
 }

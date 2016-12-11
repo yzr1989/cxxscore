@@ -1,14 +1,21 @@
 #pragma once
 
-#include <QString>
+#include "core/types.h"
 
 namespace Enum {
 
-enum class ArchitectureType : quint8 {
+enum class ArchitectureType : u8 {
 	ARM,
 	x86,
 	x86_64
 };
 
-QString name(const ArchitectureType &type);
+constexpr auto name(const ArchitectureType &type) {
+	switch (type) {
+		case ArchitectureType::ARM: return "ARM";
+		case ArchitectureType::x86: return "x86";
+		case ArchitectureType::x86_64: return "x86_64";
+	}
+	return "";
+}
 }

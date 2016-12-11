@@ -10,8 +10,8 @@ public:
 	virtual ~NaiveFibonacciTest() = default;
 
 	virtual Enum::TestType type() const override;
-	virtual uint64_t execute(uint64_t in) override;
+	virtual u64 execute(u64 in) override;
 
-	static uint64_t fibonacci(uint64_t n);
+	static u64 fibonacci(u64 n);
 };
 }
