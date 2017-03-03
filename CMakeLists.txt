@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunreachable-code")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fverbose-asm")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fverbose-asm -ffunction-sections -fdata-sections")
 
 configure_file(config.h.in config.h)
 
@@ -119,3 +119,5 @@ set(sources
 )
 
 add_executable(cxxbench ${sources} ${x11-sources})
+
+install(TARGETS cxxbench DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/)
