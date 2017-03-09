@@ -44,7 +44,7 @@ u64 AbstractPlatform::exec(Interface::ITestCase *test) {
 		test->execute(++ir);
 		timeout = std::chrono::high_resolution_clock::now() - begin;
 
-	} while (timeout.count() < 1);
+	} while (timeout.count() < m_count);
 
 	return ir;
 }
