@@ -13,5 +13,5 @@ Enum::TestType NaiveFactorialTest::type() const {
 }
 
 u64 NaiveFactorialTest::execute(u64 in) {
-	return factorial(in % 256);
+	return factorial(in % 64);
 }
