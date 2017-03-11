@@ -3,18 +3,9 @@ cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-#set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTOUIC ON)
-#set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wextra")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfloat-equal")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wunreachable-code")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fverbose-asm -ffunction-sections -fdata-sections")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -Werror -Wpedantic -Wfloat-equal")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps -fverbose-asm")
 
 configure_file(config.h.in config.h)
 
@@ -89,6 +80,10 @@ set(sources
 	core/loggers/raw-logger.h
 	core/platforms/linux-platform.cpp
 	core/platforms/linux-platform.h
+	main/platform/main.cpp
+)
+
+set(tests
 	core/tests/base64-test.cpp
 	core/tests/base64-test.h
 	core/tests/color-brightness-correction-test.cpp
@@ -115,9 +110,8 @@ set(sources
 	core/tests/tail-call-factorial-test.h
 	core/tests/tail-call-fibonacci-test.cpp
 	core/tests/tail-call-fibonacci-test.h
-	main/platform/main.cpp
 )
 
-add_executable(cxxbench ${sources} ${x11-sources})
+add_executable(cxxbench ${sources} ${tests})
 
 install(TARGETS cxxbench DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/)

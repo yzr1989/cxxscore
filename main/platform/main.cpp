@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 	InfoCenter::populate(platform);
 	InfoCenter::print(compiler);
 	InfoCenter::print(platform);
-	int count = 30;
+	int count = 5;
 
 	if (argc > 1)
 		count = std::atoi(argv[1]);
