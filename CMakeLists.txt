@@ -9,6 +9,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps -fverbose-asm")
 
 configure_file(config.h.in config.h)
 
+if (NOT CXXBENCH_BINARY_NAME)
+	set(CXXBENCH_BINARY_NAME "cxxbench")
+endif(NOT CXXBENCH_BINARY_NAME)
+
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 9)
 set(VERSION_MINOR 0)
@@ -114,4 +118,4 @@ set(tests
 
 add_executable(cxxbench ${sources} ${tests})
 
-install(TARGETS cxxbench DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/)
+install(TARGETS cxxbench DESTINATION bin RENAME ${CXXBENCH_BINARY_NAME})
