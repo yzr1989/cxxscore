@@ -1,4 +1,4 @@
-project(cxxbench)
+project(cxxscore)
 cmake_minimum_required(VERSION 3.2)
 set(CMAKE_CXX_STANDARD 14)
 
@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps -fverbose-asm")
 
 configure_file(config.h.in config.h)
 
-set(CXXBENCH_BINARY_NAME "cxxbench" CACHE STRING "Default output binary name")
+set(CXXBENCH_BINARY_NAME "cxxscore" CACHE STRING "Default output binary name")
 
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 9)
@@ -114,6 +114,7 @@ set(tests
 	core/tests/tail-call-fibonacci-test.h
 )
 
-add_executable(cxxbench ${sources} ${tests})
+add_executable(cxxscore ${sources} ${tests})
 
-install(TARGETS cxxbench DESTINATION bin RENAME ${CXXBENCH_BINARY_NAME})
+set_target_properties(cxxscore PROPERTIES OUTPUT_NAME "${CXXBENCH_BINARY_NAME}")
+install(TARGETS cxxscore DESTINATION bin)
