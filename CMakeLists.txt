@@ -9,9 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps -fverbose-asm")
 
 configure_file(config.h.in config.h)
 
-if (NOT CXXBENCH_BINARY_NAME)
-	set(CXXBENCH_BINARY_NAME "cxxbench")
-endif(NOT CXXBENCH_BINARY_NAME)
+set(CXXBENCH_BINARY_NAME "cxxbench" CACHE STRING "Default output binary name")
 
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 9)
